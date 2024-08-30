@@ -6,7 +6,7 @@
 /*   By: saandria <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/26 15:44:01 by saandria          #+#    #+#             */
-/*   Updated: 2024/08/30 23:18:32 by saandria         ###   ########.fr       */
+/*   Updated: 2024/08/30 23:27:56 by saandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@ int	main(void)
 		}
 		if (strcmp(s, "exit") == 0)
 			break ;
+		else if (strcmp(s, "pwd") == 0)
+			s = getcwd(NULL, 0);
 		printf("%s\n", s);
 		add_history(s);
 		free(s);
