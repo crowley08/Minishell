@@ -1,4 +1,4 @@
-SRCS			=	src/main.c
+SRCS			=	src/main.c src/signal_handler.c
 OBJS			= $(SRCS:.c=.o)
 
 
