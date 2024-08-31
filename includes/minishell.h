@@ -6,7 +6,7 @@
 /*   By: saandria <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 21:16:12 by saandria          #+#    #+#             */
-/*   Updated: 2024/08/30 23:38:46 by saandria         ###   ########.fr       */
+/*   Updated: 2024/08/31 04:14:12 by saandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,9 @@
 # include <sys/ioctl.h>
 # include <termios.h>
 # include <curses.h>
+# include <sys/types.h>
+# include <sys/wait.h>
+
 # include <term.h>
 
 //sig_handler
