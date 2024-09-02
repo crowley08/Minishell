@@ -16,8 +16,7 @@ int	main(void)
 {
 	char	*s;
 
-	signal(SIGINT, handle_sigint);
-	signal(SIGQUIT, handle_sigquit);
+	ms_signal();
 	while (42)
 	{
 		s = readline("\033[1;91m$>\033[0m ");
@@ -33,6 +32,6 @@ int	main(void)
 		printf("%s\n", s);
 		add_history(s);
 		free(s);
-	return (0);
 	}
+	return (0);
 }

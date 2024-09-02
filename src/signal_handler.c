@@ -25,3 +25,9 @@ void	handle_sigquit(int sig)
 	(void)sig;
 	exit(1);
 }
+
+void	ms_signal(void)
+{
+	signal(SIGINT, handle_sigint);
+	signal(SIGQUIT, handle_sigquit);
+}

@@ -34,5 +34,6 @@
 //sig_handler
 void	handle_sigint(int sig);
 void	handle_sigquit(int sig);
+void	ms_signal(void);
 
 #endif
