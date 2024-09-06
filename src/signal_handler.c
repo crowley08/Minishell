@@ -6,7 +6,7 @@
 /*   By: saandria <saandria@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 22:45:17 by saandria          #+#    #+#             */
-/*   Updated: 2024/09/06 12:27:36 by saandria         ###   ########.fr       */
+/*   Updated: 2024/09/06 16:18:54 by saandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,15 @@ void	handle_sigint(int sig)
 void	handle_sigquit(int sig)
 {
 	(void)sig;
-	exit(1);
 }
 
 void	ms_signal(void)
 {
+	struct sigaction	sa;
+
+	sigemptyset(&sa.sa_mask);
+	sa.sa_flags = 0;
+	sa.sa_handler = SIG_IGN;
 	signal(SIGINT, handle_sigint);
-	signal(SIGQUIT, handle_sigquit);
+	sigaction(SIGQUIT, &sa, NULL);
 }
