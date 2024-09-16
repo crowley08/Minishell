@@ -13,12 +13,15 @@ NAME			= minishell
 
 all:			$(NAME)
 $(NAME):
-				$(CC) $(CFLAGS) $(SRCS) -o $(NAME)
+				cd libft && make
+				$(CC) $(CFLAGS) $(SRCS) libft/libft.a -o $(NAME)
 
 clean:
+				cd libft && make clean
 				$(RM) $(OBJS)
 
 fclean:			clean
+				cd libft && make fclean
 				$(RM) $(NAME)
 
 re:				fclean all 

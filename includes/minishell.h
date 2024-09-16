@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: saandria <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: saandria < saandria@student.42antananar    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 21:16:12 by saandria          #+#    #+#             */
-/*   Updated: 2024/08/31 04:14:12 by saandria         ###   ########.fr       */
+/*   Updated: 2024/09/16 10:36:37 by saandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@
 # include <curses.h>
 # include <sys/types.h>
 # include <sys/wait.h>
-
+# include "../libft/libft.h" 
 # include <term.h>
 
 //sig_handler

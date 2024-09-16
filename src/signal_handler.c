@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   signal_handler.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: saandria <saandria@student.42antananari    +#+  +:+       +#+        */
+/*   By: saandria < saandria@student.42antananar    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 22:45:17 by saandria          #+#    #+#             */
-/*   Updated: 2024/09/06 16:18:54 by saandria         ###   ########.fr       */
+/*   Updated: 2024/09/09 09:43:03 by saandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

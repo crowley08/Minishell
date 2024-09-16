@@ -1,37 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: saandria < saandria@student.42antananar    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/26 15:44:01 by saandria          #+#    #+#             */
-/*   Updated: 2024/09/16 09:36:17 by saandria         ###   ########.fr       */
+/*   Created: 2024/09/16 09:37:16 by saandria          #+#    #+#             */
+/*   Updated: 2024/09/16 09:38:27 by saandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/minishell.h"
+#include "libft.h"
 
-int	main(void)
+int	ft_strcmp(const char *s1, const char *s2)
 {
-	char	*s;
+	size_t	i;
 
-	ms_signal();
-	while (42)
+	i = 0;
+	while (s1[i] || s2[i])
 	{
-		s = readline("\033[1;91m$>\033[0m ");
-		if (!s)
-		{
-			free(s);
-			return (0);
-		}
-		if (ft_strcmp(s, "exit") == 0)
-			break ;
-		else if (ft_strcmp(s, "pwd") == 0)
-			s = getcwd(NULL, 0);
-		printf("%s\n", s);
-		add_history(s);
-		free(s);
+		if (s1[i] != s2[i])
+			return (s1[i] - s2[i]);
+		i++;
 	}
 	return (0);
 }
