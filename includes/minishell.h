@@ -6,7 +6,7 @@
 /*   By: saandria < saandria@student.42antananar    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 21:16:12 by saandria          #+#    #+#             */
-/*   Updated: 2024/09/16 14:56:34 by saandria         ###   ########.fr       */
+/*   Updated: 2024/09/17 13:00:26 by saandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,9 +51,17 @@ struct	s_token
 	t_token        *next;
 };
 
+//token_utils functions
+int ms_istoken(char c);
+void handle_quotes(char *s, int *i);
+int ms_isspace(char c);
+
 //sig_handler
 void	handle_sigint(int sig);
 void	handle_sigquit(int sig);
 void	ms_signal(void);
+
+//tokenizer
+t_token	*ms_tokenizer(char *s);
 
 #endif

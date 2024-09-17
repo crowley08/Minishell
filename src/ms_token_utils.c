@@ -1,41 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ms_token_utils.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: saandria < saandria@student.42antananar    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/26 15:44:01 by saandria          #+#    #+#             */
-/*   Updated: 2024/09/17 12:17:29 by saandria         ###   ########.fr       */
+/*   Created: 2024/09/17 10:38:27 by saandria          #+#    #+#             */
+/*   Updated: 2024/09/17 13:34:39 by saandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-int	main(int ac, char **av, char **env)
+int ms_isspace(char c)
 {
-	char	*s;
-	t_token    *token = NULL;
-
-	(void)ac;
-	(void)av;
-	(void)env;
-	ms_signal();
-	while (42)
-	{
-		s = readline("\033[1;91m$>\033[0m ");
-		token = ms_tokenizer(s);
-		if (!s)
-		{
-			free(s);
-			return (0);
-		}
-		if (ft_strcmp(s, "exit") == 0)
-			break ;
-		else if (ft_strcmp(s, "pwd") == 0)
-			s = getcwd(NULL, 0);
-		add_history(s);
-		free(s);
-	}
+	if (c == ' ' || c == '\t' || c == '\n')
+	    return (1);
 	return (0);
+}
+
+int ms_istoken(char c)
+{
+	if (c == '|' || c == '<' || c == '>')
+        return (1);
+    return (0);
 }

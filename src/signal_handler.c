@@ -6,7 +6,7 @@
 /*   By: saandria < saandria@student.42antananar    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 22:45:17 by saandria          #+#    #+#             */
-/*   Updated: 2024/09/16 11:34:27 by saandria         ###   ########.fr       */
+/*   Updated: 2024/09/17 13:10:02 by saandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ void	handle_sigint(int sig)
 {
 	(void)sig;
 	rl_on_new_line();
+	rl_replace_line("", 0);
 	rl_redisplay();
 	printf("\n\033[1;91m$>\033[0m ");
 }
