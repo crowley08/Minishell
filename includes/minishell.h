@@ -6,7 +6,7 @@
 /*   By: saandria < saandria@student.42antananar    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 21:16:12 by saandria          #+#    #+#             */
-/*   Updated: 2024/09/17 13:49:48 by saandria         ###   ########.fr       */
+/*   Updated: 2024/09/17 16:14:13 by saandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@
 
 typedef struct s_token		t_token;
 typedef enum e_tokentype	t_tokentype;
+typedef struct s_env		t_env;
 
 enum	e_tokentype
 {
@@ -51,6 +52,12 @@ struct	s_token
 	t_token			*next;
 };
 
+struct	s_env
+{
+	char	*value;
+	t_env	*next;
+};
+
 //token_utils functions
 int		ms_istoken(char c);
 void	handle_quotes(char *s, int *i);
@@ -63,5 +70,9 @@ void	ms_signal(void);
 
 //tokenizer
 t_token	*ms_tokenizer(char *s);
+
+//environment
+char	**env_copy(char **env);
+void	print_env(char **env);
 
 #endif
