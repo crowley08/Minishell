@@ -6,7 +6,7 @@
 /*   By: saandria < saandria@student.42antananar    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 21:16:12 by saandria          #+#    #+#             */
-/*   Updated: 2024/09/17 13:00:26 by saandria         ###   ########.fr       */
+/*   Updated: 2024/09/17 13:49:48 by saandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,13 +31,13 @@
 # include "../libft/libft.h" 
 # include <term.h>
 
-typedef struct	s_token	t_token;
-typedef enum	e_tokentype	t_tokentype;
+typedef struct s_token		t_token;
+typedef enum e_tokentype	t_tokentype;
 
 enum	e_tokentype
 {
 	TOK_WORD,
-    TOK_PIPE,
+	TOK_PIPE,
 	TOK_REDIRIN,
 	TOK_REDIROUT,
 	TOK_APPEND,
@@ -46,15 +46,15 @@ enum	e_tokentype
 
 struct	s_token
 {
-	t_tokentype	type;
-	char        *value;
-	t_token        *next;
+	t_tokentype		type;
+	char			*value;
+	t_token			*next;
 };
 
 //token_utils functions
-int ms_istoken(char c);
-void handle_quotes(char *s, int *i);
-int ms_isspace(char c);
+int		ms_istoken(char c);
+void	handle_quotes(char *s, int *i);
+int		ms_isspace(char c);
 
 //sig_handler
 void	handle_sigint(int sig);

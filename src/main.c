@@ -6,7 +6,7 @@
 /*   By: saandria < saandria@student.42antananar    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/26 15:44:01 by saandria          #+#    #+#             */
-/*   Updated: 2024/09/17 12:17:29 by saandria         ###   ########.fr       */
+/*   Updated: 2024/09/17 13:50:37 by saandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int	main(int ac, char **av, char **env)
 {
 	char	*s;
-	t_token    *token = NULL;
+	t_token	*token;
 
 	(void)ac;
 	(void)av;
