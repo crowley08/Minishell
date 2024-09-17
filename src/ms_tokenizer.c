@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ms_tokenizer.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: saandria < saandria@student.42antananar    +#+  +:+       +#+        */
+/*   By: saandria <saandria@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/17 10:18:21 by saandria          #+#    #+#             */
-/*   Updated: 2024/09/17 14:01:25 by saandria         ###   ########.fr       */
+/*   Updated: 2024/09/17 22:38:59 by saandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,22 +51,22 @@ static t_token	*get_wordtok(char *s, int *i)
 		/*
 		mbola tsy mety le quotes
 		*/
-		if (s[*i] == '\'')
+		if (s[*i + 1] == '\'')
 		{
 			while (s[*i] && s[*i] != '\'')
-				(*i)++;
+				*i += 1;
 			break ;
 		}
-		else if (s[*i] == '\"')
+		else if (s[*i + 1] == '\"')
 		{
 			while (s[*i] && s[*i] != '\"')
-				(*i)++;
+				*i += 1;
 			break ;
 		}
 		else
 		{
 			while (s[*i] && !ms_isspace(s[*i]) && !ms_istoken(s[*i]))
-				(*i)++;
+				*i += 1;
 			break ;
 		}
 	}
@@ -77,39 +77,6 @@ static t_token	*get_wordtok(char *s, int *i)
 	free(value);
 	return (new_token);
 }
-
-/*
-int get_tokenword(char *s, int *i)
-{
-	int         j;	
-	int			in_quotes;
-	char		type_quote;
-
-    in_quotes = 0;
-	type_quote = 0;
-	j = *i;
-	while (s[j])
-	{
-		if (in_quotes == 0 && ms_isspace(s[j]) && ms_istoken(s[j]))
-			break;
-		else if (s[j] == '\'' || s[j] == '"')
-		{
-			if (in_quotes == 0)
-			{
-				in_quotes = 1;
-				type_quote = s[j];
-			}
-			else
-			{
-				in_quotes = 0;
-				type_quote = 0;
-			}
-		}
-		j++;
-	}
-	return (j);
-}
-*/
 
 static t_token	*check_token(char *s, int *i, t_token *new_token)
 {
@@ -148,7 +115,7 @@ t_token	*ms_tokenizer(char *s)
 	i = 0;
 	len = (int)ft_strlen(s);
 	current = NULL;
-	while (i < (int)ft_strlen(s))
+	while (i < len)
 	{
 		if (ms_isspace(s[i]))
 		{
@@ -159,6 +126,7 @@ t_token	*ms_tokenizer(char *s)
 			new_token = check_token(s, &i, new_token);
 		else
 			new_token = get_wordtok(s, &i);
+		print_token(new_token);
 		check_token_list(&current, new_token);
 	}
 	return (new_token);

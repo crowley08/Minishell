@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: saandria < saandria@student.42antananar    +#+  +:+       +#+        */
+/*   By: saandria <saandria@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 21:16:12 by saandria          #+#    #+#             */
-/*   Updated: 2024/09/17 16:14:13 by saandria         ###   ########.fr       */
+/*   Updated: 2024/09/17 21:45:10 by saandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,15 +15,15 @@
 
 # include <stdio.h>
 # include <stdlib.h>
+# include <readline/readline.h>
+# include <readline/history.h>
+# include <sys/ioctl.h>
 # include <sys/stat.h>
 # include <signal.h>
 # include <unistd.h>
 # include <sys/types.h>
 # include <string.h>
 # include <dirent.h>
-# include <readline/readline.h>
-# include <readline/history.h>
-# include <sys/ioctl.h>
 # include <termios.h>
 # include <curses.h>
 # include <sys/types.h>
@@ -54,6 +54,7 @@ struct	s_token
 
 struct	s_env
 {
+	char	*name;
 	char	*value;
 	t_env	*next;
 };
@@ -61,6 +62,7 @@ struct	s_env
 //token_utils functions
 int		ms_istoken(char c);
 void	handle_quotes(char *s, int *i);
+void	print_token(t_token *token);
 int		ms_isspace(char c);
 
 //sig_handler
@@ -72,7 +74,11 @@ void	ms_signal(void);
 t_token	*ms_tokenizer(char *s);
 
 //environment
-char	**env_copy(char **env);
-void	print_env(char **env);
+//char	**env_copy(char **env);
+//void	print_env(char **env);
+void	add_env(t_env **env, t_env *new_env);
+t_env	*new_env_list(char *value);
+void	print_env_list(t_env *env);
+t_env *get_env(char **env);
 
 #endif

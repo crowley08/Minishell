@@ -3,17 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   env_list.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: saandria < saandria@student.42antananar    +#+  +:+       +#+        */
+/*   By: saandria <saandria@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/17 16:27:16 by saandria          #+#    #+#             */
-/*   Updated: 2024/09/17 16:42:33 by saandria         ###   ########.fr       */
+/*   Updated: 2024/09/17 22:02:20 by saandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
-#include "../libft/libft.h"
-
-/*A TESTER*/
 
 void	add_env(t_env **env, t_env *new_env)
 {
@@ -33,12 +30,24 @@ void	add_env(t_env **env, t_env *new_env)
 
 t_env	*new_env_list(char *value)
 {
-	t_env    *new;
+	int		i;
+	int		start;	
+	t_env	*new;
 
+	i = 0;
+	start = i;
     new = (t_env *)malloc(sizeof(t_env));
     if (!new)
-        return (NULL);
-	new->value = ft_strdup(value);
+	{
+    	return (NULL);
+	}
+	while (value[i] != '=')
+		i++;
+	new->name = ft_substr(value, start, i - start);
+	start = i + 1;
+	while (value[i])
+		i++;
+	new->value = ft_substr(value, start, i - start);
     new->next = NULL;
     return (new);
 }
@@ -50,7 +59,7 @@ void	print_env_list(t_env *env)
     current = env;
     while (current)
     {
-        printf("%s\n", current->value);
+        printf("%s=%s\n", current->name, current->value);
         current = current->next;
     }
     free(current);
@@ -77,7 +86,7 @@ t_env *get_env(char **env)
 	}
 	return (env_list);
 }
-
+/*
 int main(int argc, char **argv, char **env)
 {
 	t_env *envp;
@@ -87,3 +96,4 @@ int main(int argc, char **argv, char **env)
 	envp = get_env(env);
 	print_env_list(envp);
 }
+*/
