@@ -6,7 +6,7 @@
 #    By: arakotom <arakotom@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/17 13:01:11 by arakotom          #+#    #+#              #
-#    Updated: 2024/09/18 01:36:04 by arakotom         ###   ########.fr        #
+#    Updated: 2024/09/18 12:28:47 by arakotom         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,8 @@ FT_PRINTF_DIR = ft_printf
 
 SRCS = main.c \
 		env_init.c \
-		env_utils.c
+		env_utils.c \
+		quote_handler.c
 
 OBJS = $(addprefix $(OBJ_DIR)/, $(SRCS:.c=.o))
 LIB = $(LIBFT_DIR)/libft.a $(FT_PRINTF_DIR)/libftprintf.a

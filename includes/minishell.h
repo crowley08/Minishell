@@ -2,11 +2,14 @@
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: arakotom <arakotom@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
+/*                                                    +:+ +:+
+	+:+     */
+/*   By: arakotom <arakotom@student.42.fr>          +#+  +:+
+	+#+        */
+/*                                                +#+#+#+#+#+
+	+#+           */
 /*   Created: 2024/09/17 13:11:17 by arakotom          #+#    #+#             */
-/*   Updated: 2024/09/18 11:02:28 by arakotom         ###   ########.fr       */
+/*   Updated: 2024/09/18 16:10:03 by arakotom         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,4 +30,7 @@ t_env	*env_create(char *str, char sep);
 t_env	*env_get(t_env *list_env, char *name);
 void	env_add(t_env *list_env, t_env *new_env);
 void	env_del(t_env *list_env, char *name);
+
+t_bool	is_quote_opened(char *input);
+
 #endif
