@@ -6,7 +6,7 @@
 /*   By: arakotom <arakotom@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/17 13:11:17 by arakotom          #+#    #+#             */
-/*   Updated: 2024/09/19 16:59:18 by arakotom         ###   ########.fr       */
+/*   Updated: 2024/09/19 23:23:25 by arakotom         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ t_bool	quote_opened(char *prompt);
 
 int		ms_count_prompt(char *str);
 
-char	*ms_trim(char *prompt);
+char	*ms_trim_free(char *prompt);
+void	format_data_prompt(char **str, char *prompt);
 
 #endif

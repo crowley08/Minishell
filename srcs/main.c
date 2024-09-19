@@ -6,7 +6,7 @@
 /*   By: arakotom <arakotom@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/17 13:17:29 by arakotom          #+#    #+#             */
-/*   Updated: 2024/09/19 17:11:22 by arakotom         ###   ########.fr       */
+/*   Updated: 2024/09/19 23:26:55 by arakotom         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,16 +25,13 @@ int	main(int argc, char **argv, char **envp)
 	}
 	while (TRUE)
 	{
-		prompt = readline("prompt > ");
+		prompt = ft_strdup("       bonjour| ca va                                                                                                     \" comment    hello\"  |hazd | ef    ");
 		if (quote_opened(prompt))
 			ft_printf("===> quote opened\n");
-		data.prompt = ms_trim(prompt);
-		free(prompt);
+		format_data_prompt(&(data.prompt), ms_trim_free(prompt));
 		break ;
 	}
-	ft_printf("prompt trimmed: %s\n", data.prompt);
-	ft_printf("prompt number: %d, len: %d\n", ms_count_prompt(data.prompt),
-		ft_strlen(data.prompt));
+	ft_printf("prompt formatted: %s\n", data.prompt);
 	free_data(&data);
 	return (0);
 }

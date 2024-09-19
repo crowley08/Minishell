@@ -6,13 +6,36 @@
 /*   By: arakotom <arakotom@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 16:33:16 by arakotom          #+#    #+#             */
-/*   Updated: 2024/09/19 17:05:59 by arakotom         ###   ########.fr       */
+/*   Updated: 2024/09/19 23:29:27 by arakotom         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-char	*ms_trim(char *prompt)
+static int	ms_strlen_formate(char *prompt)
+{
+	t_quote_state	d_q;
+	t_quote_state	s_q;
+	int				len;
+
+	len = 0;
+	quote_init_state(&d_q, &s_q);
+	while (*prompt)
+	{
+		quote_update_state(*prompt, &d_q, &s_q);
+		if (ft_isspace(*prompt) && ft_isspace(*(prompt + 1)))
+		{
+			if ((d_q == OPENED || s_q == OPENED))
+				len++;
+		}
+		else
+			len++;
+		prompt++;
+	}
+	return (len);
+}
+
+char	*ms_trim_free(char *prompt)
 {
 	char	*str;
 	int		p_len;
@@ -30,5 +53,34 @@ char	*ms_trim(char *prompt)
 			p_len--;
 	}
 	str = ft_substr(prompt, i, p_len - i + 1);
+	free(prompt);
 	return (str);
+}
+// prompt must already trimmed, use [*ms_trim_free(char *)]
+void	format_data_prompt(char **str, char *prompt)
+{
+	t_quote_state	d_q;
+	t_quote_state	s_q;
+	int				i;
+	int				j;
+
+	j = 0;
+	i = 0;
+	quote_init_state(&d_q, &s_q);
+	*str = (char *)malloc(sizeof(char) * ms_strlen_formate(prompt) + 1);
+	if (!(*str))
+		return (free(prompt));
+	while (prompt[j])
+	{
+		quote_update_state(prompt[j], &d_q, &s_q);
+		if (ft_isspace(prompt[j]) && ft_isspace(prompt[j + 1]))
+		{
+			if ((d_q == OPENED || s_q == OPENED))
+				(*str)[i++] = prompt[j++];
+		}
+		else
+			(*str)[i++] = prompt[j++];
+	}
+	(*str)[i] = '\0';
+	free(prompt);
 }
