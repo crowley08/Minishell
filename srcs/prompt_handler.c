@@ -6,7 +6,7 @@
 /*   By: arakotom <arakotom@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 16:33:16 by arakotom          #+#    #+#             */
-/*   Updated: 2024/09/19 23:29:27 by arakotom         ###   ########.fr       */
+/*   Updated: 2024/09/19 23:37:45 by arakotom         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,10 +76,11 @@ void	format_data_prompt(char **str, char *prompt)
 		if (ft_isspace(prompt[j]) && ft_isspace(prompt[j + 1]))
 		{
 			if ((d_q == OPENED || s_q == OPENED))
-				(*str)[i++] = prompt[j++];
+				(*str)[i++] = prompt[j];
 		}
 		else
-			(*str)[i++] = prompt[j++];
+			(*str)[i++] = prompt[j];
+		j++;
 	}
 	(*str)[i] = '\0';
 	free(prompt);
