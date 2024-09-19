@@ -6,7 +6,7 @@
 /*   By: arakotom <arakotom@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/17 13:11:17 by arakotom          #+#    #+#             */
-/*   Updated: 2024/09/19 14:05:14 by arakotom         ###   ########.fr       */
+/*   Updated: 2024/09/19 16:59:18 by arakotom         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,12 @@ void	free_list_env(t_env **list);
 t_bool	ms_is_quote(char c);
 t_bool	ms_is_var_char(char c);
 
+void	quote_init_state(t_quote_state *d_q, t_quote_state *s_q);
 void	quote_update_state(char c, t_quote_state *d_q, t_quote_state *s_q);
 t_bool	quote_opened(char *prompt);
+
+int		ms_count_prompt(char *str);
+
+char	*ms_trim(char *prompt);
 
 #endif

@@ -6,11 +6,11 @@
 /*   By: arakotom <arakotom@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 12:14:08 by arakotom          #+#    #+#             */
-/*   Updated: 2024/09/19 13:19:23 by arakotom         ###   ########.fr       */
+/*   Updated: 2024/09/19 14:34:41 by arakotom         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/minishell.h"
+#include "../includes/minishell.h"
 
 t_env	*env_create(char *str)
 {

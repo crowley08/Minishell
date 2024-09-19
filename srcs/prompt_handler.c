@@ -1,40 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free_utils.c                                       :+:      :+:    :+:   */
+/*   prompt_handler.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: arakotom <arakotom@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/19 12:58:43 by arakotom          #+#    #+#             */
-/*   Updated: 2024/09/19 14:34:41 by arakotom         ###   ########.fr       */
+/*   Created: 2024/09/19 16:33:16 by arakotom          #+#    #+#             */
+/*   Updated: 2024/09/19 17:05:59 by arakotom         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-void	free_data(t_data *data)
+char	*ms_trim(char *prompt)
 {
-	if (data->envp)
-		free_list_env(&(data->envp));
-	if (data->prompt)
-		free(data->prompt);
-}
+	char	*str;
+	int		p_len;
+	int		i;
 
-void	free_env(t_env *env)
-{
-	free(env->name);
-	free(env->value);
-	free(env);
-}
-
-void	free_list_env(t_env **list)
-{
-	t_env	*env;
-
-	while (*list)
+	p_len = ft_strlen(prompt) - 1;
+	if (!p_len)
+		return (NULL);
+	i = 0;
+	while ((ft_isspace(prompt[i]) || ft_isspace(prompt[p_len])) && i < p_len)
 	{
-		env = *list;
-		*list = (*list)->next;
-		free_env(env);
+		if (ft_isspace(prompt[i]))
+			i++;
+		if (ft_isspace(prompt[p_len]))
+			p_len--;
 	}
+	str = ft_substr(prompt, i, p_len - i + 1);
+	return (str);
 }

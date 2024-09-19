@@ -6,11 +6,11 @@
 /*   By: arakotom <arakotom@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 13:57:36 by arakotom          #+#    #+#             */
-/*   Updated: 2024/09/19 14:04:54 by arakotom         ###   ########.fr       */
+/*   Updated: 2024/09/19 14:38:46 by arakotom         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/minishell.h"
+#include "../includes/minishell.h"
 
 void	quote_update_state(char c, t_quote_state *d_q, t_quote_state *s_q)
 {
@@ -37,8 +37,7 @@ t_bool	quote_opened(char *prompt)
 	int				i;
 
 	i = 0;
-	d_q = CLOSED;
-	s_q = CLOSED;
+	quote_init_state(&d_q, &s_q);
 	while (prompt[i])
 	{
 		if (ms_is_quote(prompt[i]))
