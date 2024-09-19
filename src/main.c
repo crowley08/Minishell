@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: saandria <saandria@student.42antananari    +#+  +:+       +#+        */
+/*   By: saandria < saandria@student.42antananar    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/26 15:44:01 by saandria          #+#    #+#             */
-/*   Updated: 2024/09/17 21:35:20 by saandria         ###   ########.fr       */
+/*   Updated: 2024/09/19 11:21:07 by saandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ int	main(int ac, char **av, char **env)
 	{
 		s = readline("\033[1;91m$>\033[0m ");
 		token = ms_tokenizer(s);
-		(void)token;
 		if (!s)
 		{
 			free(s);
@@ -39,6 +38,7 @@ int	main(int ac, char **av, char **env)
 		else if (ft_strcmp(s, "pwd") == 0)
 			s = getcwd(NULL, 0);
 		add_history(s);
+		free_tokens(token);
 		free(s);
 	}
 	return (0);

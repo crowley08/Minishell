@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ms_tokenizer.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: saandria <saandria@student.42antananari    +#+  +:+       +#+        */
+/*   By: saandria < saandria@student.42antananar    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/17 10:18:21 by saandria          #+#    #+#             */
-/*   Updated: 2024/09/17 22:38:59 by saandria         ###   ########.fr       */
+/*   Updated: 2024/09/19 11:25:49 by saandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,20 +48,22 @@ static t_token	*get_wordtok(char *s, int *i)
 	start = *i;
 	while (s[*i])
 	{
-		/*
-		mbola tsy mety le quotes
-		*/
-		if (s[*i + 1] == '\'')
+		if (s[*i] == '\'' || s[*i] == '"')
 		{
-			while (s[*i] && s[*i] != '\'')
+			if (s[*i] == '\'')
+			{
+				if (is_in_simple_quotes(s, i))
+					*i = is_in_simple_quotes(s, i);
+			}
+			else if (s[*i] == '"')
+			{
+				if (is_in_double_quotes(s, i))
+					*i = is_in_double_quotes(s, i);
+			}
+			if (!ms_isspace(s[*i]) && !ms_istoken(s[*i]))
 				*i += 1;
-			break ;
-		}
-		else if (s[*i + 1] == '\"')
-		{
-			while (s[*i] && s[*i] != '\"')
-				*i += 1;
-			break ;
+			else
+				break ;
 		}
 		else
 		{
@@ -70,7 +72,7 @@ static t_token	*get_wordtok(char *s, int *i)
 			break ;
 		}
 	}
-	value = ft_substr(s, start, *i - start);
+	value = ft_substr(s, start, *i - start + 1);
 	if (!value)
 		return (NULL);
 	new_token = create_token(TOK_WORD, value, i);
