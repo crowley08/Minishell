@@ -6,7 +6,7 @@
 /*   By: arakotom <arakotom@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 16:33:16 by arakotom          #+#    #+#             */
-/*   Updated: 2024/09/19 23:37:45 by arakotom         ###   ########.fr       */
+/*   Updated: 2024/09/20 00:21:46 by arakotom         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,17 @@
 
 static int	ms_strlen_formate(char *prompt)
 {
-	t_quote_state	d_q;
-	t_quote_state	s_q;
+	t_quote_data	q_data;
 	int				len;
 
 	len = 0;
-	quote_init_state(&d_q, &s_q);
+	quote_init_state(&q_data);
 	while (*prompt)
 	{
-		quote_update_state(*prompt, &d_q, &s_q);
+		quote_update_state(*prompt, &q_data);
 		if (ft_isspace(*prompt) && ft_isspace(*(prompt + 1)))
 		{
-			if ((d_q == OPENED || s_q == OPENED))
+			if ((q_data.d_q == OPENED || q_data.s_q == OPENED))
 				len++;
 		}
 		else
@@ -59,23 +58,22 @@ char	*ms_trim_free(char *prompt)
 // prompt must already trimmed, use [*ms_trim_free(char *)]
 void	format_data_prompt(char **str, char *prompt)
 {
-	t_quote_state	d_q;
-	t_quote_state	s_q;
+	t_quote_data	q_data;
 	int				i;
 	int				j;
 
 	j = 0;
 	i = 0;
-	quote_init_state(&d_q, &s_q);
+	quote_init_state(&q_data);
 	*str = (char *)malloc(sizeof(char) * ms_strlen_formate(prompt) + 1);
 	if (!(*str))
 		return (free(prompt));
 	while (prompt[j])
 	{
-		quote_update_state(prompt[j], &d_q, &s_q);
+		quote_update_state(prompt[j], &q_data);
 		if (ft_isspace(prompt[j]) && ft_isspace(prompt[j + 1]))
 		{
-			if ((d_q == OPENED || s_q == OPENED))
+			if ((q_data.d_q == OPENED || q_data.s_q == OPENED))
 				(*str)[i++] = prompt[j];
 		}
 		else
