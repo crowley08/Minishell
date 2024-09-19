@@ -6,7 +6,7 @@
 /*   By: saandria < saandria@student.42antananar    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/17 10:38:27 by saandria          #+#    #+#             */
-/*   Updated: 2024/09/19 11:25:23 by saandria         ###   ########.fr       */
+/*   Updated: 2024/09/19 15:32:01 by saandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,15 +68,22 @@ int	is_in_double_quotes(char *s, int *i)
 	return (0);
 }
 
-void	free_tokens(t_token *t)
+void	free_tokens(t_token **t)
 {
-	t_token	*tmp;
+	t_token	*current;
+	t_token	*next;
 
-	while (t->next)
+	current = *t;
+	while (current)
 	{
-		tmp = t;
-		free(tmp->value);
-		free(tmp);
-		t = t->next;
+		next = current->next;
+		free(current->value);
+		free(current);
+		current = next;
 	}
+	*t = NULL;
+	free(current);
+	current = NULL;
+	next = NULL;
+	return;
 }

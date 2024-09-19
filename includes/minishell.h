@@ -6,7 +6,7 @@
 /*   By: saandria < saandria@student.42antananar    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 21:16:12 by saandria          #+#    #+#             */
-/*   Updated: 2024/09/19 11:25:00 by saandria         ###   ########.fr       */
+/*   Updated: 2024/09/19 15:09:23 by saandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ void	print_token(t_token *token);
 int		ms_isspace(char c);
 int		is_in_simple_quotes(char *s, int *i);
 int		is_in_double_quotes(char *s, int *i);
-void	free_tokens(t_token *t);
+void	free_tokens(t_token **t);
 
 //sig_handler
 void	handle_sigint(int sig);
@@ -83,5 +83,6 @@ void	add_env(t_env **env, t_env *new_env);
 t_env	*new_env_list(char *value);
 void	print_env_list(t_env *env);
 t_env	*get_env(char **env);
+void	free_env(t_env **env);
 
 #endif

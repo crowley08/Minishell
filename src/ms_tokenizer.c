@@ -6,7 +6,7 @@
 /*   By: saandria < saandria@student.42antananar    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/17 10:18:21 by saandria          #+#    #+#             */
-/*   Updated: 2024/09/19 11:25:49 by saandria         ###   ########.fr       */
+/*   Updated: 2024/09/19 15:32:38 by saandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static t_token	*create_token(t_tokentype type, char *value, int *i)
 	new_token->value = ft_strdup(value);
 	new_token->next = NULL;
 	*i += 1;
-	printf("%s\n", new_token->value);
+//	printf("%s\n", new_token->value);
 	return (new_token);
 }
 
