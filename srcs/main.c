@@ -6,7 +6,7 @@
 /*   By: arakotom <arakotom@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/17 13:17:29 by arakotom          #+#    #+#             */
-/*   Updated: 2024/09/19 23:50:20 by arakotom         ###   ########.fr       */
+/*   Updated: 2024/09/20 00:34:42 by arakotom         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,11 +27,15 @@ int	main(int argc, char **argv, char **envp)
 	{
 		prompt = readline("prompt > ");
 		if (quote_opened(prompt))
+		{
 			ft_printf("===> quote opened\n");
+			free(prompt);
+		}
 		format_data_prompt(&(data.prompt), ms_trim_free(prompt));
-		break ;
+		ft_printf("prompt formatted: %s\n", data.prompt);
+		ft_printf("cmd prompt number: %d\n", ms_count_prompt(data.prompt));
+		free(data.prompt);
 	}
-	ft_printf("prompt formatted: %s\n", data.prompt);
 	free_data(&data);
 	return (0);
 }
