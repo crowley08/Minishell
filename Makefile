@@ -6,7 +6,7 @@
 #    By: arakotom <arakotom@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/17 13:01:11 by arakotom          #+#    #+#              #
-#    Updated: 2024/09/18 12:28:47 by arakotom         ###   ########.fr        #
+#    Updated: 2024/09/19 14:12:24 by arakotom         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,16 +14,19 @@ CFLAGS = -Wall -Wextra -Werror -g
 RDLFLAGS = -lreadline
 VGRLFLAGS = valgrind --leak-check=full
 
-SRC_DIR = srcs
+SRC_DIR = src
 OBJ_DIR = objs
-INCLUDE_DIR = includes
+INCLUDE_DIR = inc
 LIBFT_DIR = libft
 FT_PRINTF_DIR = ft_printf
 
 SRCS = main.c \
-		env_init.c \
+		init.c \
 		env_utils.c \
-		quote_handler.c
+		free_utils.c \
+		quote_handler.c \
+		quote_utils.c
+
 
 OBJS = $(addprefix $(OBJ_DIR)/, $(SRCS:.c=.o))
 LIB = $(LIBFT_DIR)/libft.a $(FT_PRINTF_DIR)/libftprintf.a

@@ -2,14 +2,11 @@
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
-/*                                                    +:+ +:+
-	+:+     */
-/*   By: arakotom <arakotom@student.42.fr>          +#+  +:+
-	+#+        */
-/*                                                +#+#+#+#+#+
-	+#+           */
+/*                                                    +:+ +:+         +:+     */
+/*   By: arakotom <arakotom@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/17 13:11:17 by arakotom          #+#    #+#             */
-/*   Updated: 2024/09/18 16:10:03 by arakotom         ###   ########.fr       */
+/*   Updated: 2024/09/19 14:05:14 by arakotom         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,15 +19,24 @@
 # include <readline/history.h>
 # include <readline/readline.h>
 # include <stdio.h>
+# include <stdlib.h>
+# include <unistd.h>
 
-t_env	*envp_dup(char **envp);
-void	*env_free(t_env *env);
-void	*env_free_list(t_env *list_env);
-t_env	*env_create(char *str, char sep);
-t_env	*env_get(t_env *list_env, char *name);
-void	env_add(t_env *list_env, t_env *new_env);
-void	env_del(t_env *list_env, char *name);
+void	data_init(t_data *data, int argc, char **argv);
+t_env	*env_new(void);
+t_bool	envp_dup(t_data *data, char **envp);
 
-t_bool	is_quote_opened(char *input);
+t_env	*env_create(char *str);
+void	env_add(t_env **list, t_env *env);
+
+void	free_data(t_data *data);
+void	free_env(t_env *env);
+void	free_list_env(t_env **list);
+
+t_bool	ms_is_quote(char c);
+t_bool	ms_is_var_char(char c);
+
+void	quote_update_state(char c, t_quote_state *d_q, t_quote_state *s_q);
+t_bool	quote_opened(char *prompt);
 
 #endif
