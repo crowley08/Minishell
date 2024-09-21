@@ -6,7 +6,7 @@
 /*   By: arakotom <arakotom@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 16:33:16 by arakotom          #+#    #+#             */
-/*   Updated: 2024/09/21 21:24:10 by arakotom         ###   ########.fr       */
+/*   Updated: 2024/09/21 21:53:31 by arakotom         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ void	format_data_prompt(char **str, char *prompt)
 	j = 0;
 	i = 0;
 	quote_init_state(&q_data);
-	*str = (char *)malloc(sizeof(char) * ms_strlen_formate(prompt) + 1);
+	*str = (char *)malloc(sizeof(char) * (ms_strlen_formate(prompt) + 1));
 	if (!(*str))
 		return (free(prompt));
 	while (prompt && prompt[j])
