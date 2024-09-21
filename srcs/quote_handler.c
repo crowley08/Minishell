@@ -6,7 +6,7 @@
 /*   By: arakotom <arakotom@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 13:57:36 by arakotom          #+#    #+#             */
-/*   Updated: 2024/09/20 00:27:39 by arakotom         ###   ########.fr       */
+/*   Updated: 2024/09/21 21:24:23 by arakotom         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,7 @@ void	quote_update_state(char c, t_quote_data *q_data)
 		else if (c == '\'')
 			q_data->s_q = OPENED;
 	}
-	else if (ms_is_quote(c) && (q_data->d_q == OPENED
-			|| q_data->s_q == OPENED))
+	else if (ms_is_quote(c) && (q_data->d_q == OPENED || q_data->s_q == OPENED))
 	{
 		if (c == '"')
 			q_data->d_q = CLOSED;
@@ -38,7 +37,7 @@ t_bool	quote_opened(char *prompt)
 
 	i = 0;
 	quote_init_state(&q_data);
-	while (prompt[i])
+	while (prompt && prompt[i])
 	{
 		if (ms_is_quote(prompt[i]))
 			quote_update_state(prompt[i], &q_data);

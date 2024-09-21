@@ -6,7 +6,7 @@
 /*   By: arakotom <arakotom@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 12:58:43 by arakotom          #+#    #+#             */
-/*   Updated: 2024/09/19 14:34:41 by arakotom         ###   ########.fr       */
+/*   Updated: 2024/09/21 21:40:48 by arakotom         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,8 @@
 
 void	free_data(t_data *data)
 {
-	if (data->envp)
-		free_list_env(&(data->envp));
-	if (data->prompt)
-		free(data->prompt);
+	free_list_env(&(data->envp));
+	free(data->prompt);
 }
 
 void	free_env(t_env *env)
@@ -31,7 +29,7 @@ void	free_list_env(t_env **list)
 {
 	t_env	*env;
 
-	while (*list)
+	while (list && *list)
 	{
 		env = *list;
 		*list = (*list)->next;

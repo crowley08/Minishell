@@ -6,7 +6,7 @@
 /*   By: arakotom <arakotom@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/17 13:11:17 by arakotom          #+#    #+#             */
-/*   Updated: 2024/09/20 00:26:09 by arakotom         ###   ########.fr       */
+/*   Updated: 2024/09/21 21:32:56 by arakotom         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # include <readline/readline.h>
 # include <stdio.h>
 # include <stdlib.h>
+# include <string.h>
 # include <unistd.h>
 
 void	data_init(t_data *data, int argc, char **argv);

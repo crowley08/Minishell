@@ -6,7 +6,7 @@
 /*   By: arakotom <arakotom@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 16:33:16 by arakotom          #+#    #+#             */
-/*   Updated: 2024/09/20 00:21:46 by arakotom         ###   ########.fr       */
+/*   Updated: 2024/09/21 21:24:10 by arakotom         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static int	ms_strlen_formate(char *prompt)
 
 	len = 0;
 	quote_init_state(&q_data);
-	while (*prompt)
+	while (prompt && *prompt)
 	{
 		quote_update_state(*prompt, &q_data);
 		if (ft_isspace(*prompt) && ft_isspace(*(prompt + 1)))
@@ -40,18 +40,19 @@ char	*ms_trim_free(char *prompt)
 	int		p_len;
 	int		i;
 
-	p_len = ft_strlen(prompt) - 1;
+	p_len = ft_strlen(prompt);
 	if (!p_len)
 		return (NULL);
 	i = 0;
-	while ((ft_isspace(prompt[i]) || ft_isspace(prompt[p_len])) && i < p_len)
+	while (i < p_len - 1 && (ft_isspace(prompt[i]) || ft_isspace(prompt[p_len
+				- 1])))
 	{
 		if (ft_isspace(prompt[i]))
 			i++;
-		if (ft_isspace(prompt[p_len]))
+		if (ft_isspace(prompt[p_len - 1]))
 			p_len--;
 	}
-	str = ft_substr(prompt, i, p_len - i + 1);
+	str = ft_substr(prompt, i, p_len - i);
 	free(prompt);
 	return (str);
 }
@@ -68,7 +69,7 @@ void	format_data_prompt(char **str, char *prompt)
 	*str = (char *)malloc(sizeof(char) * ms_strlen_formate(prompt) + 1);
 	if (!(*str))
 		return (free(prompt));
-	while (prompt[j])
+	while (prompt && prompt[j])
 	{
 		quote_update_state(prompt[j], &q_data);
 		if (ft_isspace(prompt[j]) && ft_isspace(prompt[j + 1]))
