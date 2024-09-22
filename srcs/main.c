@@ -6,7 +6,7 @@
 /*   By: arakotom <arakotom@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/17 13:17:29 by arakotom          #+#    #+#             */
-/*   Updated: 2024/09/22 12:47:28 by arakotom         ###   ########.fr       */
+/*   Updated: 2024/09/22 16:10:55 by arakotom         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,13 +29,7 @@ int	main(int argc, char **argv, char **envp)
 	while (TRUE)
 	{
 		ft_printf("\n\n");
-		// prompt = readline("prompt > ");
-		prompt = strdup("echo | d |ls | cat");
-		if (quote_opened(prompt))
-		{
-			ft_printf("===> quote opened\n");
-			free(prompt);
-		}
+		prompt = get_all_prompt();
 		format_data_prompt(&(data.prompt), ms_trim_free(prompt));
 		ft_printf("prompt formatted: %s\n", data.prompt);
 		ft_printf("sub prompt count: %d\n", ms_count_prompt(data.prompt));

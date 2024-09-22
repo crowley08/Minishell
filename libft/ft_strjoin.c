@@ -39,6 +39,7 @@ char	*ft_strjoin(char *s1, char *s2)
 		while (s2[j])
 			res[i++] = s2[j++];
 		res[i] = '\0';
+		free(s1);
 		return (res);
 	}
 }
