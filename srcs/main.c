@@ -6,7 +6,7 @@
 /*   By: arakotom <arakotom@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/17 13:17:29 by arakotom          #+#    #+#             */
-/*   Updated: 2024/09/22 00:46:39 by arakotom         ###   ########.fr       */
+/*   Updated: 2024/09/22 12:47:28 by arakotom         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,8 @@ int	main(int argc, char **argv, char **envp)
 	while (TRUE)
 	{
 		ft_printf("\n\n");
-		prompt = readline("prompt > ");
-		// prompt = strdup("echo 'salut'||\" cat | ls \" lol");
+		// prompt = readline("prompt > ");
+		prompt = strdup("echo | d |ls | cat");
 		if (quote_opened(prompt))
 		{
 			ft_printf("===> quote opened\n");
@@ -48,9 +48,9 @@ int	main(int argc, char **argv, char **envp)
 				ft_printf("====> Prompt %d = %s\n", i + 1, tab[i]);
 				i++;
 			}
+			ft_free_tab_str(tab);
 		}
-		ft_free_tab_str(tab);
-		free(data.prompt);
+		break ;
 	}
 	free_data(&data);
 	return (0);

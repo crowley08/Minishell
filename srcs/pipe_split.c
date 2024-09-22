@@ -6,7 +6,7 @@
 /*   By: arakotom <arakotom@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 14:21:53 by arakotom          #+#    #+#             */
-/*   Updated: 2024/09/22 00:17:40 by arakotom         ###   ########.fr       */
+/*   Updated: 2024/09/22 12:49:36 by arakotom         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,14 +44,13 @@ static int	ms_next_split(char **tab, char *str, int index)
 	while (str[len] && (str[len] != '|' || (q_data.d_q == OPENED
 				|| q_data.s_q == OPENED)))
 		quote_update_state(str[len++], &q_data);
-	if (str[len] && str[len - 1] == ' ')
+	if (!len)
+		return (0);
+	if (str[len] && len > 0 && ft_isspace(str[len - 1]))
 		sp_found = 1;
 	tab[index] = ft_substr(str, 0, len - sp_found);
 	if (!tab[index])
-	{
-		ft_free_tab_str(tab);
 		return (0);
-	}
 	return (len);
 }
 
@@ -66,11 +65,8 @@ static t_bool	ms_splitted_pipe(char **tab, char *str)
 	while (str && str[i])
 	{
 		if (str[i] == '|')
-		{
-			if (str[i + 1] == ' ')
+			if (str[++i] == ' ')
 				i++;
-			i++;
-		}
 		if (str[i])
 		{
 			len = ms_next_split(tab, &str[i], index++);
@@ -88,11 +84,14 @@ char	**ms_split_pipe(char *str)
 	int		tab_len;
 
 	tab_len = ms_count_prompt(str);
-	tab = (char **)malloc(sizeof(char *) * (tab_len + 1));
+	tab = (char **)ft_calloc(sizeof(char *), tab_len + 1);
 	if (!tab)
 		return (NULL);
 	if (!ms_splitted_pipe(tab, str))
+	{
+		ft_free_tab_str(tab);
 		return (NULL);
+	}
 	tab[tab_len] = NULL;
 	return (tab);
 }

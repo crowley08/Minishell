@@ -6,13 +6,13 @@
 #    By: arakotom <arakotom@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/17 13:01:11 by arakotom          #+#    #+#              #
-#    Updated: 2024/09/19 16:58:42 by arakotom         ###   ########.fr        #
+#    Updated: 2024/09/22 12:38:28 by arakotom         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CFLAGS = -Wall -Wextra -Werror -g
 RDLFLAGS = -lreadline
-VGRLFLAGS = valgrind --leak-check=full
+VGRLFLAGS = valgrind --leak-check=full --track-origins=yes
 
 SRC_DIR = srcs
 OBJ_DIR = objs
