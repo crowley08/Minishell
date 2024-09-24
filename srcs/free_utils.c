@@ -6,7 +6,7 @@
 /*   By: arakotom <arakotom@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 12:58:43 by arakotom          #+#    #+#             */
-/*   Updated: 2024/09/22 00:50:36 by arakotom         ###   ########.fr       */
+/*   Updated: 2024/09/22 21:53:07 by arakotom         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@ void	free_data(t_data *data)
 {
 	if (data->envp)
 		free_list_env(&(data->envp));
-	if (data->prompt)
-		free(data->prompt);
+	if (data->input)
+		free(data->input);
 }
 
 void	free_env(t_env *env)

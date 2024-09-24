@@ -6,7 +6,7 @@
 /*   By: arakotom <arakotom@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/17 21:16:00 by arakotom          #+#    #+#             */
-/*   Updated: 2024/09/20 00:27:57 by arakotom         ###   ########.fr       */
+/*   Updated: 2024/09/22 22:43:48 by arakotom         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,14 +21,15 @@ typedef struct s_quote_data	t_quote_data;
 
 enum						e_quote_state
 {
-	OPENED,
-	CLOSED
+	OPENED = 200,
+	CLOSED = 500
 };
 
 enum						e_bool
 {
-	FALSE,
-	TRUE
+	FALSE = 0,
+	TRUE = 1,
+	ERROR = -400
 };
 
 struct						s_env
@@ -41,7 +42,8 @@ struct						s_env
 struct						s_data
 {
 	t_env					*envp;
-	char					*prompt;
+	char					*input;
+	char					**prompts;
 };
 
 struct						s_quote_data

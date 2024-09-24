@@ -6,7 +6,7 @@
 /*   By: arakotom <arakotom@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/17 13:11:17 by arakotom          #+#    #+#             */
-/*   Updated: 2024/09/22 16:29:57 by arakotom         ###   ########.fr       */
+/*   Updated: 2024/09/22 23:30:03 by arakotom         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,12 +40,13 @@ t_bool	ms_is_var_char(char c);
 void	quote_init_state(t_quote_data *q_data);
 void	quote_update_state(char c, t_quote_data *q_data);
 t_bool	quote_opened(char *prompt);
-char	*get_all_prompt(void);
+char	*get_all_input(void);
 
 char	**ms_split_pipe(char *str);
 int		ms_count_prompt(char *str);
 
 char	*ms_trim_free(char *prompt);
-void	format_data_prompt(char **str, char *prompt);
+char	*limit_prompt_free(char *input);
+void	format_data_input(char **str, char *prompt);
 
 #endif

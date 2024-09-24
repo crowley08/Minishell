@@ -6,7 +6,7 @@
 /*   By: arakotom <arakotom@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 14:21:53 by arakotom          #+#    #+#             */
-/*   Updated: 2024/09/22 12:49:36 by arakotom         ###   ########.fr       */
+/*   Updated: 2024/09/22 21:50:13 by arakotom         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,7 @@ static t_bool	ms_splitted_pipe(char **tab, char *str)
 	return (TRUE);
 }
 // str must already trimmed, use [*ms_trim_free(char *)]
+// separation du prompt en plusieurs sous prompt par rapport a un pipe |
 char	**ms_split_pipe(char *str)
 {
 	char	**tab;

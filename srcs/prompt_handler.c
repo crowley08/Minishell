@@ -6,7 +6,7 @@
 /*   By: arakotom <arakotom@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 16:33:16 by arakotom          #+#    #+#             */
-/*   Updated: 2024/09/21 21:53:31 by arakotom         ###   ########.fr       */
+/*   Updated: 2024/09/22 23:29:57 by arakotom         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ static int	ms_strlen_formate(char *prompt)
 	}
 	return (len);
 }
-
+// elimination des espaces inutiles au debut et à la fin du prompt
 char	*ms_trim_free(char *prompt)
 {
 	char	*str;
@@ -56,8 +56,37 @@ char	*ms_trim_free(char *prompt)
 	free(prompt);
 	return (str);
 }
+
+char	*limit_prompt_free(char *input)
+{
+	char	*p_limited;
+	int		limit;
+
+	limit = 0;
+	while (input && input[limit])
+	{
+		if (input[limit] == '|')
+		{
+			if (input[limit + 1] && input[limit + 1] == ' ')
+			{
+				if (input[limit + 2] && input[limit + 2] == '|')
+					break ;
+			}
+			else if (input[limit + 1] && input[limit + 1] == '|')
+				break ;
+		}
+		limit++;
+	}
+	if (input[limit - 1] == ' ')
+		p_limited = ft_substr(input, 0, limit - 1);
+	else
+		p_limited = ft_substr(input, 0, limit);
+	free(input);
+	return (p_limited);
+}
 // prompt must already trimmed, use [*ms_trim_free(char *)]
-void	format_data_prompt(char **str, char *prompt)
+// elimination des espaces inutiles dans le prompt
+void	format_data_input(char **str, char *prompt)
 {
 	t_quote_data	q_data;
 	int				i;

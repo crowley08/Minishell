@@ -6,7 +6,7 @@
 /*   By: arakotom <arakotom@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 13:57:36 by arakotom          #+#    #+#             */
-/*   Updated: 2024/09/22 16:28:51 by arakotom         ###   ########.fr       */
+/*   Updated: 2024/09/22 23:35:48 by arakotom         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,28 +48,65 @@ t_bool	quote_opened(char *prompt)
 	return (FALSE);
 }
 
-char	*get_all_prompt(void)
+t_bool	pipe_location_valid(char *prompt)
 {
-	char	*p_left;
-	char	*all_prompt;
-	char	*pwd;
+	char	*p_trimmed;
+	int		len;
+	t_bool	res_state;
 
-	pwd = getcwd(NULL, 0);
-	ft_printf(pwd);
-	all_prompt = readline(" > ");
+	res_state = TRUE;
+	p_trimmed = ms_trim_free(ft_strdup(prompt));
+	if (!p_trimmed)
+		res_state = FALSE;
+	len = ft_strlen(p_trimmed) - 1;
+	if (res_state == TRUE && p_trimmed[0] == '|')
+		res_state = ERROR;
+	if (res_state == TRUE && p_trimmed[len] == '|')
+	{
+		res_state = FALSE;
+		while (len > 0 && ft_isspace(p_trimmed[--len]))
+			;
+		if (len > 0 && p_trimmed[len] == '|')
+		{
+			while (len > 0 && ft_isspace(p_trimmed[--len]))
+				;
+			if (len > 0 && p_trimmed[len] == '|')
+				res_state = ERROR;
+		}
+	}
+	free(p_trimmed);
+	return (res_state);
+}
+
+char	*get_all_input(void)
+{
+	char	*prompt_left;
+	char	*all_prompt;
+
+	all_prompt = readline("minishell > ");
+	// verification si le prompt est une ligne vide
 	while (!all_prompt || !all_prompt[0])
 	{
 		free(all_prompt);
-		ft_printf(pwd);
 		all_prompt = readline(" > ");
 	}
-	free(pwd);
-	while (quote_opened(all_prompt))
+	if (pipe_location_valid(all_prompt) == ERROR)
 	{
-		p_left = readline("> ");
-		all_prompt = ft_strjoin(all_prompt, "\n");
-		all_prompt = ft_strjoin(all_prompt, p_left);
-		free(p_left);
+		free(all_prompt);
+		return (NULL);
+	}
+	// verification si les quotes sont fermées
+	while (quote_opened(all_prompt) || pipe_location_valid(all_prompt) != TRUE)
+	{
+		prompt_left = readline("> ");
+		if (quote_opened(all_prompt))
+			all_prompt = ft_strjoin(all_prompt, "\n");
+		else if (pipe_location_valid(all_prompt) == FALSE)
+			all_prompt = ft_strjoin(all_prompt, " ");
+		all_prompt = ft_strjoin(all_prompt, prompt_left);
+		free(prompt_left);
+		if (pipe_location_valid(all_prompt) == ERROR)
+			return (NULL);
 	}
 	return (all_prompt);
 }

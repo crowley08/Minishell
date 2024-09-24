@@ -6,7 +6,7 @@
 /*   By: arakotom <arakotom@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 12:00:35 by arakotom          #+#    #+#             */
-/*   Updated: 2024/09/19 16:33:22 by arakotom         ###   ########.fr       */
+/*   Updated: 2024/09/22 21:53:07 by arakotom         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	data_init(t_data *data, int argc, char **argv)
 	(void)argc;
 	(void)argv;
 	data->envp = NULL;
-	data->prompt = NULL;
+	data->input = NULL;
 }
 
 t_env	*env_new(void)

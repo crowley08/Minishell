@@ -61,6 +61,16 @@
 		"stdlib.h": "c"
 	},
 	"C_Cpp.errorSquiggles": "disabled",
-	"cSpell.words": ["libft", "MINISHELL"],
+	"cSpell.words": [
+		"dans",
+		"espaces",
+		"fermées",
+		"inutiles",
+		"libft",
+		"ligne",
+		"MINISHELL",
+		"plusieurs",
+		"sont"
+	],
 	"C_Cpp.default.compilerPath": "/usr/bin/gcc"
 }
