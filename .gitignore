@@ -1,0 +1,11 @@
+*.swp
+*.swo
+*.out
+*.exe
+*.gch
+*.o
+*.a
+*.txt
+.vscode
+minishell
+objs
