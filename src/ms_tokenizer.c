@@ -6,7 +6,7 @@
 /*   By: saandria < saandria@student.42antananar    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/17 10:18:21 by saandria          #+#    #+#             */
-/*   Updated: 2024/09/24 12:45:14 by saandria         ###   ########.fr       */
+/*   Updated: 2024/09/24 13:59:42 by saandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,8 +128,8 @@ t_token	*ms_tokenizer(char *s)
 			new_token = check_token(s, &i, new_token);
 		else
 			new_token = get_wordtok(s, &i);
-		print_token(new_token);
 		check_token_list(&current, new_token);
+		print_token(new_token);
 	}
 	return (new_token);
 }
