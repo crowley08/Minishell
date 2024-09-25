@@ -6,7 +6,7 @@
 /*   By: saandria < saandria@student.42antananar    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 11:31:32 by saandria          #+#    #+#             */
-/*   Updated: 2024/09/24 14:05:54 by saandria         ###   ########.fr       */
+/*   Updated: 2024/09/25 16:06:12 by saandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,15 +39,15 @@ char	*check_path(char *cmd, char **env)
 		tmp_part = ft_strjoin(paths[i], "/");
 		path = ft_strjoin(tmp_part, cmd);
 		free(tmp_part);
-		if (access(path, F_OK) == 0)
+		if (access(path, F_OK) == 0 && access(path, X_OK) == 0)
 		{
-			printf("%s:\taccess autorised\n", path);
+			printf("%s\taccess autorised\n", path);
 		    return (path);
 		}
-		free(path);
 		i++;
 	}
-	printf("%s:\taccess unautorised\n", path);
+	printf("%s\taccess unautorised\n", path);
+	free(path);
 	i = -1;
 	while (path[++i])
 	    free(paths[i]);
@@ -67,12 +67,13 @@ void	exec(t_token **token, char **env)
 	int		i;
 	char	*path;
 
-	cmd = (char **)malloc(1000000);
+	cmd = (char **)malloc(100000);
 	t = *token;
 	i = 0;
 	while (t && t->type == 0)
 	{
 		cmd[i] = ft_strdup(t->value);
+		printf("%s\n", cmd[i]);
 		t = t->next;
 		i++;
 	}
