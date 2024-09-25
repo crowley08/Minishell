@@ -1,27 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.h                                        :+:      :+:    :+:   */
+/*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: arakotom <arakotom@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/24 23:58:49 by arakotom          #+#    #+#             */
-/*   Updated: 2024/09/25 20:23:30 by arakotom         ###   ########.fr       */
+/*   Created: 2024/09/25 19:41:25 by arakotom          #+#    #+#             */
+/*   Updated: 2024/09/25 19:43:22 by arakotom         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINISHELL_H
-# define MINISHELL_H
-# include "../ft_printf/includes/ft_printf.h"
-# include "../libft/libft.h"
-# include "./types.h"
-# include "envp.h"
-# include <readline/history.h>
-# include <readline/readline.h>
-# include <stdio.h>
-# include <stdlib.h>
-# include <unistd.h>
+#include "../includes/minishell.h"
 
-void	init_data(t_data *data, int argc, char **argv);
-
-#endif
+void	init_data(t_data *data, int argc, char **argv)
+{
+	(void)argc;
+	(void)argv;
+	data->envp = NULL;
+	data->input = NULL;
+	data->prompt = NULL;
+}

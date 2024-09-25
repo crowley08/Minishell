@@ -1,27 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.h                                        :+:      :+:    :+:   */
+/*   envp.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: arakotom <arakotom@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/24 23:58:49 by arakotom          #+#    #+#             */
-/*   Updated: 2024/09/25 20:23:30 by arakotom         ###   ########.fr       */
+/*   Created: 2024/09/25 19:44:00 by arakotom          #+#    #+#             */
+/*   Updated: 2024/09/25 20:14:28 by arakotom         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINISHELL_H
-# define MINISHELL_H
-# include "../ft_printf/includes/ft_printf.h"
-# include "../libft/libft.h"
-# include "./types.h"
-# include "envp.h"
-# include <readline/history.h>
-# include <readline/readline.h>
-# include <stdio.h>
-# include <stdlib.h>
-# include <unistd.h>
+#ifndef ENVP_H
+# define ENVP_H
 
-void	init_data(t_data *data, int argc, char **argv);
+t_bool	dup_envp(t_data *data, char **envp);
+t_env	*new_env(void);
+t_env	*create_env(char *str);
+void	add_env_list(t_env **list, t_env *env);
 
 #endif

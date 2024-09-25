@@ -6,12 +6,19 @@
 /*   By: arakotom <arakotom@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 23:53:58 by arakotom          #+#    #+#             */
-/*   Updated: 2024/09/24 23:54:10 by arakotom         ###   ########.fr       */
+/*   Updated: 2024/09/25 20:21:02 by arakotom         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	main(int argc, char const *argv[])
+#include "../includes/minishell.h"
+
+int	main(int argc, char *argv[], char *envp[])
 {
-	/* code */
+	t_data	data;
+
+	init_data(&data, argc, argv);
+	if (!dup_envp(&data, envp))
+		ft_printf("Error, duplicate envp failed\n");
+	ft_printf("Good, duplicate envp success\n");
 	return (0);
 }
