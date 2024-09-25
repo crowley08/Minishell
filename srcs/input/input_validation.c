@@ -6,7 +6,7 @@
 /*   By: arakotom <arakotom@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 23:52:59 by arakotom          #+#    #+#             */
-/*   Updated: 2024/09/26 01:02:20 by arakotom         ###   ########.fr       */
+/*   Updated: 2024/09/26 01:11:40 by arakotom         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,21 +82,15 @@ t_bool	input_valid(t_data *data)
 {
 	while (42)
 	{
-		if (is_quote_opened(data->input))
-		{
-			data->curr_error = STX_QUOTE;
+		if (is_quote_opened(data->input) && set_input_error(&(data->curr_error),
+				STX_QUOTE))
 			break ;
-		}
-		if (is_pipe_start_end(data->input))
-		{
-			data->curr_error = STX_PIPE_START_END;
+		if (is_pipe_start_end(data->input)
+			&& set_input_error(&(data->curr_error), STX_PIPE_START_END))
 			break ;
-		}
-		if (is_have_dbl_pipe_succ(data->input))
-		{
-			data->curr_error = STX_PIPE_DBL_SUCC;
+		if (is_have_dbl_pipe_succ(data->input)
+			&& set_input_error(&(data->curr_error), STX_PIPE_DBL_SUCC))
 			break ;
-		}
 		break ;
 	}
 	if (data->curr_error != NOTHING)
