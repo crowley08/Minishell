@@ -6,7 +6,7 @@
 #    By: arakotom <arakotom@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/24 23:57:27 by arakotom          #+#    #+#              #
-#    Updated: 2024/09/25 21:10:39 by arakotom         ###   ########.fr        #
+#    Updated: 2024/09/26 00:58:22 by arakotom         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,9 +21,14 @@ LIBFT_DIR = libft
 FT_PRINTF_DIR = ft_printf
 
 SRCS = main.c \
+		quote_utils.c \
 		data_utils.c \
 		envp/envp_utils.c \
-		envp/init_envp.c
+		envp/init_envp.c \
+		input/init_input.c \
+		input/input_utils.c \
+		input/input_validation.c \
+		prompt/prompt_utils.c
 
 OBJS = $(addprefix $(OBJ_DIR)/, $(SRCS:.c=.o))
 LIB = $(LIBFT_DIR)/libft.a $(FT_PRINTF_DIR)/libftprintf.a

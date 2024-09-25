@@ -1,32 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   init_input.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: arakotom <arakotom@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/24 23:53:58 by arakotom          #+#    #+#             */
-/*   Updated: 2024/09/26 00:59:47 by arakotom         ###   ########.fr       */
+/*   Created: 2024/09/25 23:07:00 by arakotom          #+#    #+#             */
+/*   Updated: 2024/09/26 01:00:15 by arakotom         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/minishell.h"
+#include "../../includes/minishell.h"
 
-int	main(int argc, char *argv[], char *envp[])
+char	*get_input(void)
 {
-	t_data	data;
+	char	*input;
 
-	init_data(&data, argc, argv);
-	if (!dup_envp(&data, envp))
-		ft_printf("Error, duplicate envp failed\n");
-	while (42)
+	input = readline("minishell > ");
+	while (is_empty(input))
 	{
-		data.input = get_input();
-		ft_printf("inputted=> |%s|\n", data.input);
-		if (!input_valid(&data))
-			ft_printf("Error: %d\n", data.curr_error);
-		reset_data(&data);
+		free(input);
+		input = readline("minishell > ");
 	}
-	free_data(&data);
-	return (0);
+	return (input);
 }

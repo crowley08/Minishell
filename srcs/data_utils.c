@@ -6,7 +6,7 @@
 /*   By: arakotom <arakotom@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 19:41:25 by arakotom          #+#    #+#             */
-/*   Updated: 2024/09/25 21:13:27 by arakotom         ###   ########.fr       */
+/*   Updated: 2024/09/26 00:52:50 by arakotom         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ void	init_data(t_data *data, int argc, char **argv)
 	data->envp = NULL;
 	data->input = NULL;
 	data->prompt = NULL;
+	data->curr_error = NOTHING;
 }
 
 void	free_data(t_data *data)
@@ -29,4 +30,15 @@ void	free_data(t_data *data)
 		free(data->input);
 	if (data->prompt)
 		free(data->prompt);
+}
+
+void	reset_data(t_data *data)
+{
+	if (data->input)
+		free(data->input);
+	if (data->prompt)
+		free(data->prompt);
+	data->input = NULL;
+	data->prompt = NULL;
+	data->curr_error = NOTHING;
 }
