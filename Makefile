@@ -6,7 +6,7 @@
 #    By: arakotom <arakotom@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/24 23:57:27 by arakotom          #+#    #+#              #
-#    Updated: 2024/09/25 20:19:55 by arakotom         ###   ########.fr        #
+#    Updated: 2024/09/25 21:10:39 by arakotom         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,7 @@ LIBFT_DIR = libft
 FT_PRINTF_DIR = ft_printf
 
 SRCS = main.c \
-		init.c \
+		data_utils.c \
 		envp/envp_utils.c \
 		envp/init_envp.c
 

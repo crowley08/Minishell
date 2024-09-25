@@ -6,7 +6,7 @@
 /*   By: arakotom <arakotom@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 23:58:49 by arakotom          #+#    #+#             */
-/*   Updated: 2024/09/25 20:23:30 by arakotom         ###   ########.fr       */
+/*   Updated: 2024/09/25 21:13:42 by arakotom         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,5 +23,6 @@
 # include <unistd.h>
 
 void	init_data(t_data *data, int argc, char **argv);
+void	free_data(t_data *data);
 
 #endif

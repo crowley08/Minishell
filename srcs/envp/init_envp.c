@@ -6,7 +6,7 @@
 /*   By: arakotom <arakotom@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 19:49:01 by arakotom          #+#    #+#             */
-/*   Updated: 2024/09/25 20:17:06 by arakotom         ###   ########.fr       */
+/*   Updated: 2024/09/25 23:00:00 by arakotom         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	add_env_list(t_env **list, t_env *env)
 {
 	t_env	*last;
 
-	if (!list || !(*list))
+	if (!(*list))
 		*list = env;
 	else
 	{
@@ -50,10 +50,11 @@ t_bool	dup_envp(t_data *data, char **envp)
 
 	if (!(*envp))
 		return (FALSE);
+	list = NULL;
 	while (envp && *envp)
 	{
 		env = create_env(*envp);
-		if (!env)
+		if (env)
 			add_env_list(&list, env);
 		envp++;
 	}
