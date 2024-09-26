@@ -6,7 +6,7 @@
 /*   By: arakotom <arakotom@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 00:00:47 by arakotom          #+#    #+#             */
-/*   Updated: 2024/09/26 01:01:33 by arakotom         ###   ########.fr       */
+/*   Updated: 2024/09/26 11:04:02 by arakotom         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ struct						s_data
 	t_env					*envp;
 	char					*input;
 	t_error_stt				curr_error;
-	char					*prompt;
+	char					**prompt;
 };
 
 struct						s_quote_dt

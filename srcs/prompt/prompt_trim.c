@@ -6,17 +6,17 @@
 /*   By: arakotom <arakotom@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 23:27:15 by arakotom          #+#    #+#             */
-/*   Updated: 2024/09/26 02:38:45 by arakotom         ###   ########.fr       */
+/*   Updated: 2024/09/26 14:29:53 by arakotom         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-char	*trim_space_out(char *input)
+char *trim_space_out(char *input)
 {
-	char	*str;
-	int		end;
-	int		start;
+	char *str;
+	int end;
+	int start;
 
 	end = ft_strlen(input);
 	if (!end)
@@ -29,14 +29,13 @@ char	*trim_space_out(char *input)
 	if (start >= end)
 		return (NULL);
 	str = ft_substr(input, start, (end - start));
-	free(input);
 	return (str);
 }
 
-int	str_trim_in_len(char *str)
+int str_trim_in_len(char *str)
 {
-	int			len;
-	t_quote_dt	quote;
+	int len;
+	t_quote_dt quote;
 
 	len = 0;
 	init_quote_dt(&quote);
@@ -55,12 +54,12 @@ int	str_trim_in_len(char *str)
 	return (len);
 }
 
-char	*trim_space_in(char *input)
+char *trim_space_in(char *input)
 {
-	char		*str;
-	t_quote_dt	quote;
-	int			i;
-	int			j;
+	char *str;
+	t_quote_dt quote;
+	int i;
+	int j;
 
 	i = 0;
 	j = -1;
@@ -80,21 +79,21 @@ char	*trim_space_in(char *input)
 			str[i++] = input[j];
 		str[i] = '\0';
 	}
-	free(input);
 	return (str);
 }
 
-char	*trim_space_all(char *input)
+char *trim_space_all(char *input)
 {
-	char	*str;
-
+	char *str_out;
+	char *str_in;
 	if (!input)
 		return (NULL);
-	str = trim_space_out(input);
-	if (!str)
+	str_out = trim_space_out(input);
+	if (!str_out)
 		return (NULL);
-	str = trim_space_in(str);
-	if (!str)
+	str_in = trim_space_in(str_out);
+	free(str_out);
+	if (!str_in)
 		return (NULL);
-	return (str);
+	return (str_in);
 }
