@@ -1,4 +1,4 @@
-SRCS			=	src/main.c src/signal_handler.c src/ms_tokenizer.c src/ms_token_utils.c src/env_list.c src/env.c src/exec.c
+SRCS			=	src/main.c src/signal_handler.c src/ms_tokenizer.c src/ms_token_utils.c src/env_list.c src/env.c src/exec.c src/msh_utils.c
 OBJS			= $(SRCS:.c=.o)
 
 

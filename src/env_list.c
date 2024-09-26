@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env_list.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: saandria < saandria@student.42antananar    +#+  +:+       +#+        */
+/*   By: saandria <saandria@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/17 16:27:16 by saandria          #+#    #+#             */
-/*   Updated: 2024/09/19 15:11:55 by saandria         ###   ########.fr       */
+/*   Updated: 2024/09/26 11:04:19 by saandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	free_env(t_env **env)
 	free(current);
 	current = NULL;
 	next = NULL;
-	return;
+	return ;
 }
 
 void	add_env(t_env **env, t_env *new_env)

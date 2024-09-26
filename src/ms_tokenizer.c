@@ -6,7 +6,7 @@
 /*   By: saandria < saandria@student.42antananar    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/17 10:18:21 by saandria          #+#    #+#             */
-/*   Updated: 2024/09/25 16:05:21 by saandria         ###   ########.fr       */
+/*   Updated: 2024/09/26 11:00:27 by saandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,14 +100,14 @@ static void	add_token(t_token **token, t_token *new)
 	t_token	*current;
 
 	if (!*token)
-	    *token = new;
+		*token = new;
 	else
 	{
 		current = *token;
-        while (current->next)
-            current = current->next;
-        current->next = new;
-        new->next = NULL;
+		while (current->next)
+			current = current->next;
+		current->next = new;
+		new->next = NULL;
 	}
 }
 
@@ -126,7 +126,7 @@ t_token	*ms_tokenizer(char *s)
 	if (ms_istoken(s[i]))
 		token = check_token(s, &i, token);
 	else
-	    token = get_wordtok(s, &i);
+		token = get_wordtok(s, &i);
 	while (i < len)
 	{
 		if (ms_isspace(s[i]))
@@ -140,6 +140,5 @@ t_token	*ms_tokenizer(char *s)
 			new_token = get_wordtok(s, &i);
 		add_token(&token, new_token);
 	}
-	print_token(token);
 	return (token);
 }

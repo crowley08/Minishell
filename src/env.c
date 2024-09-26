@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: saandria < saandria@student.42antananar    +#+  +:+       +#+        */
+/*   By: saandria <saandria@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/17 15:43:59 by saandria          #+#    #+#             */
-/*   Updated: 2024/09/17 16:12:45 by saandria         ###   ########.fr       */
+/*   Updated: 2024/09/26 11:04:21 by saandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

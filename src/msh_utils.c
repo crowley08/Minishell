@@ -1,32 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strrchr.c                                       :+:      :+:    :+:   */
+/*   msh_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: saandria <saandria@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/24 14:28:32 by saandria          #+#    #+#             */
-/*   Updated: 2024/09/26 11:04:01 by saandria         ###   ########.fr       */
+/*   Created: 2024/09/26 10:38:09 by saandria          #+#    #+#             */
+/*   Updated: 2024/09/26 11:04:34 by saandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../includes/minishell.h"
 
-char	*ft_strrchr(const char *s, int c)
+void	free_minishell(t_msh *msh)
 {
-	char	*occ;
-
-	occ = (void *)0;
-	while (*s)
-	{
-		if (*(char *)s == (char)c)
-			occ = (char *) s;
-		s++;
-	}
-	if ((char)c == '\0')
-	{
-		if (*(char *)s == '\0')
-			return ((char *) s);
-	}
-	return (occ);
+	free_spl(msh->envc);
+	free_tokens(&msh->token);
+	free_env(&msh->envp);
+	free(msh->input);
 }

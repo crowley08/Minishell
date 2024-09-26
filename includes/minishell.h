@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: saandria < saandria@student.42antananar    +#+  +:+       +#+        */
+/*   By: saandria <saandria@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 21:16:12 by saandria          #+#    #+#             */
-/*   Updated: 2024/09/24 12:30:10 by saandria         ###   ########.fr       */
+/*   Updated: 2024/09/26 11:01:48 by saandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@
 typedef struct s_token		t_token;
 typedef enum e_tokentype	t_tokentype;
 typedef struct s_env		t_env;
+typedef struct s_msh		t_msh;
 
 enum	e_tokentype
 {
@@ -57,6 +58,14 @@ struct	s_env
 	char	*name;
 	char	*value;
 	t_env	*next;
+};
+
+struct	s_msh
+{
+	char	*input;
+	t_token	*token;
+	t_env	*envp;
+	char	**envc;
 };
 
 //token_utils functions
@@ -92,5 +101,8 @@ void	free_spl(char **env);
 
 //error handling
 void	error(void);
+
+//msh_utils
+void	free_minishell(t_msh *msh);
 
 #endif

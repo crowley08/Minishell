@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ms_token_utils.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: saandria < saandria@student.42antananar    +#+  +:+       +#+        */
+/*   By: saandria <saandria@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/17 10:38:27 by saandria          #+#    #+#             */
-/*   Updated: 2024/09/19 15:32:01 by saandria         ###   ########.fr       */
+/*   Updated: 2024/09/26 11:05:21 by saandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,5 +85,5 @@ void	free_tokens(t_token **t)
 	free(current);
 	current = NULL;
 	next = NULL;
-	return;
+	return ;
 }

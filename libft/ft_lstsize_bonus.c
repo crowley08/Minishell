@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lstsize_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: saandria < saandria@student.42antananar    +#+  +:+       +#+        */
+/*   By: saandria <saandria@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/03 14:05:53 by saandria          #+#    #+#             */
-/*   Updated: 2024/09/17 14:03:04 by saandria         ###   ########.fr       */
+/*   Updated: 2024/09/26 11:02:23 by saandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

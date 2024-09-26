@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: saandria < saandria@student.42antananar    +#+  +:+       +#+        */
+/*   By: saandria <saandria@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/16 09:37:16 by saandria          #+#    #+#             */
-/*   Updated: 2024/09/16 09:38:27 by saandria         ###   ########.fr       */
+/*   Updated: 2024/09/26 11:03:11 by saandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: saandria < saandria@student.42antananar    +#+  +:+       +#+        */
+/*   By: saandria <saandria@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 11:31:32 by saandria          #+#    #+#             */
-/*   Updated: 2024/09/25 16:06:12 by saandria         ###   ########.fr       */
+/*   Updated: 2024/09/26 11:04:23 by saandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,12 @@
 
 void	free_spl(char **env)
 {
-	int    i;
+	int	i;
 
-    i = 0;
-    while (env[i])
-        free(env[i++]);
-    free(env);
+	i = 0;
+	while (env[i])
+		free(env[i++]);
+	free(env);
 }
 
 char	*check_path(char *cmd, char **env)
@@ -42,7 +42,7 @@ char	*check_path(char *cmd, char **env)
 		if (access(path, F_OK) == 0 && access(path, X_OK) == 0)
 		{
 			printf("%s\taccess autorised\n", path);
-		    return (path);
+			return (path);
 		}
 		i++;
 	}
@@ -50,7 +50,7 @@ char	*check_path(char *cmd, char **env)
 	free(path);
 	i = -1;
 	while (path[++i])
-	    free(paths[i]);
+		free(paths[i]);
 	return (0);
 }
 
@@ -81,7 +81,7 @@ void	exec(t_token **token, char **env)
 	if (!path)
 	{
 		free_spl(cmd);
-	    error();
+		error();
 	}
 	if (execve(path, cmd, env) == -1)
 		error();
