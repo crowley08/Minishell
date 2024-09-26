@@ -6,7 +6,7 @@
 #    By: arakotom <arakotom@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/24 23:57:27 by arakotom          #+#    #+#              #
-#    Updated: 2024/09/26 02:00:23 by arakotom         ###   ########.fr        #
+#    Updated: 2024/09/26 10:31:50 by arakotom         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -45,7 +45,7 @@ $(NAME): $(OBJS) $(LIB)
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
 	@mkdir -p $(dir $@)
-	$(CC) $(CFLAGS) -I $(INCLUDE_DIR) -c $< -o $@ $(RDLFLAGS)
+	$(CC) $(CFLAGS) -I $(INCLUDE_DIR) -c $< -o $@
 
 $(LIB) :
 	@make -C $(LIBFT_DIR)

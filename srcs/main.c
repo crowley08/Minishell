@@ -6,7 +6,7 @@
 /*   By: arakotom <arakotom@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 23:53:58 by arakotom          #+#    #+#             */
-/*   Updated: 2024/09/26 02:03:39 by arakotom         ###   ########.fr       */
+/*   Updated: 2024/09/26 10:34:30 by arakotom         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	main(int argc, char *argv[], char *envp[])
 		ft_printf("inputted=> |%s|\n", data.input);
 		if (!input_valid(&data))
 		{
-			ft_printf("Error: %s\n", data.curr_error);
+			ft_printf("Error: %d\n", data.curr_error);
 			reset_data(&data);
 			continue ;
 		}

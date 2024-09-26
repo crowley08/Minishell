@@ -6,7 +6,7 @@
 /*   By: arakotom <arakotom@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 23:52:59 by arakotom          #+#    #+#             */
-/*   Updated: 2024/09/26 01:11:40 by arakotom         ###   ########.fr       */
+/*   Updated: 2024/09/26 10:41:00 by arakotom         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ t_bool	is_have_dbl_pipe_succ(char *str)
 		update_quote_dt(*str, &quote);
 		if (*str == '|' && quote.d_q == CLOSED && quote.s_q == CLOSED)
 		{
-			next_pipe = 0;
+			next_pipe = 1;
 			while (*(str + next_pipe) && ft_isspace(*(str + next_pipe)))
 				next_pipe++;
 			if (*(str + next_pipe) == '|')
