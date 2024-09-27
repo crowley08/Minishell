@@ -6,7 +6,7 @@
 /*   By: arakotom <arakotom@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 23:07:00 by arakotom          #+#    #+#             */
-/*   Updated: 2024/09/27 15:39:48 by arakotom         ###   ########.fr       */
+/*   Updated: 2024/09/27 15:50:30 by arakotom         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,5 +23,6 @@ char *get_input(void)
 		free(input);
 		input = readline("minishell > ");
 	}
+	add_history(input);
 	return (input);
 }
