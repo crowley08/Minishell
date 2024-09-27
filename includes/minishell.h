@@ -6,7 +6,7 @@
 /*   By: saandria <saandria@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 21:16:12 by saandria          #+#    #+#             */
-/*   Updated: 2024/09/26 11:01:48 by saandria         ###   ########.fr       */
+/*   Updated: 2024/09/27 15:19:24 by saandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,10 @@
 
 typedef struct s_token		t_token;
 typedef enum e_tokentype	t_tokentype;
+typedef enum e_nodetype		t_nodetype;
 typedef struct s_env		t_env;
 typedef struct s_msh		t_msh;
+typedef struct s_node		t_node;
 
 enum	e_tokentype
 {
@@ -44,6 +46,12 @@ enum	e_tokentype
 	TOK_REDIROUT,
 	TOK_APPEND,
 	TOK_HEREDOC,
+};
+
+enum	e_nodetype
+{
+	CMD_NODE,
+	PIPE_NODE,
 };
 
 struct	s_token
@@ -60,9 +68,20 @@ struct	s_env
 	t_env	*next;
 };
 
+struct	s_node
+{
+	char    **cmd;
+	t_nodetype	type;
+	t_node	*left;
+	t_node	*right;
+};
+/*
+*/
+
 struct	s_msh
 {
 	char	*input;
+	t_node	*node;
 	t_token	*token;
 	t_env	*envp;
 	char	**envc;
@@ -98,11 +117,17 @@ void	free_env(t_env **env);
 char	*check_path(char *cmd, char **env);
 void	exec(t_token **token, char **env);
 void	free_spl(char **env);
+//void	ms_pipe(t_msh *msh);
 
 //error handling
 void	error(void);
 
 //msh_utils
 void	free_minishell(t_msh *msh);
+int		count_pipe(t_msh *msh);
+
+//parsing
+t_node	*parse(t_token *token);
+void	print_ast(t_node **node);
 
 #endif

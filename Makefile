@@ -1,10 +1,11 @@
-SRCS			=	src/main.c src/signal_handler.c src/ms_tokenizer.c src/ms_token_utils.c src/env_list.c src/env.c src/exec.c src/msh_utils.c
+SRCS			=	src/main.c src/signal_handler.c src/ms_tokenizer.c src/ms_token_utils.c src/env_list.c \
+					src/env.c src/exec.c src/msh_utils.c src/parse_token.c# src/pipe.c
 OBJS			= $(SRCS:.c=.o)
 
 
 CC				= cc
 RM				= rm -f
-CFLAGS			= -Wall -Wextra -Werror -g# -lreadline
+CFLAGS			= -Wall -Wextra -Werror -g
 
 NAME			= minishell
 

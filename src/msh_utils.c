@@ -6,7 +6,7 @@
 /*   By: saandria <saandria@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/26 10:38:09 by saandria          #+#    #+#             */
-/*   Updated: 2024/09/26 11:04:34 by saandria         ###   ########.fr       */
+/*   Updated: 2024/09/26 11:48:07 by saandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,4 +18,18 @@ void	free_minishell(t_msh *msh)
 	free_tokens(&msh->token);
 	free_env(&msh->envp);
 	free(msh->input);
+}
+
+int	count_pipe(t_msh *msh)
+{
+	int		i;
+	int		pipe;
+	char	*s;
+
+	i = -1;
+	pipe = 0;
+	s = msh->input;
+	while (s[++i])
+		pipe++;
+	return (pipe);
 }
