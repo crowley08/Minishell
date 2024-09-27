@@ -6,7 +6,7 @@
 /*   By: saandria <saandria@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 21:16:12 by saandria          #+#    #+#             */
-/*   Updated: 2024/09/27 15:19:24 by saandria         ###   ########.fr       */
+/*   Updated: 2024/09/27 16:09:29 by saandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,10 +70,10 @@ struct	s_env
 
 struct	s_node
 {
-	char    **cmd;
+	char		**cmd;
 	t_nodetype	type;
-	t_node	*left;
-	t_node	*right;
+	t_node		*left;
+	t_node		*right;
 };
 /*
 */

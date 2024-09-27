@@ -6,7 +6,7 @@
 /*   By: saandria <saandria@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/26 11:26:27 by saandria          #+#    #+#             */
-/*   Updated: 2024/09/27 15:20:21 by saandria         ###   ########.fr       */
+/*   Updated: 2024/09/27 16:10:42 by saandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,10 +70,10 @@ static int	count_token_word(t_token *token)
 
 static t_node	*init_node(t_nodetype type)
 {
-	t_node    *new_node;
+	t_node	*new_node;
 
-    new_node = malloc(sizeof(t_node));
-    if (!new_node)
+	new_node = malloc(sizeof(t_node));
+	if (!new_node)
 		error();
 	new_node->cmd = NULL;
 	new_node->type = type;
@@ -82,22 +82,21 @@ static t_node	*init_node(t_nodetype type)
 	return (new_node);
 }
 
-static t_node	*dup_token(t_token *token)
+static t_node	*dup_token(t_token **token)
 {
 	t_node	*node;
 	int		i;
 	int		j;
 
-	i = count_token_word(token);
-//	printf("tainalika\n");
+	i = count_token_word(*token);
 	node = init_node(CMD_NODE);
 	node->cmd = malloc(sizeof(char *) * (i + 1));
 	j = 0;
-	while (token && token->type == TOK_WORD)
+	while (*token && (*token)->type == TOK_WORD)
 	{
-		node->cmd[j] = ft_strdup(token->value);
-        j++;
-        token = token->next;
+		node->cmd[j] = ft_strdup((*token)->value);
+		j++;
+		*token = (*token)->next;
 	}
 	return (node);
 }
@@ -107,7 +106,7 @@ static t_node	*parse_token(t_token **token)
 	t_node	*left;
 	t_node	*pipe;
 
-	left = dup_token(*token);
+	left = dup_token(token);
 	if (*token && (*token)->type == TOK_PIPE)
 	{
 		pipe = init_node(PIPE_NODE);
