@@ -6,27 +6,16 @@
 /*   By: arakotom <arakotom@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 23:52:59 by arakotom          #+#    #+#             */
-/*   Updated: 2024/09/26 12:13:10 by arakotom         ###   ########.fr       */
+/*   Updated: 2024/09/27 13:45:55 by arakotom         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-t_bool	is_empty(char *str)
+t_bool is_pipe_start_end_redir(char *str)
 {
-	while (str && *str)
-	{
-		if (!ft_isspace(*str))
-			return (FALSE);
-		str++;
-	}
-	return (TRUE);
-}
-
-t_bool	is_pipe_start_end(char *str)
-{
-	int	start;
-	int	end;
+	int start;
+	int end;
 
 	start = 0;
 	end = ft_strlen(str) - 1;
@@ -34,14 +23,14 @@ t_bool	is_pipe_start_end(char *str)
 		start++;
 	while (start < end && ft_isspace(str[end]))
 		end--;
-	if (str[start] == '|' || str[end] == '|')
+	if (str[start] == '|' || str[end] == '|' || is_char_redir(str[end]))
 		return (TRUE);
 	return (FALSE);
 }
 
-t_bool	is_quote_opened(char *str)
+t_bool is_quote_opened(char *str)
 {
-	t_quote_dt	quote;
+	t_quote_dt quote;
 
 	init_quote_dt(&quote);
 	while (*str)
@@ -55,10 +44,10 @@ t_bool	is_quote_opened(char *str)
 	return (FALSE);
 }
 
-t_bool	is_have_dbl_pipe_succ(char *str)
+t_bool is_have_dbl_pipe_succ(char *str)
 {
-	int			next_pipe;
-	t_quote_dt	quote;
+	int next_pipe;
+	t_quote_dt quote;
 
 	init_quote_dt(&quote);
 	while (str && *str)
@@ -78,20 +67,20 @@ t_bool	is_have_dbl_pipe_succ(char *str)
 	return (FALSE);
 }
 
-t_bool	input_valid(t_data *data)
+t_bool input_valid(t_data *data)
 {
 	while (42)
 	{
 		if (is_quote_opened(data->input) && set_input_error(&(data->curr_error),
-				STX_QUOTE))
-			break ;
-		if (is_pipe_start_end(data->input)
-			&& set_input_error(&(data->curr_error), STX_PIPE_START_END))
-			break ;
-		if (is_have_dbl_pipe_succ(data->input)
-			&& set_input_error(&(data->curr_error), STX_PIPE_DBL_SUCC))
-			break ;
-		break ;
+															STX_QUOTE))
+			break;
+		if (is_pipe_start_end_redir(data->input) && set_input_error(&(data->curr_error), STX_PIPE_START_END))
+			break;
+		if (is_have_dbl_pipe_succ(data->input) && set_input_error(&(data->curr_error), STX_PIPE_DBL_SUCC))
+			break;
+		if (is_some_redir_invalid(data->input) && set_input_error(&(data->curr_error), STX_REDIR))
+			break;
+		break;
 	}
 	if (data->curr_error != NOTHING)
 		return (FALSE);

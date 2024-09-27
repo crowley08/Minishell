@@ -6,7 +6,7 @@
 /*   By: arakotom <arakotom@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 00:00:47 by arakotom          #+#    #+#             */
-/*   Updated: 2024/09/26 11:04:02 by arakotom         ###   ########.fr       */
+/*   Updated: 2024/09/27 11:14:21 by arakotom         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ typedef enum e_error_stt	t_error_stt;
 typedef struct s_env		t_env;
 typedef struct s_data		t_data;
 typedef struct s_quote_dt	t_quote_dt;
+typedef struct s_heredoc t_heredoc;
 
 enum						e_bool
 {
@@ -38,6 +39,7 @@ enum						e_error_stt
 	STX_QUOTE = 1,
 	STX_PIPE_START_END = 2,
 	STX_PIPE_DBL_SUCC = 3,
+    STX_REDIR = 4,
 };
 
 struct						s_env
@@ -52,13 +54,21 @@ struct						s_data
 	t_env					*envp;
 	char					*input;
 	t_error_stt				curr_error;
-	char					**prompt;
+	char					**prompts;
 };
 
 struct						s_quote_dt
 {
 	t_quote_stt				d_q;
 	t_quote_stt				s_q;
+};
+struct s_heredoc
+{
+	char *eof;
+	char *filename;
+	char *path;
+	t_bool expend_var;
+	t_heredoc *next;
 };
 
 #endif

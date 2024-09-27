@@ -6,7 +6,7 @@
 #    By: arakotom <arakotom@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/24 23:57:27 by arakotom          #+#    #+#              #
-#    Updated: 2024/09/26 13:17:44 by arakotom         ###   ########.fr        #
+#    Updated: 2024/09/27 11:13:28 by arakotom         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,6 +28,7 @@ SRCS = main.c \
 		input/init_input.c \
 		input/input_utils.c \
 		input/input_validation.c \
+		input/redir/redir_validation.c \
 		prompt/prompt_trim.c \
 		prompt/prompt_utils.c \
 		prompt/prompt_split.c
