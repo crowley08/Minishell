@@ -6,7 +6,7 @@
 /*   By: arakotom <arakotom@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/26 00:13:56 by arakotom          #+#    #+#             */
-/*   Updated: 2024/09/28 13:01:22 by arakotom         ###   ########.fr       */
+/*   Updated: 2024/09/28 16:08:30 by arakotom         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,4 +38,13 @@ char *trim_space_all(char *input);
 t_bool is_redir_valid(char **str);
 t_bool has_some_redir_invalid(char *str);
 
+// init_heredoc
+t_heredoc *new_heredoc(void);
+char *set_filename(int i);
+void add_heredoc_list(t_heredoc **list, t_heredoc *heredoc);
+t_heredoc *create_heredoc(char **input, int i);
+t_heredoc *get_all_heredoc(char *input);
+void print_heredoc(t_heredoc *heredoc);
+void free_heredoc(t_heredoc *heredoc);
+void free_heredoc_list(t_heredoc **list);
 #endif

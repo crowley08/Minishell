@@ -6,7 +6,7 @@
 /*   By: arakotom <arakotom@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 00:00:47 by arakotom          #+#    #+#             */
-/*   Updated: 2024/09/28 12:04:06 by arakotom         ###   ########.fr       */
+/*   Updated: 2024/09/28 13:53:15 by arakotom         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,6 @@ struct s_heredoc
 {
 	char *eof;
 	char *filename;
-	char *path;
 	t_bool expend_var;
 	t_heredoc *next;
 };
