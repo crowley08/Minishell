@@ -6,13 +6,13 @@
 /*   By: arakotom <arakotom@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/27 10:32:24 by arakotom          #+#    #+#             */
-/*   Updated: 2024/09/27 15:32:32 by arakotom         ###   ########.fr       */
+/*   Updated: 2024/09/28 12:43:52 by arakotom         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../includes/minishell.h"
 
-t_bool is_redir_wrong(char **str)
+t_bool is_redir_valid(char **str)
 {
 	if (is_char_redir(*(*str + 1)))
 	{
@@ -25,14 +25,14 @@ t_bool is_redir_wrong(char **str)
 	while (*str && ft_isspace(**str))
 		(*str)++;
 	if (is_char_redir(**str) || **str == '|')
-		return (TRUE);
-	return (FALSE);
+		return (FALSE);
+	return (TRUE);
 }
 
-t_bool is_some_redir_invalid(char *str)
+t_bool has_some_redir_invalid(char *str)
 {
 	t_quote_dt quote;
-	t_bool wrong;
+	t_bool valid;
 
 	init_quote_dt(&quote);
 	while (str && *str && *(str + 1))
@@ -40,8 +40,8 @@ t_bool is_some_redir_invalid(char *str)
 		update_quote_dt(*str, &quote);
 		if (quote.d_q == CLOSED && quote.s_q == CLOSED && is_char_redir(*str))
 		{
-			wrong = is_redir_wrong(&str);
-			if (wrong)
+			valid = is_redir_valid(&str);
+			if (!valid)
 				return (TRUE);
 		}
 		else

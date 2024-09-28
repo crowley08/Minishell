@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   prompt_trim.c                                      :+:      :+:    :+:   */
+/*   input_trim.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: arakotom <arakotom@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 23:27:15 by arakotom          #+#    #+#             */
-/*   Updated: 2024/09/26 14:29:53 by arakotom         ###   ########.fr       */
+/*   Updated: 2024/09/28 12:57:53 by arakotom         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,10 +66,7 @@ char *trim_space_in(char *input)
 	init_quote_dt(&quote);
 	str = (char *)malloc(sizeof(char) * str_trim_in_len(input) + 1);
 	if (!str)
-	{
-		free(input);
 		return (NULL);
-	}
 	while (input && input[++j])
 	{
 		update_quote_dt(input[j], &quote);
@@ -86,6 +83,7 @@ char *trim_space_all(char *input)
 {
 	char *str_out;
 	char *str_in;
+
 	if (!input)
 		return (NULL);
 	str_out = trim_space_out(input);

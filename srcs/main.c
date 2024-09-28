@@ -6,7 +6,7 @@
 /*   By: arakotom <arakotom@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 23:53:58 by arakotom          #+#    #+#             */
-/*   Updated: 2024/09/27 15:41:38 by arakotom         ###   ########.fr       */
+/*   Updated: 2024/09/28 12:17:58 by arakotom         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,13 +22,6 @@ int main(int argc, char *argv[], char *envp[])
 	while (42)
 	{
 		data.input = get_input();
-		if (!input_valid(&data))
-		{
-			ft_printf("Error: %d\n", data.curr_error);
-			reset_data(&data);
-			continue;
-			// break;
-		}
 		data.prompts = split_pipe(data.input);
 		ft_printf("Input parsed:$%s$\n", data.input);
 		print_prompts(data.prompts);

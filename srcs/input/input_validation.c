@@ -6,13 +6,13 @@
 /*   By: arakotom <arakotom@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 23:52:59 by arakotom          #+#    #+#             */
-/*   Updated: 2024/09/27 13:45:55 by arakotom         ###   ########.fr       */
+/*   Updated: 2024/09/28 12:21:40 by arakotom         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-t_bool is_pipe_start_end_redir(char *str)
+t_bool has_pipe_start_end_redir(char *str)
 {
 	int start;
 	int end;
@@ -28,7 +28,7 @@ t_bool is_pipe_start_end_redir(char *str)
 	return (FALSE);
 }
 
-t_bool is_quote_opened(char *str)
+t_bool has_quote_opened(char *str)
 {
 	t_quote_dt quote;
 
@@ -44,7 +44,7 @@ t_bool is_quote_opened(char *str)
 	return (FALSE);
 }
 
-t_bool is_have_dbl_pipe_succ(char *str)
+t_bool has_dbl_pipe_succ(char *str)
 {
 	int next_pipe;
 	t_quote_dt quote;
@@ -67,22 +67,21 @@ t_bool is_have_dbl_pipe_succ(char *str)
 	return (FALSE);
 }
 
-t_bool input_valid(t_data *data)
+t_bool has_syntax_error(char *line, t_error_stt *error)
 {
 	while (42)
 	{
-		if (is_quote_opened(data->input) && set_input_error(&(data->curr_error),
-															STX_QUOTE))
+		if (has_quote_opened(line) && set_syntax_error(error, STX_QUOTE))
 			break;
-		if (is_pipe_start_end_redir(data->input) && set_input_error(&(data->curr_error), STX_PIPE_START_END))
+		if (has_pipe_start_end_redir(line) && set_syntax_error(error, STX_PIPE_START_END))
 			break;
-		if (is_have_dbl_pipe_succ(data->input) && set_input_error(&(data->curr_error), STX_PIPE_DBL_SUCC))
+		if (has_dbl_pipe_succ(line) && set_syntax_error(error, STX_PIPE_DBL_SUCC))
 			break;
-		if (is_some_redir_invalid(data->input) && set_input_error(&(data->curr_error), STX_REDIR))
+		if (has_some_redir_invalid(line) && set_syntax_error(error, STX_REDIR))
 			break;
 		break;
 	}
-	if (data->curr_error != NOTHING)
-		return (FALSE);
-	return (TRUE);
+	if (*error != NOTHING)
+		return (TRUE);
+	return (FALSE);
 }

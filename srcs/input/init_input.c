@@ -6,23 +6,47 @@
 /*   By: arakotom <arakotom@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 23:07:00 by arakotom          #+#    #+#             */
-/*   Updated: 2024/09/27 15:50:30 by arakotom         ###   ########.fr       */
+/*   Updated: 2024/09/28 12:22:59 by arakotom         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
+t_bool is_input_valid(char *line)
+{
+	t_error_stt error;
+
+	error = NOTHING;
+	if (is_empty_line(line))
+		return (FALSE);
+	add_history(line);
+	if (has_syntax_error(line, &error))
+	{
+		ft_printf("\e[31mSyntax Error %d : Invalid line\n\e[0m", error);
+		return (FALSE);
+	}
+	return (TRUE);
+}
+
 char *get_input(void)
 {
+	char *line;
 	char *input;
 
-	input = readline("minishell > ");
-	// input = ft_strdup("<file cat >> ");
-	while (is_empty(input))
+	while (42)
 	{
-		free(input);
-		input = readline("minishell > ");
+		line = readline("\e[33mMinishell$ \e[0m");
+		if (!is_input_valid(line))
+		{
+			free(line);
+			continue;
+		}
+		ft_printf("\e[32mSyntax valid: \e[0m%s\n", line);
+		input = trim_space_all(line);
+		free(line);
+		if (!input)
+			continue;
+		break;
 	}
-	add_history(input);
 	return (input);
 }
