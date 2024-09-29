@@ -6,7 +6,7 @@
 #    By: arakotom <arakotom@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/24 23:57:27 by arakotom          #+#    #+#              #
-#    Updated: 2024/09/28 16:15:18 by arakotom         ###   ########.fr        #
+#    Updated: 2024/09/29 22:06:58 by arakotom         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,11 +26,12 @@ SRCS = main.c \
 		envp/envp_utils.c \
 		envp/init_envp.c \
 		input/init_input.c \
+		input/input_trim.c \
 		input/input_utils.c \
 		input/input_validation.c \
 		input/redir/redir_validation.c \
 		input/redir/init_heredoc.c \
-		prompt/prompt_trim.c \
+		input/redir/heredoc_utils.c \
 		prompt/prompt_utils.c \
 		prompt/prompt_split.c
 

@@ -12,11 +12,11 @@
 
 #include "../../includes/minishell.h"
 
-char *trim_space_out(char *input)
+char	*trim_space_out(char *input)
 {
-	char *str;
-	int end;
-	int start;
+	char	*str;
+	int		end;
+	int		start;
 
 	end = ft_strlen(input);
 	if (!end)
@@ -32,10 +32,10 @@ char *trim_space_out(char *input)
 	return (str);
 }
 
-int str_trim_in_len(char *str)
+int	str_trim_in_len(char *str)
 {
-	int len;
-	t_quote_dt quote;
+	int			len;
+	t_quote_dt	quote;
 
 	len = 0;
 	init_quote_dt(&quote);
@@ -54,12 +54,12 @@ int str_trim_in_len(char *str)
 	return (len);
 }
 
-char *trim_space_in(char *input)
+char	*trim_space_in(char *input)
 {
-	char *str;
-	t_quote_dt quote;
-	int i;
-	int j;
+	char		*str;
+	t_quote_dt	quote;
+	int			i;
+	int			j;
 
 	i = 0;
 	j = -1;
@@ -79,10 +79,10 @@ char *trim_space_in(char *input)
 	return (str);
 }
 
-char *trim_space_all(char *input)
+char	*trim_space_all(char *input)
 {
-	char *str_out;
-	char *str_in;
+	char	*str_out;
+	char	*str_in;
 
 	if (!input)
 		return (NULL);

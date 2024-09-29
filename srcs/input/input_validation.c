@@ -12,10 +12,10 @@
 
 #include "../../includes/minishell.h"
 
-t_bool has_pipe_start_end_redir(char *str)
+t_bool	has_pipe_start_end_redir(char *str)
 {
-	int start;
-	int end;
+	int	start;
+	int	end;
 
 	start = 0;
 	end = ft_strlen(str) - 1;
@@ -28,9 +28,9 @@ t_bool has_pipe_start_end_redir(char *str)
 	return (FALSE);
 }
 
-t_bool has_quote_opened(char *str)
+t_bool	has_quote_opened(char *str)
 {
-	t_quote_dt quote;
+	t_quote_dt	quote;
 
 	init_quote_dt(&quote);
 	while (*str)
@@ -44,10 +44,10 @@ t_bool has_quote_opened(char *str)
 	return (FALSE);
 }
 
-t_bool has_dbl_pipe_succ(char *str)
+t_bool	has_dbl_pipe_succ(char *str)
 {
-	int next_pipe;
-	t_quote_dt quote;
+	int			next_pipe;
+	t_quote_dt	quote;
 
 	init_quote_dt(&quote);
 	while (str && *str)
@@ -67,19 +67,21 @@ t_bool has_dbl_pipe_succ(char *str)
 	return (FALSE);
 }
 
-t_bool has_syntax_error(char *line, t_error_stt *error)
+t_bool	has_syntax_error(char *line, t_error_stt *error)
 {
 	while (42)
 	{
 		if (has_quote_opened(line) && set_syntax_error(error, STX_QUOTE))
-			break;
-		if (has_pipe_start_end_redir(line) && set_syntax_error(error, STX_PIPE_START_END))
-			break;
-		if (has_dbl_pipe_succ(line) && set_syntax_error(error, STX_PIPE_DBL_SUCC))
-			break;
+			break ;
+		if (has_pipe_start_end_redir(line) && set_syntax_error(error,
+				STX_PIPE_START_END))
+			break ;
+		if (has_dbl_pipe_succ(line) && set_syntax_error(error,
+				STX_PIPE_DBL_SUCC))
+			break ;
 		if (has_some_redir_invalid(line) && set_syntax_error(error, STX_REDIR))
-			break;
-		break;
+			break ;
+		break ;
 	}
 	if (*error != NOTHING)
 		return (TRUE);

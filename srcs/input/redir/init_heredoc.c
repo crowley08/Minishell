@@ -6,28 +6,36 @@
 /*   By: arakotom <arakotom@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/28 13:41:53 by arakotom          #+#    #+#             */
-/*   Updated: 2024/09/28 16:07:16 by arakotom         ###   ########.fr       */
+/*   Updated: 2024/09/29 23:00:48 by arakotom         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../includes/minishell.h"
 
-t_heredoc *new_heredoc(void)
+void	complete_eof_name(char *eof_line, int *start, int *end, char **eof)
 {
-	t_heredoc *heredoc;
-	heredoc = (t_heredoc *)malloc(sizeof(t_heredoc));
-	if (!heredoc)
-		return (NULL);
-	heredoc->eof = NULL;
-	heredoc->filename = NULL;
-	heredoc->expend_var = TRUE;
-	heredoc->next = NULL;
-	return (heredoc);
+	int		len;
+	char	*name;
+
+	len = *end - *start;
+	if (eof_line[*start] && len > 0)
+	{
+		name = ft_substr(eof_line, *start, len);
+		*eof = heredoc_strjoin(*eof, name);
+		free(name);
+		*start = *end;
+		if (is_quote(eof_line[*end]))
+		{
+			*start = *end + 1;
+		}
+		*end = *start;
+	}
 }
-char *set_filename(int i)
+
+char	*set_filename_heredoc(int i)
 {
-	char *index;
-	char *name;
+	char	*index;
+	char	*name;
 
 	index = ft_itoa(i);
 	name = ft_strjoin(".tmp", index);
@@ -35,34 +43,48 @@ char *set_filename(int i)
 	return (name);
 }
 
-void add_heredoc_list(t_heredoc **list, t_heredoc *heredoc)
+char	*set_eof_heredoc(char *eof_line, t_bool *expander_var)
 {
-	t_heredoc *last;
+	char		*eof;
+	int			j;
+	int			i;
+	t_quote_dt	quote;
 
-	if (!(*list))
-		*list = heredoc;
-	else
+	i = 0;
+	j = 0;
+	init_quote_dt(&quote);
+	eof = ft_strdup("");
+	while (eof_line && eof_line[i] && eof_line[j])
 	{
-		last = *list;
-		while (last->next)
-			last = last->next;
-		last->next = heredoc;
+		update_quote_dt(eof_line[j], &quote);
+		while (eof_line[j] && quote.d_q == CLOSED && quote.s_q == CLOSED)
+			update_quote_dt(eof_line[++j], &quote);
+		complete_eof_name(eof_line, &i, &j, &eof);
+		while (eof_line[j] && (quote.d_q == OPENED || quote.s_q == OPENED))
+		{
+			*expander_var = FALSE;
+			update_quote_dt(eof_line[++j], &quote);
+		}
+		complete_eof_name(eof_line, &i, &j, &eof);
 	}
+	free(eof_line);
+	return (eof);
 }
 
-t_heredoc *create_heredoc(char **input, int i)
+t_heredoc	*create_heredoc(char **input, int i)
 {
-	t_quote_dt quote;
-	t_heredoc *heredoc;
-	int eof_len;
+	t_quote_dt	quote;
+	t_heredoc	*heredoc;
+	int			eof_len;
 
 	eof_len = 0;
 	init_quote_dt(&quote);
 	heredoc = new_heredoc();
 	if (!heredoc)
 		return (NULL);
-	heredoc->filename = set_filename(i);
-	while (input && *input && (*input)[eof_len] && !is_char_redir((*input)[eof_len]) && !ft_isspace((*input)[eof_len]))
+	heredoc->filename = set_filename_heredoc(i);
+	while (input && *input && (*input)[eof_len]
+		&& !is_char_redir((*input)[eof_len]) && !ft_isspace((*input)[eof_len]))
 	{
 		eof_len++;
 		update_quote_dt((*input)[eof_len], &quote);
@@ -72,18 +94,18 @@ t_heredoc *create_heredoc(char **input, int i)
 			update_quote_dt((*input)[eof_len], &quote);
 		}
 	}
-	heredoc->eof = ft_substr(*input, 0, eof_len);
-	heredoc->expend_var = TRUE;
+	heredoc->eof = set_eof_heredoc(ft_substr(*input, 0, eof_len),
+			&(heredoc->expend_var));
 	*input += eof_len;
 	return (heredoc);
 }
 
-t_heredoc *get_all_heredoc(char *input)
+t_heredoc	*get_all_heredoc(char *input)
 {
-	t_heredoc *heredoc;
-	t_heredoc *list;
-	t_quote_dt quote;
-	int i;
+	t_heredoc	*heredoc;
+	t_heredoc	*list;
+	t_quote_dt	quote;
+	int			i;
 
 	i = 0;
 	init_quote_dt(&quote);
@@ -91,8 +113,10 @@ t_heredoc *get_all_heredoc(char *input)
 	while (input && *input && *(input + 1))
 	{
 		update_quote_dt(*input, &quote);
-		if (quote.d_q == CLOSED && quote.s_q == CLOSED && *input == '<' && *(input + 1) == '<' && (input += 2))
+		if (quote.d_q == CLOSED && quote.s_q == CLOSED && *input == '<'
+			&& *(input + 1) == '<')
 		{
+			input += 2;
 			if (ft_isspace(*input))
 				input++;
 			heredoc = create_heredoc(&input, i++);
@@ -103,37 +127,4 @@ t_heredoc *get_all_heredoc(char *input)
 			input++;
 	}
 	return (list);
-}
-
-void print_heredoc(t_heredoc *heredoc)
-{
-	ft_printf("heredocs:\n");
-	while (heredoc)
-	{
-		ft_printf("eof: %s\n", heredoc->eof);
-		ft_printf("filename: %s\n", heredoc->filename);
-		ft_printf("expend_var: %d\n", heredoc->expend_var);
-		heredoc = heredoc->next;
-	}
-}
-void free_heredoc(t_heredoc *heredoc)
-{
-	if (heredoc->eof)
-		free(heredoc->eof);
-	if (heredoc->filename)
-		free(heredoc->filename);
-	free(heredoc);
-}
-
-void free_heredoc_list(t_heredoc **list)
-{
-	t_heredoc *heredoc;
-
-    while (list && *list)
-    {
-        heredoc = *list;
-        *list = (*list)->next;
-        free_heredoc(heredoc);
-    }
-    *list = NULL;
 }

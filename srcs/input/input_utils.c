@@ -12,13 +12,13 @@
 
 #include "../../includes/minishell.h"
 
-t_bool set_syntax_error(t_error_stt *curr_error, t_error_stt error)
+t_bool	set_syntax_error(t_error_stt *curr_error, t_error_stt error)
 {
 	*curr_error = error;
 	return (TRUE);
 }
 
-t_bool is_empty_line(char *str)
+t_bool	is_empty_line(char *str)
 {
 	while (str && *str)
 	{
@@ -29,7 +29,7 @@ t_bool is_empty_line(char *str)
 	return (TRUE);
 }
 
-t_bool is_char_redir(char c)
+t_bool	is_char_redir(char c)
 {
 	return (c == '<' || c == '>');
 }

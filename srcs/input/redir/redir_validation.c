@@ -12,7 +12,7 @@
 
 #include "../../../includes/minishell.h"
 
-t_bool is_redir_valid(char **str)
+t_bool	is_redir_valid(char **str)
 {
 	if (is_char_redir(*(*str + 1)))
 	{
@@ -29,10 +29,10 @@ t_bool is_redir_valid(char **str)
 	return (TRUE);
 }
 
-t_bool has_some_redir_invalid(char *str)
+t_bool	has_some_redir_invalid(char *str)
 {
-	t_quote_dt quote;
-	t_bool valid;
+	t_quote_dt	quote;
+	t_bool		valid;
 
 	init_quote_dt(&quote);
 	while (str && *str && *(str + 1))

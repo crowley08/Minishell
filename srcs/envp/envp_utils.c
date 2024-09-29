@@ -12,9 +12,9 @@
 
 #include "../../includes/minishell.h"
 
-t_env *new_env(void)
+t_env	*new_env(void)
 {
-	t_env *env;
+	t_env	*env;
 
 	env = (t_env *)malloc(sizeof(t_env));
 	if (!env)
@@ -25,7 +25,7 @@ t_env *new_env(void)
 	return (env);
 }
 
-void free_env(t_env *env)
+void	free_env(t_env *env)
 {
 	if (env->name)
 		free(env->name);
@@ -34,9 +34,9 @@ void free_env(t_env *env)
 	free(env);
 }
 
-void free_env_list(t_env **list)
+void	free_env_list(t_env **list)
 {
-	t_env *env;
+	t_env	*env;
 
 	while (list && *list)
 	{
