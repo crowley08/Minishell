@@ -6,13 +6,13 @@
 #    By: arakotom <arakotom@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/24 23:57:27 by arakotom          #+#    #+#              #
-#    Updated: 2024/09/29 22:06:58 by arakotom         ###   ########.fr        #
+#    Updated: 2024/09/30 15:58:56 by arakotom         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CFLAGS = -Wall -Wextra -Werror -g
 RDLFLAGS = -lreadline
-VGRLFLAGS = valgrind --leak-check=full --track-origins=yes --show-leak-kinds=all
+VGRLFLAGS = valgrind --leak-check=full --track-origins=yes
 
 SRC_DIR = srcs
 OBJ_DIR = objs
@@ -32,6 +32,7 @@ SRCS = main.c \
 		input/redir/redir_validation.c \
 		input/redir/init_heredoc.c \
 		input/redir/heredoc_utils.c \
+		input/redir/heredoc_parse.c \
 		prompt/prompt_utils.c \
 		prompt/prompt_split.c
 

@@ -6,7 +6,7 @@
 /*   By: arakotom <arakotom@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/26 00:13:56 by arakotom          #+#    #+#             */
-/*   Updated: 2024/09/29 23:38:07 by arakotom         ###   ########.fr       */
+/*   Updated: 2024/09/30 11:24:55 by arakotom         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,5 +52,9 @@ char		*heredoc_strjoin(char *s1, char *s2);
 void		print_heredoc(t_heredoc *heredoc);
 void		free_heredoc(t_heredoc *heredoc);
 void		free_heredoc_list(t_heredoc **list);
+
+// heredoc_parse
+t_bool		fill_file_input(int fd, t_heredoc heredoc);
+t_bool		create_file_heredoc(t_heredoc *list);
 
 #endif

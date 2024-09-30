@@ -6,7 +6,7 @@
 /*   By: arakotom <arakotom@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/28 13:41:53 by arakotom          #+#    #+#             */
-/*   Updated: 2024/09/29 23:00:48 by arakotom         ###   ########.fr       */
+/*   Updated: 2024/09/30 13:01:52 by arakotom         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	complete_eof_name(char *eof_line, int *start, int *end, char **eof)
 	char	*name;
 
 	len = *end - *start;
-	if (eof_line[*start] && len > 0)
+	if (eof_line[*start] && len - 1 > 0)
 	{
 		name = ft_substr(eof_line, *start, len);
 		*eof = heredoc_strjoin(*eof, name);

@@ -6,7 +6,7 @@
 /*   By: arakotom <arakotom@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 23:53:58 by arakotom          #+#    #+#             */
-/*   Updated: 2024/09/29 22:57:00 by arakotom         ###   ########.fr       */
+/*   Updated: 2024/09/30 13:00:25 by arakotom         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,9 @@ int	main(int argc, char *argv[], char *envp[])
 	{
 		data.input = get_input();
 		heredoc = get_all_heredoc(data.input);
-		print_heredoc(heredoc);
+		// print_heredoc(heredoc);
+		if (!create_file_heredoc(heredoc))
+			ft_printf("Error, heredoc fails\n");
 		free_heredoc_list(&heredoc);
 		// data.prompts = split_pipe(data.input);
 		reset_data(&data);

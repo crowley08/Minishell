@@ -6,7 +6,7 @@
 /*   By: arakotom <arakotom@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 23:58:49 by arakotom          #+#    #+#             */
-/*   Updated: 2024/09/29 23:38:08 by arakotom         ###   ########.fr       */
+/*   Updated: 2024/09/30 11:36:51 by arakotom         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,13 @@
 # include "envp.h"
 # include "input.h"
 # include "prompt.h"
+# include <fcntl.h>
 # include <readline/history.h>
 # include <readline/readline.h>
 # include <stdio.h>
 # include <stdlib.h>
+# include <sys/stat.h>
+# include <sys/types.h>
 # include <unistd.h>
 
 void	init_data(t_data *data, int argc, char **argv);

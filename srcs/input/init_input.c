@@ -6,7 +6,7 @@
 /*   By: arakotom <arakotom@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 23:07:00 by arakotom          #+#    #+#             */
-/*   Updated: 2024/09/29 22:58:51 by arakotom         ###   ########.fr       */
+/*   Updated: 2024/09/30 15:54:00 by arakotom         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,8 @@ char	*get_input(void)
 	while (42)
 	{
 		// line = readline("\e[33mMinishell$ \e[0m");
-		line = ft_strdup("<<eof$HOME\"\"<<eof\"$USER'araokotom'1\"<<eof_ cat");
-		if (!is_input_valid(line))
+		line = ft_strdup("cat<file>out<< eof");
+		if (!line || !is_input_valid(line))
 		{
 			free(line);
 			continue ;
