@@ -6,7 +6,7 @@
 /*   By: arakotom <arakotom@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/26 00:13:56 by arakotom          #+#    #+#             */
-/*   Updated: 2024/09/30 11:24:55 by arakotom         ###   ########.fr       */
+/*   Updated: 2024/09/30 22:54:17 by arakotom         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,5 +56,6 @@ void		free_heredoc_list(t_heredoc **list);
 // heredoc_parse
 t_bool		fill_file_input(int fd, t_heredoc heredoc);
 t_bool		create_file_heredoc(t_heredoc *list);
+int			get_len_eof_line(char *input);
 
 #endif

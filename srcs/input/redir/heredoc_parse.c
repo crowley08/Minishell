@@ -6,7 +6,7 @@
 /*   By: arakotom <arakotom@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/30 10:18:16 by arakotom          #+#    #+#             */
-/*   Updated: 2024/09/30 15:51:54 by arakotom         ###   ########.fr       */
+/*   Updated: 2024/10/01 00:41:57 by arakotom         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,4 +58,47 @@ t_bool	create_file_heredoc(t_heredoc *list)
 		list = list->next;
 	}
 	return (TRUE);
+}
+
+int	get_len_eof_line(char *input)
+{
+	int			len;
+	t_quote_dt	quote;
+
+	len = 0;
+	init_quote_dt(&quote);
+	while (input && input[len] && !is_char_redir(input[len])
+		&& !ft_isspace(input[len]) && input[len] != '|')
+	{
+		update_quote_dt(input[len], &quote);
+		len++;
+		while (quote.d_q == OPENED || quote.s_q == OPENED)
+		{
+			update_quote_dt(input[len], &quote);
+			len++;
+		}
+	}
+	return (len);
+}
+
+int	get_len_new_input(char *input, t_heredoc *list)
+{
+	int			len;
+	t_quote_dt	quote;
+
+	len = 0;
+	init_quote_dt(&quote);
+	while (input && *input && *(input + 1))
+	{
+		update_quote_dt(*input, &quote);
+		if (quote.d_q == CLOSED && quote.s_q == CLOSED && *input == '<'
+			&& *(input + 1) == '<')
+		{
+			input += 2;
+			if (ft_isspace(*input))
+				input++;
+			len += ft_strlen(list->filename) + 2;
+		}
+	}
+	return (len);
 }

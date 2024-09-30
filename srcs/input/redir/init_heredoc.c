@@ -6,7 +6,7 @@
 /*   By: arakotom <arakotom@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/28 13:41:53 by arakotom          #+#    #+#             */
-/*   Updated: 2024/09/30 13:01:52 by arakotom         ###   ########.fr       */
+/*   Updated: 2024/10/01 00:41:33 by arakotom         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,18 +18,21 @@ void	complete_eof_name(char *eof_line, int *start, int *end, char **eof)
 	char	*name;
 
 	len = *end - *start;
-	if (eof_line[*start] && len - 1 > 0)
+	if (eof_line[*start] && len > 0 && (!is_quote(eof_line[*start])
+			|| !is_quote(eof_line[*start + 1])))
 	{
 		name = ft_substr(eof_line, *start, len);
 		*eof = heredoc_strjoin(*eof, name);
 		free(name);
 		*start = *end;
-		if (is_quote(eof_line[*end]))
-		{
-			*start = *end + 1;
-		}
-		*end = *start;
 	}
+	if (is_quote(eof_line[*end]))
+	{
+		*start = *end + 1;
+		if (is_quote(eof_line[*start]))
+			(*start)++;
+	}
+	*end = *start;
 }
 
 char	*set_filename_heredoc(int i)
@@ -83,17 +86,7 @@ t_heredoc	*create_heredoc(char **input, int i)
 	if (!heredoc)
 		return (NULL);
 	heredoc->filename = set_filename_heredoc(i);
-	while (input && *input && (*input)[eof_len]
-		&& !is_char_redir((*input)[eof_len]) && !ft_isspace((*input)[eof_len]))
-	{
-		eof_len++;
-		update_quote_dt((*input)[eof_len], &quote);
-		while (quote.d_q == OPENED || quote.s_q == OPENED)
-		{
-			eof_len++;
-			update_quote_dt((*input)[eof_len], &quote);
-		}
-	}
+	eof_len = get_len_eof_line(*input);
 	heredoc->eof = set_eof_heredoc(ft_substr(*input, 0, eof_len),
 			&(heredoc->expend_var));
 	*input += eof_len;
