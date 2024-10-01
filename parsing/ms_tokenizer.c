@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ms_tokenizer.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: saandria < saandria@student.42antananar    +#+  +:+       +#+        */
+/*   By: saandria <saandria@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/17 10:18:21 by saandria          #+#    #+#             */
-/*   Updated: 2024/09/26 11:00:27 by saandria         ###   ########.fr       */
+/*   Updated: 2024/10/01 23:15:39 by saandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,8 @@ static t_token	*create_token(t_tokentype type, char *value, int *i)
 	return (new_token);
 }
 
-static t_token	*get_wordtok(char *s, int *i)
+t_token	*get_wordtok(char *s, int *i, t_token *new_token)
 {
-	t_token	*new_token;
 	char	*value;
 	int		start;
 
@@ -38,16 +37,7 @@ static t_token	*get_wordtok(char *s, int *i)
 	{
 		if (s[*i] == '\'' || s[*i] == '"')
 		{
-			if (s[*i] == '\'')
-			{
-				if (is_in_simple_quotes(s, i))
-					*i = is_in_simple_quotes(s, i);
-			}
-			else if (s[*i] == '"')
-			{
-				if (is_in_double_quotes(s, i))
-					*i = is_in_double_quotes(s, i);
-			}
+			check_inquotes(s, i);
 			if (!ms_isspace(s[*i]) && !ms_istoken(s[*i]))
 				*i += 1;
 			else
@@ -61,14 +51,12 @@ static t_token	*get_wordtok(char *s, int *i)
 		}
 	}
 	value = ft_substr(s, start, *i - start);
-	if (!value)
-		return (NULL);
 	new_token = create_token(TOK_WORD, value, i);
 	free(value);
 	return (new_token);
 }
 
-static t_token	*check_token(char *s, int *i, t_token *new_token)
+t_token	*check_token(char *s, int *i, t_token *new_token)
 {
 	if (s[*i] == '|')
 		new_token = create_token(TOK_PIPE, "|", i);
@@ -126,7 +114,7 @@ t_token	*ms_tokenizer(char *s)
 	if (ms_istoken(s[i]))
 		token = check_token(s, &i, token);
 	else
-		token = get_wordtok(s, &i);
+		token = get_wordtok(s, &i, token);
 	while (i < len)
 	{
 		if (ms_isspace(s[i]))
@@ -137,7 +125,7 @@ t_token	*ms_tokenizer(char *s)
 		else if (ms_istoken(s[i]))
 			new_token = check_token(s, &i, new_token);
 		else
-			new_token = get_wordtok(s, &i);
+			new_token = get_wordtok(s, &i, new_token);
 		add_token(&token, new_token);
 	}
 	return (token);

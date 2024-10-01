@@ -6,7 +6,7 @@
 /*   By: saandria <saandria@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 21:16:12 by saandria          #+#    #+#             */
-/*   Updated: 2024/10/01 12:14:30 by saandria         ###   ########.fr       */
+/*   Updated: 2024/10/01 23:29:42 by saandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,6 +95,9 @@ int		ms_isspace(char c);
 int		is_in_simple_quotes(char *s, int *i);
 int		is_in_double_quotes(char *s, int *i);
 void	free_tokens(t_token **t);
+void	check_inquotes(char *s, int *i);
+t_token	*check_token(char *s, int *i, t_token *new_token);
+t_token	*get_wordtok(char *s, int *i, t_token *new_token);
 
 //sig_handler
 void	handle_sigint(int sig);
@@ -106,7 +109,7 @@ t_token	*ms_tokenizer(char *s);
 
 //environment
 //void	print_env(char **env);
-char	**env_copy(char **env);
+char	**env_copy(t_env **env);
 void	add_env(t_env **env, t_env *new_env);
 t_env	*new_env_list(char *value);
 void	print_env_list(t_env *env);
@@ -117,8 +120,8 @@ void	free_env(t_env **env);
 char	*check_path(char *cmd, char **env);
 void	exec(char **cmd, char **env);
 void	free_spl(char **env);
-void	exec_pipe(t_node **node, char **env);
-//void	ms_pipe(t_msh *msh);
+void	exec_pipe(t_node *node, char **env);
+void	ms_exec(t_node *node, char **env);
 
 //error handling
 void	error(void);
@@ -126,6 +129,9 @@ void	error(void);
 //msh_utils
 void	free_minishell(t_msh *msh);
 int		count_pipe(t_msh *msh);
+void	free_node(t_node **node);
+void	init_msh(t_msh **msh, char **env);
+void	check_exit(t_msh *msh);
 
 //parsing
 t_node	*parse(t_token *token);

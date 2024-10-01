@@ -1,6 +1,9 @@
-SRCS			=	src/main.c src/signal_handler.c src/ms_tokenizer.c src/ms_token_utils.c src/env_list.c \
-					src/env.c src/exec.c src/msh_utils.c src/parse_token.c# src/pipe.c
-OBJS			= $(SRCS:.c=.o)
+V_FLAGS			=	valgrind --suppressions=readline.supp --leak-check=full --show-leak-kinds=all
+
+SRCS			=	src/main.c src/signal_handler.c parsing/ms_tokenizer.c parsing/ms_tokenizer_utils_0.c parsing/ms_tokenizer_utils_1.c \
+					environnement/env_list.c environnement/env.c execution/ms_executor.c utils/msh_utils.c parsing/ms_parser.c \
+					utils/free_msh.c execution/ms_executor_utils.c 
+OBJS			=	$(SRCS:.c=.o)
 
 
 CC				= cc
@@ -29,5 +32,7 @@ fclean:			clean
 
 re:				fclean all 
 
+valgrind:		re
+				$(V_FLAGS) ./$(NAME)
 
 .PHONY:			all clean fclean re

@@ -6,32 +6,11 @@
 /*   By: saandria <saandria@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/17 16:27:16 by saandria          #+#    #+#             */
-/*   Updated: 2024/09/26 11:04:19 by saandria         ###   ########.fr       */
+/*   Updated: 2024/10/01 20:47:02 by saandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
-
-void	free_env(t_env **env)
-{
-	t_env	*current;
-	t_env	*next;
-
-	current = *env;
-	while (current)
-	{
-		next = current->next;
-		free(current->name);
-		free(current->value);
-		free(current);
-		current = next;
-	}
-	*env = NULL;
-	free(current);
-	current = NULL;
-	next = NULL;
-	return ;
-}
 
 void	add_env(t_env **env, t_env *new_env)
 {
@@ -104,15 +83,3 @@ t_env	*get_env(char **env)
 	}
 	return (env_list);
 }
-
-/*
-int main(int argc, char **argv, char **env)
-{
-	t_env *envp;
-
-	(void)argc;
-	(void)argv;
-	envp = get_env(env);
-	print_env_list(envp);
-}
-*/

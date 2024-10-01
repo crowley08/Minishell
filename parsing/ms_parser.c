@@ -1,57 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse_token.c                                      :+:      :+:    :+:   */
+/*   ms_parser.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: saandria <saandria@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/26 11:26:27 by saandria          #+#    #+#             */
-/*   Updated: 2024/10/01 12:09:13 by saandria         ###   ########.fr       */
+/*   Updated: 2024/10/01 22:50:09 by saandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
-
-/*
-static void	child_process(t_msh *msh)
-{
-	int		fd[2];
-	pid_t	pid;
-
-	if (pipe(fd) == -1)
-		error();
-	pid = fork();
-	if (pid == -1)
-		error();
-	if (pid == 0)
-	{
-		close(fd[0]);
-		dup2(fd[1], STDOUT_FILENO);
-		exec(&msh->token, msh->envc);
-	}
-	else
-	{
-		close(fd[1]);
-		dup2(fd[0], STDIN_FILENO);
-		waitpid(pid, NULL, 0);
-	}
-}
-
-void	ms_pipe(t_msh *msh)
-{
-	int	pipe;
-
-	pipe = count_pipe(msh);
-	if (pipe == 0)
-	    exec(&msh->token, msh->envc);
-	while (pipe > 0)
-	{
-        child_process(msh);
-        msh->token = msh->token->next;
-		pipe--;
-    }
-}
-*/
 
 static int	count_token_word(t_token *token)
 {
@@ -126,15 +85,4 @@ t_node	*parse(t_token *token)
 
 	node = parse_token(&token);
 	return (node);
-}
-
-void	print_ast(t_node **node)
-{
-	if (!*node)
-		return ;
-	printf("type : %d\n", (*node)->type);
-	if ((*node)->cmd)
-		printf("%s\n", (*node)->cmd[0]);
-	print_ast(&(*node)->left);
-	print_ast(&(*node)->right);
 }

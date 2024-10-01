@@ -1,35 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   msh_utils.c                                        :+:      :+:    :+:   */
+/*   env.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: saandria <saandria@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/26 10:38:09 by saandria          #+#    #+#             */
-/*   Updated: 2024/09/27 16:09:41 by saandria         ###   ########.fr       */
+/*   Created: 2024/09/17 15:43:59 by saandria          #+#    #+#             */
+/*   Updated: 2024/10/01 23:35:29 by saandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-void	free_minishell(t_msh *msh)
+char	**env_copy(t_env **env)
 {
-	free_spl(msh->envc);
-	free_tokens(&msh->token);
-	free_env(&msh->envp);
-	free(msh->input);
-}
-
-int	count_pipe(t_msh *msh)
-{
+	t_env	*tmp;
+	char	**env_copy;
+	char	*tmp_copy;
 	int		i;
-	int		pipe;
-	char	*s;
 
-	i = -1;
-	pipe = 0;
-	s = msh->input;
-	while (s[++i])
-		pipe++;
-	return (pipe);
+	tmp = *env;
+	i = 0;
+	while (tmp)
+	{
+		i++;
+		tmp = tmp->next;
+	}
+	env_copy = (char **)malloc(sizeof(char *) * (i + 1));
+	i = 0;
+	tmp = *env;
+	while (tmp)
+	{
+		tmp_copy = ft_strjoin(tmp->name, "=");
+		env_copy[i] = ft_strjoin(tmp_copy, tmp->value);
+		free(tmp_copy);
+		i++;
+		tmp = tmp->next;
+	}
+	env_copy[i] = NULL;
+	return (env_copy);
 }

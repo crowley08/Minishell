@@ -1,49 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   env.c                                              :+:      :+:    :+:   */
+/*   ms_tokenizer_utils_0.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: saandria <saandria@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/17 15:43:59 by saandria          #+#    #+#             */
-/*   Updated: 2024/09/26 11:04:21 by saandria         ###   ########.fr       */
+/*   Created: 2024/09/17 10:38:27 by saandria          #+#    #+#             */
+/*   Updated: 2024/10/01 22:56:49 by saandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-void	print_env(char **env)
+int	ms_isspace(char c)
 {
-	int	i;
-
-	i = 0;
-	while (env[i])
-	{
-		printf("%s\n", env[i]);
-		i++;
-	}
+	if (c == ' ' || c == '\t' || c == '\n')
+		return (1);
+	return (0);
 }
 
-char	**env_copy(char **env)
+int	ms_istoken(char c)
 {
-	char	**env_copy;
-	int		i;
+	if (c == '|' || c == '<' || c == '>')
+		return (1);
+	return (0);
+}
 
-	i = 0;
-	while (env[i])
-		i++;
-	env_copy = (char **)malloc(sizeof(char *) * (i + 1));
-	if (!env_copy)
+void	print_token(t_token *token)
+{
+	t_token	*tmp;
+
+	tmp = token;
+	while (tmp)
 	{
-		free(env_copy);
-		return (NULL);
+		printf("TOKEN:\n");
+		printf("\tType: %d\n", tmp->type);
+		printf("\tValue: %s\n", tmp->value);
+		tmp = tmp->next;
 	}
-	i = 0;
-	while (env[i])
-	{
-		env_copy[i] = ft_strdup(env[i]);
-		i++;
-	}
-	env_copy[i] = NULL;
-	return (env_copy);
 }
