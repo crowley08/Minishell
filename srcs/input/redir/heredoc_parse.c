@@ -2,23 +2,19 @@
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   heredoc_parse.c                                    :+:      :+:    :+:   */
-/*                                                    +:+ +:+
-	+:+     */
-/*   By: arakotom <arakotom@student.42.fr>          +#+  +:+
-	+#+        */
-/*                                                +#+#+#+#+#+
-	+#+           */
+/*                                                    +:+ +:+         +:+     */
+/*   By: arakotom <arakotom@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/30 10:18:16 by arakotom          #+#    #+#             */
-/*   Updated: 2024/10/01 00:41:57 by arakotom         ###   ########.fr       */
+/*   Updated: 2024/10/01 17:00:51 by arakotom         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../includes/minishell.h"
 
-
 t_bool	fill_file_input(int fd, t_heredoc heredoc)
 {
-	char *input;
+	char	*input;
 
 	while (42)
 	{
@@ -46,7 +42,7 @@ t_bool	fill_file_input(int fd, t_heredoc heredoc)
 
 t_bool	create_file_heredoc(t_heredoc *list)
 {
-	int fd;
+	int	fd;
 
 	while (list)
 	{
@@ -66,8 +62,8 @@ t_bool	create_file_heredoc(t_heredoc *list)
 
 int	get_len_eof_line(char *input)
 {
-	int len;
-	t_quote_dt quote;
+	int			len;
+	t_quote_dt	quote;
 
 	len = 0;
 	init_quote_dt(&quote);
@@ -87,7 +83,7 @@ int	get_len_eof_line(char *input)
 
 char	*re_new_input(char *old_input, char *input, t_heredoc **list)
 {
-	char *c;
+	char	*c;
 
 	if (list && *list)
 	{
@@ -106,9 +102,9 @@ char	*re_new_input(char *old_input, char *input, t_heredoc **list)
 
 char	*get_new_input_heredoc(char *input, t_heredoc *list)
 {
-	char *new_input;
-	int i;
-	t_quote_dt quote;
+	char		*new_input;
+	int			i;
+	t_quote_dt	quote;
 
 	new_input = NULL;
 	i = 0;
