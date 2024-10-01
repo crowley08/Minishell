@@ -6,7 +6,7 @@
 /*   By: saandria <saandria@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 11:31:32 by saandria          #+#    #+#             */
-/*   Updated: 2024/09/26 11:04:23 by saandria         ###   ########.fr       */
+/*   Updated: 2024/10/01 12:16:15 by saandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,8 @@ char	*check_path(char *cmd, char **env)
 	}
 	printf("%s\taccess unautorised\n", path);
 	free(path);
-	i = -1;
-	while (path[++i])
+	i = 0;
+	while (paths[++i])
 		free(paths[i]);
 	return (0);
 }
@@ -60,24 +60,12 @@ void	error(void)
 	exit(EXIT_FAILURE);
 }
 
-void	exec(t_token **token, char **env)
+void	exec(char **cmd, char **env)
 {
-	char	**cmd;
-	t_token	*t;
-	int		i;
 	char	*path;
 
-	cmd = (char **)malloc(100000);
-	t = *token;
-	i = 0;
-	while (t && t->type == 0)
-	{
-		cmd[i] = ft_strdup(t->value);
-		printf("%s\n", cmd[i]);
-		t = t->next;
-		i++;
-	}
 	path = check_path(cmd[0], env);
+	printf("%s\n", path);
 	if (!path)
 	{
 		free_spl(cmd);
@@ -85,4 +73,30 @@ void	exec(t_token **token, char **env)
 	}
 	if (execve(path, cmd, env) == -1)
 		error();
+}
+
+void	exec_pipe(t_node **node, char **env)
+{
+	int	fd[2];
+	pid_t	child;
+
+	if (!*node)
+		return ;
+	if ((*node)->type == CMD_NODE)
+		exec((*node)->cmd, env);
+	else if ((*node)->type == PIPE_NODE)
+	{
+		if (pipe(fd) == -1)
+	    error();
+		child = fork();
+		if (child == -1)
+			error();
+		else if (child == 0)
+		{
+			dup2(fd[1], STDOUT_FILENO);
+			exec_pipe(&(*node)->left, env);
+		}
+		dup2(fd[0], STDIN_FILENO);
+		waitpid(child, NULL, 0);
+	}
 }

@@ -6,7 +6,7 @@
 /*   By: saandria <saandria@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 21:16:12 by saandria          #+#    #+#             */
-/*   Updated: 2024/09/27 16:09:29 by saandria         ###   ########.fr       */
+/*   Updated: 2024/10/01 12:14:30 by saandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,8 +115,9 @@ void	free_env(t_env **env);
 
 //execution
 char	*check_path(char *cmd, char **env);
-void	exec(t_token **token, char **env);
+void	exec(char **cmd, char **env);
 void	free_spl(char **env);
+void	exec_pipe(t_node **node, char **env);
 //void	ms_pipe(t_msh *msh);
 
 //error handling

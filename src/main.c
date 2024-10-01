@@ -6,7 +6,7 @@
 /*   By: saandria <saandria@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/26 15:44:01 by saandria          #+#    #+#             */
-/*   Updated: 2024/09/27 16:08:45 by saandria         ###   ########.fr       */
+/*   Updated: 2024/10/01 12:14:36 by saandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,11 +33,14 @@ int	main(int ac, char **av, char **env)
 		}
 		msh->token = ms_tokenizer(msh->input);
 		msh->node = parse(msh->token);
-		print_token(msh->token);
-		print_ast(&msh->node);
+		//print_token(msh->token);
+		//print_ast(&msh->node);
 		pid = fork();
 		if (pid == 0)
-			exec(&msh->token, msh->envc);
+		{
+			//exec(msh->node->cmd, msh->envc);
+			exec_pipe(&msh->node, msh->envc);
+		}
 		waitpid(pid, NULL, 0);
 		add_history(msh->input);
 		free_minishell(msh);

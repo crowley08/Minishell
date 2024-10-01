@@ -6,7 +6,7 @@
 /*   By: saandria <saandria@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/26 11:26:27 by saandria          #+#    #+#             */
-/*   Updated: 2024/09/27 16:10:42 by saandria         ###   ########.fr       */
+/*   Updated: 2024/10/01 12:09:13 by saandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,10 +75,11 @@ static t_node	*init_node(t_nodetype type)
 	new_node = malloc(sizeof(t_node));
 	if (!new_node)
 		error();
-	new_node->cmd = NULL;
 	new_node->type = type;
 	new_node->left = NULL;
 	new_node->right = NULL;
+	if (type == PIPE_NODE)
+		new_node->cmd = NULL;
 	return (new_node);
 }
 
@@ -88,9 +89,9 @@ static t_node	*dup_token(t_token **token)
 	int		i;
 	int		j;
 
-	i = count_token_word(*token);
 	node = init_node(CMD_NODE);
-	node->cmd = malloc(sizeof(char *) * (i + 1));
+	i = count_token_word(*token);
+	node->cmd = (char **)malloc(sizeof(char *) * (i + 1));
 	j = 0;
 	while (*token && (*token)->type == TOK_WORD)
 	{
@@ -98,6 +99,7 @@ static t_node	*dup_token(t_token **token)
 		j++;
 		*token = (*token)->next;
 	}
+	node->cmd[j] = NULL;
 	return (node);
 }
 
