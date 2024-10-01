@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arakotom <arakotom@student.42antananari    +#+  +:+       +#+        */
+/*   By: arakotom <arakotom@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/10 15:10:41 by arakotom          #+#    #+#             */
-/*   Updated: 2024/08/03 00:07:44 by arakotom         ###   ########.fr       */
+/*   Updated: 2024/10/01 11:49:08 by arakotom         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int	ft_printf(const char *s, ...)
 	count = 0;
 	while (*s)
 	{
-		if (*s == '%' && ft_strchr(CONV_CHARS, *(s + 1)) != NULL)
+		if (*s == '%' && fpf_strchr(CONV_CHARS, *(s + 1)) != NULL)
 			ft_print_format(&count, params, *(++s));
 		else
 			ft_putchar_pf(&count, *s);

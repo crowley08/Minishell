@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arakotom <arakotom@student.42antananari    +#+  +:+       +#+        */
+/*   By: arakotom <arakotom@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/10 15:06:57 by arakotom          #+#    #+#             */
-/*   Updated: 2024/07/23 01:25:50 by arakotom         ###   ########.fr       */
+/*   Updated: 2024/10/01 11:50:44 by arakotom         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,6 @@ void	ft_putstr_pf(int *count, const char *s);
 void	ft_putnbr_pf(int *count, int n);
 void	ft_putnbr_base_pf(int *count, size_t n, const char *base);
 void	ft_putaddress_pf(int *count, void *p);
-char	*ft_strchr(const char *s, int c);
-size_t	ft_strlen(const char *s);
+char	*fpf_strchr(const char *s, int c);
+size_t	fpf_strlen(const char *s);
 #endif
