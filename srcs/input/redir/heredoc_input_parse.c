@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   heredoc_parse.c                                    :+:      :+:    :+:   */
+/*   heredoc_input_parse.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: arakotom <arakotom@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/30 10:18:16 by arakotom          #+#    #+#             */
-/*   Updated: 2024/10/01 17:00:51 by arakotom         ###   ########.fr       */
+/*   Updated: 2024/10/01 22:58:12 by arakotom         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../includes/minishell.h"
 
-t_bool	fill_file_input(int fd, t_heredoc heredoc)
+t_bool	fill_file_input(int fd, t_heredoc heredoc, t_env *envp)
 {
 	char	*input;
 
@@ -33,14 +33,15 @@ t_bool	fill_file_input(int fd, t_heredoc heredoc)
 				free(input);
 				return (TRUE);
 			}
-			write(fd, input, ft_strlen(input));
+			// write(fd, input, ft_strlen(input));
+			write_heredoc_input(fd, input, heredoc.expend_var, envp);
 			write(fd, "\n", 1);
 		}
 		free(input);
 	}
 }
 
-t_bool	create_file_heredoc(t_heredoc *list)
+t_bool	create_file_heredoc(t_heredoc *list, t_env *envp)
 {
 	int	fd;
 
@@ -49,7 +50,7 @@ t_bool	create_file_heredoc(t_heredoc *list)
 		fd = open(list->filename, O_CREAT | O_WRONLY | O_TRUNC, 0644);
 		if (fd < 0)
 			return (FALSE);
-		if (!fill_file_input(fd, *list))
+		if (!fill_file_input(fd, *list, envp))
 		{
 			unlink(list->filename);
 			return (FALSE);

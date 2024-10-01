@@ -6,7 +6,7 @@
 /*   By: arakotom <arakotom@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 19:44:00 by arakotom          #+#    #+#             */
-/*   Updated: 2024/09/29 23:38:05 by arakotom         ###   ########.fr       */
+/*   Updated: 2024/10/01 22:23:01 by arakotom         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define ENVP_H
 
 // init_envp
+t_env	*get_env(char *name, t_env *list);
 t_env	*create_env(char *str);
 void	add_env_list(t_env **list, t_env *env);
 t_bool	dup_envp(t_data *data, char **envp);

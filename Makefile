@@ -6,7 +6,7 @@
 #    By: arakotom <arakotom@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/24 23:57:27 by arakotom          #+#    #+#              #
-#    Updated: 2024/10/01 16:41:49 by arakotom         ###   ########.fr        #
+#    Updated: 2024/10/01 22:57:19 by arakotom         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,7 +32,8 @@ SRCS = main.c \
 		input/redir/redir_validation.c \
 		input/redir/init_heredoc.c \
 		input/redir/heredoc_utils.c \
-		input/redir/heredoc_parse.c \
+		input/redir/heredoc_input_parse.c \
+		input/redir/heredoc_input_parse_utils.c \
 		prompt/prompt_utils.c \
 		prompt/prompt_split.c
 

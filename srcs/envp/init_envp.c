@@ -6,11 +6,24 @@
 /*   By: arakotom <arakotom@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 19:49:01 by arakotom          #+#    #+#             */
-/*   Updated: 2024/09/25 23:00:00 by arakotom         ###   ########.fr       */
+/*   Updated: 2024/10/01 22:55:02 by arakotom         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
+
+t_env	*get_env(char *name, t_env *list)
+{
+	if (!name)
+		return (NULL);
+	while (list)
+	{
+		if (ft_strncmp(list->name, name, ft_strlen(name)) == 0)
+			return (list);
+		list = list->next;
+	}
+	return (NULL);
+}
 
 t_env	*create_env(char *str)
 {

@@ -6,7 +6,7 @@
 /*   By: arakotom <arakotom@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/28 13:41:53 by arakotom          #+#    #+#             */
-/*   Updated: 2024/10/01 00:41:33 by arakotom         ###   ########.fr       */
+/*   Updated: 2024/10/01 23:15:20 by arakotom         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ void	complete_eof_name(char *eof_line, int *start, int *end, char **eof)
 	char	*name;
 
 	len = *end - *start;
+	ft_printf("start: %c ; end: %c", eof_line[*start], eof_line[*end]);
 	if (eof_line[*start] && len > 0 && (!is_quote(eof_line[*start])
 			|| !is_quote(eof_line[*start + 1])))
 	{
@@ -62,12 +63,11 @@ char	*set_eof_heredoc(char *eof_line, t_bool *expander_var)
 		update_quote_dt(eof_line[j], &quote);
 		while (eof_line[j] && quote.d_q == CLOSED && quote.s_q == CLOSED)
 			update_quote_dt(eof_line[++j], &quote);
+		if (is_quote(eof_line[j]))
+			*expander_var = FALSE;
 		complete_eof_name(eof_line, &i, &j, &eof);
 		while (eof_line[j] && (quote.d_q == OPENED || quote.s_q == OPENED))
-		{
-			*expander_var = FALSE;
 			update_quote_dt(eof_line[++j], &quote);
-		}
 		complete_eof_name(eof_line, &i, &j, &eof);
 	}
 	free(eof_line);

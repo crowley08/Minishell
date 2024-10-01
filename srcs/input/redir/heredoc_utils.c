@@ -6,7 +6,7 @@
 /*   By: arakotom <arakotom@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/29 21:10:56 by arakotom          #+#    #+#             */
-/*   Updated: 2024/10/01 17:02:10 by arakotom         ###   ########.fr       */
+/*   Updated: 2024/10/01 23:03:59 by arakotom         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,14 +93,14 @@ void	free_heredoc_list(t_heredoc **list)
 }
 
 // ! FIXME: delete this function later
-// void	print_heredoc(t_heredoc *heredoc)
-// {
-// 	ft_printf("heredocs:\n");
-// 	while (heredoc)
-// 	{
-// 		ft_printf("eof: $%s$\n", heredoc->eof);
-// 		ft_printf("filename: $%s$\n", heredoc->filename);
-// 		ft_printf("expend_var: $%d$\n", heredoc->expend_var);
-// 		heredoc = heredoc->next;
-// 	}
-// }
+void	print_heredoc(t_heredoc *heredoc)
+{
+	ft_printf("heredocs:\n");
+	while (heredoc)
+	{
+		ft_printf("eof: $%s$\n", heredoc->eof);
+		ft_printf("filename: $%s$\n", heredoc->filename);
+		ft_printf("expend_var: $%d$\n", heredoc->expend_var);
+		heredoc = heredoc->next;
+	}
+}
