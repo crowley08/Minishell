@@ -6,7 +6,7 @@
 /*   By: saandria <saandria@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 21:16:12 by saandria          #+#    #+#             */
-/*   Updated: 2024/10/01 23:29:42 by saandria         ###   ########.fr       */
+/*   Updated: 2024/10/02 10:18:15 by saandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@
 # include <sys/wait.h>
 # include "../libft/libft.h" 
 # include <term.h>
+# include <fcntl.h>
 
 typedef struct s_token		t_token;
 typedef enum e_tokentype	t_tokentype;
@@ -52,6 +53,7 @@ enum	e_nodetype
 {
 	CMD_NODE,
 	PIPE_NODE,
+	REDIR_OUT_NODE,
 };
 
 struct	s_token
@@ -122,6 +124,7 @@ void	exec(char **cmd, char **env);
 void	free_spl(char **env);
 void	exec_pipe(t_node *node, char **env);
 void	ms_exec(t_node *node, char **env);
+void	exec_dir(t_node *node, char **env);
 
 //error handling
 void	error(void);

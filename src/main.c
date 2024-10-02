@@ -6,7 +6,7 @@
 /*   By: saandria <saandria@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/26 15:44:01 by saandria          #+#    #+#             */
-/*   Updated: 2024/10/01 22:31:44 by saandria         ###   ########.fr       */
+/*   Updated: 2024/10/02 09:40:35 by saandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ int	main(int ac, char **av, char **env)
 		}
 		check_exit(msh);
 		init_msh(&msh, env);
+		print_ast(&msh->node);
 		pid = fork();
 		if (pid == 0)
 			ms_exec(msh->node, msh->envc);

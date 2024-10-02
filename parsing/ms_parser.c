@@ -6,7 +6,7 @@
 /*   By: saandria <saandria@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/26 11:26:27 by saandria          #+#    #+#             */
-/*   Updated: 2024/10/01 22:50:09 by saandria         ###   ########.fr       */
+/*   Updated: 2024/10/02 11:19:55 by saandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ static t_node	*init_node(t_nodetype type)
 	new_node->type = type;
 	new_node->left = NULL;
 	new_node->right = NULL;
-	if (type == PIPE_NODE)
+	if (type == PIPE_NODE || type == REDIR_OUT_NODE)
 		new_node->cmd = NULL;
 	return (new_node);
 }
@@ -65,16 +65,20 @@ static t_node	*dup_token(t_token **token)
 static t_node	*parse_token(t_token **token)
 {
 	t_node	*left;
-	t_node	*pipe;
+	t_node	*node;
 
 	left = dup_token(token);
-	if (*token && (*token)->type == TOK_PIPE)
+	if (*token && ((*token)->type == TOK_PIPE
+			|| (*token)->type == TOK_REDIROUT))
 	{
-		pipe = init_node(PIPE_NODE);
-		pipe->left = left;
+		if ((*token)->type == TOK_PIPE)
+			node = init_node(PIPE_NODE);
+		else if ((*token)->type == TOK_REDIROUT)
+			node = init_node(REDIR_OUT_NODE);
+		node->left = left;
 		*token = (*token)->next;
-		pipe->right = parse_token(token);
-		return (pipe);
+		node->right = parse_token(token);
+		return (node);
 	}
 	return (left);
 }
