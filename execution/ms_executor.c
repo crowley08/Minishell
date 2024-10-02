@@ -6,7 +6,7 @@
 /*   By: saandria <saandria@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 11:31:32 by saandria          #+#    #+#             */
-/*   Updated: 2024/10/02 11:17:55 by saandria         ###   ########.fr       */
+/*   Updated: 2024/10/02 17:23:38 by saandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,12 @@ void	exec_dir(t_node *node, char **env)
 
 	i = 0;
 	mode = S_IRUSR | S_IWUSR | S_IRGRP | S_IROTH ;
-	if (node->right->type == PIPE_NODE)
+	if (node->right->type == PIPE_NODE
+		&& node->right->left->type == CMD_NODE)
 		node->right = node->right->left;
+	else if (node->right->type == PIPE_NODE
+		&& node->right->left->type != CMD_NODE)
+		node->right = node->right->right;
 	while (node->right->cmd[i])
 		i++;
 	i--;
