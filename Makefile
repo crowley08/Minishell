@@ -6,7 +6,7 @@
 #    By: arakotom <arakotom@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/24 23:57:27 by arakotom          #+#    #+#              #
-#    Updated: 2024/10/03 10:02:49 by arakotom         ###   ########.fr        #
+#    Updated: 2024/10/03 12:45:58 by arakotom         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,7 +29,7 @@ SRCS = main.c \
 		input/input_trim.c \
 		input/input_utils.c \
 		input/input_validation.c \
-		input/input_expander.c \
+		input/input_expander_dequote.c \
 		input/redir/redir_validation.c \
 		input/redir/init_heredoc.c \
 		input/redir/heredoc_utils.c \

@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   input_expander.c                                   :+:      :+:    :+:   */
+/*   input_expander_dequote.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: arakotom <arakotom@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/03 09:23:48 by arakotom          #+#    #+#             */
-/*   Updated: 2024/10/03 11:53:19 by arakotom         ###   ########.fr       */
+/*   Updated: 2024/10/03 12:55:59 by arakotom         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-char	*re_new_input_var_quote(char *old_input, char *input, int *i,
+char	*re_new_input_expander(char *old_input, char *input, int *i,
 		t_env **list)
 {
 	char	*c;
@@ -40,7 +40,7 @@ char	*re_new_input_var_quote(char *old_input, char *input, int *i,
 	return (old_input);
 }
 
-char	*get_new_input_var_quote(char *input, t_env *envp)
+char	*get_new_input_expander(char *input, t_env *envp, t_bool do_free)
 {
 	t_quote_dt	quote;
 	int			i;
@@ -51,13 +51,43 @@ char	*get_new_input_var_quote(char *input, t_env *envp)
 	init_quote_dt(&quote);
 	while (input && input[i])
 	{
-		update_quote_dt(input[i], &quote);
 		if (input[i] == '$' && (quote.d_q == OPENED || (quote.d_q == CLOSED
 					&& quote.s_q == CLOSED)))
-			new_input = re_new_input_var_quote(new_input, input, &i, &envp);
-		else
-			new_input = re_new_input_var_quote(new_input, input, &i, NULL);
+			new_input = re_new_input_expander(new_input, input, &i, &envp);
+		else if (input[i])
+			new_input = re_new_input_expander(new_input, input, &i, NULL);
 	}
-	free(input);
+	if (do_free)
+		free(input);
+	return (new_input);
+}
+
+char	*get_new_input_unquote(char *input, t_bool do_free)
+{
+	t_quote_dt	quote;
+	int			i;
+	char		*new_input;
+	char		*c;
+
+	new_input = NULL;
+	i = 0;
+	init_quote_dt(&quote);
+	while (input && input[i])
+	{
+		if (is_quote(input[i]) && (quote.d_q == CLOSED && quote.s_q == CLOSED))
+			update_quote_dt(input[i++], &quote);
+		update_quote_dt(input[i], &quote);
+		ft_printf("%c\n", input[i]);
+		if (is_quote(input[i]) && (quote.d_q == CLOSED && quote.s_q == CLOSED))
+			update_quote_dt(input[i++], &quote);
+		if (input[i])
+		{
+			c = ft_substr(input + i++, 0, 1);
+			new_input = heredoc_strjoin(new_input, c);
+			free(c);
+		}
+	}
+	if (do_free)
+		free(input);
 	return (new_input);
 }

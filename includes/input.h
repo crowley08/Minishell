@@ -6,7 +6,7 @@
 /*   By: arakotom <arakotom@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/26 00:13:56 by arakotom          #+#    #+#             */
-/*   Updated: 2024/10/03 11:10:36 by arakotom         ###   ########.fr       */
+/*   Updated: 2024/10/03 13:29:28 by arakotom         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,8 @@ void		free_heredoc_list(t_heredoc **list);
 t_bool		fill_file_input(int fd, t_heredoc heredoc, t_env *envp);
 t_bool		create_file_heredoc(t_heredoc *list, t_env *envp);
 int			get_len_eof_line(char *input);
-char		*get_new_input_heredoc(char *input, t_heredoc *list);
+char		*get_new_input_heredoc(char *input, t_heredoc *list,
+				t_bool do_free);
 
 // heredoc_input_parse_utils
 void		write_heredoc_input(int fd, char *input, t_bool exp_var,
@@ -66,8 +67,9 @@ void		write_heredoc_input(int fd, char *input, t_bool exp_var,
 char		*expander_var(char *str, t_env *envp);
 
 // input_expander
-char		*re_new_input_var_quote(char *old_input, char *input, int *i,
+char		*re_new_input_expander(char *old_input, char *input, int *i,
 				t_env **list);
-char		*get_new_input_var_quote(char *input, t_env *envp);
+char		*get_new_input_expander(char *input, t_env *envp, t_bool do_free);
+char		*get_new_input_unquote(char *input, t_bool do_free);
 
 #endif

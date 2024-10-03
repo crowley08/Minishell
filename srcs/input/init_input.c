@@ -6,7 +6,7 @@
 /*   By: arakotom <arakotom@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 23:07:00 by arakotom          #+#    #+#             */
-/*   Updated: 2024/10/01 23:21:53 by arakotom         ###   ########.fr       */
+/*   Updated: 2024/10/03 13:07:26 by arakotom         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ t_bool	is_input_valid(char *line)
 	error = NOTHING;
 	if (is_empty_line(line))
 		return (FALSE);
-	add_history(line);
+	// add_history(line);
 	if (has_syntax_error(line, &error))
 	{
 		ft_printf("\e[31mSyntax Error %d : Invalid line\n\e[0m", error);
@@ -35,8 +35,8 @@ char	*get_input(void)
 
 	while (42)
 	{
-		line = readline("\e[33mMinishell$ \e[0m");
-		// line = ft_strdup("cat<<'eof'<<eof");
+		// line = readline("\e[33mMinishell$ \e[0m");
+		line = ft_strdup("cat\"hello'to'you\"");
 		if (!line || !is_input_valid(line))
 		{
 			free(line);

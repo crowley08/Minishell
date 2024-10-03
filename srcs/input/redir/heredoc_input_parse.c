@@ -6,7 +6,7 @@
 /*   By: arakotom <arakotom@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/30 10:18:16 by arakotom          #+#    #+#             */
-/*   Updated: 2024/10/03 09:25:55 by arakotom         ###   ########.fr       */
+/*   Updated: 2024/10/03 13:28:25 by arakotom         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,7 @@ char	*re_new_input_heredoc(char *old_input, char *input, t_heredoc **list)
 	return (old_input);
 }
 
-char	*get_new_input_heredoc(char *input, t_heredoc *list)
+char	*get_new_input_heredoc(char *input, t_heredoc *list, t_bool do_free)
 {
 	char		*new_input;
 	int			i;
@@ -125,6 +125,7 @@ char	*get_new_input_heredoc(char *input, t_heredoc *list)
 		else
 			new_input = re_new_input_heredoc(new_input, input + i++, NULL);
 	}
-	free(input);
+	if (do_free)
+		free(input);
 	return (new_input);
 }
