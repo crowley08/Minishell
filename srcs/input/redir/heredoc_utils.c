@@ -6,7 +6,7 @@
 /*   By: arakotom <arakotom@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/29 21:10:56 by arakotom          #+#    #+#             */
-/*   Updated: 2024/10/01 23:03:59 by arakotom         ###   ########.fr       */
+/*   Updated: 2024/10/02 12:02:13 by arakotom         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,8 @@ void	free_heredoc_list(t_heredoc **list)
 // ! FIXME: delete this function later
 void	print_heredoc(t_heredoc *heredoc)
 {
-	ft_printf("heredocs:\n");
+	if (heredoc)
+		ft_printf("heredocs:\n");
 	while (heredoc)
 	{
 		ft_printf("eof: $%s$\n", heredoc->eof);

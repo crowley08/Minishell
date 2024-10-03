@@ -6,7 +6,7 @@
 /*   By: arakotom <arakotom@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/30 10:18:16 by arakotom          #+#    #+#             */
-/*   Updated: 2024/10/01 22:58:12 by arakotom         ###   ########.fr       */
+/*   Updated: 2024/10/03 09:25:55 by arakotom         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ int	get_len_eof_line(char *input)
 	return (len);
 }
 
-char	*re_new_input(char *old_input, char *input, t_heredoc **list)
+char	*re_new_input_heredoc(char *old_input, char *input, t_heredoc **list)
 {
 	char	*c;
 
@@ -120,10 +120,10 @@ char	*get_new_input_heredoc(char *input, t_heredoc *list)
 			if (ft_isspace(input[i]))
 				i++;
 			i += get_len_eof_line(input + i);
-			new_input = re_new_input(new_input, 0, &list);
+			new_input = re_new_input_heredoc(new_input, 0, &list);
 		}
 		else
-			new_input = re_new_input(new_input, input + i++, NULL);
+			new_input = re_new_input_heredoc(new_input, input + i++, NULL);
 	}
 	free(input);
 	return (new_input);

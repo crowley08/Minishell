@@ -6,11 +6,29 @@
 /*   By: arakotom <arakotom@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 23:27:15 by arakotom          #+#    #+#             */
-/*   Updated: 2024/09/28 12:57:53 by arakotom         ###   ########.fr       */
+/*   Updated: 2024/10/02 11:56:38 by arakotom         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
+
+t_bool	is_trimmed(char *str)
+{
+	int	end;
+
+	end = ft_strlen(str) - 1;
+	if (!end)
+		return (FALSE);
+	if (!ft_isspace(str[0]) || !ft_isspace(str[end]))
+		return (FALSE);
+	while (str && *str)
+	{
+		if (ft_isspace(*str) && ft_isspace(*(str + 1)))
+			return (FALSE);
+		str++;
+	}
+	return (TRUE);
+}
 
 char	*trim_space_out(char *input)
 {

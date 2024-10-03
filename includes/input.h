@@ -6,7 +6,7 @@
 /*   By: arakotom <arakotom@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/26 00:13:56 by arakotom          #+#    #+#             */
-/*   Updated: 2024/10/01 23:04:08 by arakotom         ###   ########.fr       */
+/*   Updated: 2024/10/03 11:10:36 by arakotom         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ t_bool		has_dbl_pipe_succ(char *str);
 t_bool		has_syntax_error(char *line, t_error_stt *error);
 
 // input_trim
+t_bool		is_trimmed(char *str);
 char		*trim_space_out(char *input);
 int			str_trim_in_len(char *str);
 char		*trim_space_in(char *input);
@@ -63,4 +64,10 @@ char		*get_new_input_heredoc(char *input, t_heredoc *list);
 void		write_heredoc_input(int fd, char *input, t_bool exp_var,
 				t_env *envp);
 char		*expander_var(char *str, t_env *envp);
+
+// input_expander
+char		*re_new_input_var_quote(char *old_input, char *input, int *i,
+				t_env **list);
+char		*get_new_input_var_quote(char *input, t_env *envp);
+
 #endif
