@@ -6,7 +6,7 @@
 /*   By: arakotom <arakotom@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/03 09:23:48 by arakotom          #+#    #+#             */
-/*   Updated: 2024/10/03 12:55:59 by arakotom         ###   ########.fr       */
+/*   Updated: 2024/10/03 23:03:45 by arakotom         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,6 @@ char	*get_new_input_unquote(char *input, t_bool do_free)
 		if (is_quote(input[i]) && (quote.d_q == CLOSED && quote.s_q == CLOSED))
 			update_quote_dt(input[i++], &quote);
 		update_quote_dt(input[i], &quote);
-		ft_printf("%c\n", input[i]);
 		if (is_quote(input[i]) && (quote.d_q == CLOSED && quote.s_q == CLOSED))
 			update_quote_dt(input[i++], &quote);
 		if (input[i])
