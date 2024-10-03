@@ -6,7 +6,7 @@
 /*   By: arakotom <arakotom@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/28 13:41:53 by arakotom          #+#    #+#             */
-/*   Updated: 2024/10/01 23:15:20 by arakotom         ###   ########.fr       */
+/*   Updated: 2024/10/03 23:01:51 by arakotom         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ void	complete_eof_name(char *eof_line, int *start, int *end, char **eof)
 	char	*name;
 
 	len = *end - *start;
-	ft_printf("start: %c ; end: %c", eof_line[*start], eof_line[*end]);
 	if (eof_line[*start] && len > 0 && (!is_quote(eof_line[*start])
 			|| !is_quote(eof_line[*start + 1])))
 	{

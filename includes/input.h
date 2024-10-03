@@ -6,7 +6,7 @@
 /*   By: arakotom <arakotom@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/26 00:13:56 by arakotom          #+#    #+#             */
-/*   Updated: 2024/10/03 13:29:28 by arakotom         ###   ########.fr       */
+/*   Updated: 2024/10/03 22:43:23 by arakotom         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 // init_input
 t_bool		is_input_valid(char *line);
 char		*get_input(void);
+char		*parse_input_var(char *input, t_env *envp);
 
 // input_utils
 t_bool		is_empty_line(char *str);
