@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ms_tokenizer_utils_1.c                             :+:      :+:    :+:   */
+/*   ms_tokenizer_utils.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: saandria <saandria@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/01 22:55:01 by saandria          #+#    #+#             */
-/*   Updated: 2024/10/07 17:44:17 by saandria         ###   ########.fr       */
+/*   Created: 2024/09/17 10:38:27 by saandria          #+#    #+#             */
+/*   Updated: 2024/10/07 18:26:51 by saandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,25 +40,30 @@ int	is_in_double_quotes(char *s, int *i)
 	return (0);
 }
 
-void	check_inquotes(char *s, int *i)
+int	ms_isspace(char c)
 {
-	if (s[*i] == '\'')
-	{
-		if (is_in_simple_quotes(s, i))
-			*i = is_in_simple_quotes(s, i);
-	}
-	else if (s[*i] == '"')
-	{
-		if (is_in_double_quotes(s, i))
-			*i = is_in_double_quotes(s, i);
-	}
+	if (c == ' ' || c == '\t' || c == '\n')
+		return (1);
+	return (0);
 }
 
-t_token	*check_if(t_token *token, char *s, int *i)
+int	ms_istoken(char c)
 {
-	if (ms_istoken(s[*i]))
-		token = check_token(s, i, token);
-	else
-		token = get_wordtok(s, i, token);
-	return (token);
+	if (c == '|' || c == '<' || c == '>')
+		return (1);
+	return (0);
+}
+
+void	print_token(t_token *token)
+{
+	t_token	*tmp;
+
+	tmp = token;
+	while (tmp)
+	{
+		printf("TOKEN:\n");
+		printf("\tType: %d\n", tmp->type);
+		printf("\tValue: %s\n", tmp->value);
+		tmp = tmp->next;
+	}
 }
