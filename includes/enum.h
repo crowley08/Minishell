@@ -6,7 +6,7 @@
 /*   By: arakotom <arakotom@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/07 06:56:16 by arakotom          #+#    #+#             */
-/*   Updated: 2024/10/07 07:10:51 by arakotom         ###   ########.fr       */
+/*   Updated: 2024/10/07 15:23:38 by arakotom         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,15 @@ enum e_error_stt
 
 enum e_rd_out_type
 {
-	REDIR_OUT = 1,
+	REDIR_TRUNC = 1,
 	REDIR_APPEND = 2,
+};
+
+enum e_token_type
+{
+	WORD = 0,
+	REDIR_IN = 1,
+	REDIR_OUT = 2
 };
 
 #endif

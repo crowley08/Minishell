@@ -6,7 +6,7 @@
 /*   By: arakotom <arakotom@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/07 08:04:10 by arakotom          #+#    #+#             */
-/*   Updated: 2024/10/07 08:14:59 by arakotom         ###   ########.fr       */
+/*   Updated: 2024/10/07 14:48:50 by arakotom         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,22 +32,28 @@ void free_arg_list(t_arg **list)
 	*list = NULL;
 }
 
-void free_arg_rd_out(t_arg_rd_out *arg_rd_out)
+void free_redir_in_list(t_redir_in **list)
 {
-	if (arg_rd_out->file)
-		free(arg_rd_out->file);
-	free(arg_rd_out);
-}
-
-void free_arg_rd_out_list(t_arg_rd_out **list)
-{
-	t_arg_rd_out *arg;
+	t_redir_in *redir;
 
 	while (list && *list)
 	{
-		arg = *list;
+		redir = *list;
 		*list = (*list)->next;
-		free_arg_rd_out(arg);
+		free_redir_in(redir);
+	}
+	*list = NULL;
+}
+
+void free_redir_out_list(t_redir_out **list)
+{
+	t_redir_out *redir;
+
+	while (list && *list)
+	{
+		redir = *list;
+		*list = (*list)->next;
+		free_redir_out(redir);
 	}
 	*list = NULL;
 }

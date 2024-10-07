@@ -6,7 +6,7 @@
 /*   By: arakotom <arakotom@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/07 08:55:47 by arakotom          #+#    #+#             */
-/*   Updated: 2024/10/07 13:22:30 by arakotom         ###   ########.fr       */
+/*   Updated: 2024/10/07 17:05:01 by arakotom         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,38 @@ int get_next_word_len(char *input)
 	return (len);
 }
 
+int fill_prompt_token(t_prompt **prompt, char *value, char *input)
+{
+	char *next_value;
+	int len;
+	t_token_type type;
+
+	len = 0;
+	type = get_token_type(value);
+	if (type == WORD)
+	{
+		if (!((*prompt)->cmd))
+			prompt_create_cmd(*prompt, get_new_input_unquote(value, FALSE));
+		else
+			prompt_add_cmd_arg(*prompt, get_new_input_unquote(value, FALSE));
+	}
+	else if (type == REDIR_IN || type == REDIR_OUT)
+	{
+		len = get_next_word_len(input);
+		next_value = ft_substr(input, 0, len);
+		if (type == REDIR_IN)
+			prompt_add_file_redir_in(*prompt, get_new_input_unquote(next_value, TRUE));
+		else if (type == REDIR_OUT)
+		{
+			if ((ft_strncmp(value, ">", ft_strlen(value)) == 0))
+				prompt_add_file_redir_out(*prompt, get_new_input_unquote(next_value, TRUE), REDIR_TRUNC);
+			else if ((ft_strncmp(value, ">>", ft_strlen(value)) == 0))
+				prompt_add_file_redir_out(*prompt, get_new_input_unquote(next_value, TRUE), REDIR_APPEND);
+		}
+	}
+	return (len);
+}
+
 t_prompt *create_prompt(char *input)
 {
 	t_prompt *prompt;
@@ -60,8 +92,6 @@ t_prompt *create_prompt(char *input)
 	prompt = new_prompt();
 	if (!prompt || !input)
 		return (NULL);
-	len = 0;
-	ft_printf("\ncreate_prompt from: $%s$\n", input);
 	while (input && *input)
 	{
 		len = 0;
@@ -69,13 +99,30 @@ t_prompt *create_prompt(char *input)
 		if (!len)
 			break;
 		value = ft_substr(input, 0, len);
-		ft_printf("word: $%s$\n", value);
-		free(value);
 		input += len;
 		if (ft_isspace(*input))
 			input++;
+		input += fill_prompt_token(&prompt, value, input);
+		if (ft_isspace(*input))
+			input++;
+		free(value);
 	}
 	return (prompt);
+}
+
+void add_prompt_list(t_prompt **list, t_prompt *prompt)
+{
+	t_prompt *last;
+
+	if (!list || !(*list))
+		*list = prompt;
+	else
+	{
+		last = *list;
+		while (last->next)
+			last = last->next;
+		last->next = prompt;
+	}
 }
 
 t_bool set_prompt_data(t_data *data, char **input_tab)
@@ -91,15 +138,14 @@ t_bool set_prompt_data(t_data *data, char **input_tab)
 	{
 		// TODO: create this function create_prompt
 		prompt = create_prompt(input_tab[i]);
-		free_prompt(prompt);
-		// if (prompt)
-		// 	// TODO: create this function add_prompt_list
-		// 	add_prompt_list(&list, prompt);
+		if (prompt)
+			// TODO: create this function add_prompt_list
+			add_prompt_list(&list, prompt);
 		i++;
 	}
 	ft_free_tab_str(input_tab);
-	// if (!list)
-	// 	return (FALSE);
+	if (!list)
+		return (FALSE);
 	data->prompt = list;
 	return (TRUE);
 }

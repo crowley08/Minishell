@@ -6,7 +6,7 @@
 /*   By: arakotom <arakotom@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/07 06:57:06 by arakotom          #+#    #+#             */
-/*   Updated: 2024/10/07 07:44:34 by arakotom         ###   ########.fr       */
+/*   Updated: 2024/10/07 14:42:21 by arakotom         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,21 +56,14 @@ struct s_cmd
 
 struct s_redir_in
 {
-	char *value;
-	t_arg *files;
+	char *file;
+	t_redir_in *next;
 };
-
-struct s_arg_rd_out
+struct s_redir_out
 {
 	char *file;
 	t_rd_out_type type;
-	t_arg_rd_out *next;
-};
-
-struct s_redir_out
-{
-	char *value;
-	t_arg_rd_out *files;
+	t_redir_out *next;
 };
 
 struct s_prompt
