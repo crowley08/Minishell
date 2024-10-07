@@ -6,7 +6,7 @@
 /*   By: saandria <saandria@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/26 10:38:09 by saandria          #+#    #+#             */
-/*   Updated: 2024/10/01 23:30:02 by saandria         ###   ########.fr       */
+/*   Updated: 2024/10/07 14:58:37 by saandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	error(void)
 
 void	check_exit(t_msh *msh)
 {
-	if (ft_strcmp(msh->input, "exit") == 0)
+	if (ft_strncmp(msh->input, "exit", 4) == 0)
 	{
 		printf("exit\n");
 		free(msh->input);

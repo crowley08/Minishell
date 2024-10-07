@@ -6,7 +6,7 @@
 /*   By: saandria <saandria@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 11:31:32 by saandria          #+#    #+#             */
-/*   Updated: 2024/10/02 17:23:38 by saandria         ###   ########.fr       */
+/*   Updated: 2024/10/07 08:52:41 by saandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,8 @@ void	exec_dir(t_node *node, char **env)
 	else if (node->right->type == PIPE_NODE
 		&& node->right->left->type != CMD_NODE)
 		node->right = node->right->right;
-	while (node->right->cmd[i])
-		i++;
-	i--;
-	printf("%s\n", node->right->cmd[i]);
-	fd = open(node->right->cmd[i], O_CREAT | O_RDWR | O_TRUNC, mode);
+	printf("%s\n", node->right->cmd[0]);
+	fd = open(node->right->cmd[0], O_CREAT | O_RDWR | O_TRUNC, mode);
 	if (fd == -1)
 		perror("open");
 	dup2(fd, STDOUT_FILENO);
