@@ -6,7 +6,7 @@
 /*   By: saandria <saandria@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 20:46:35 by saandria          #+#    #+#             */
-/*   Updated: 2024/10/01 22:37:15 by saandria         ###   ########.fr       */
+/*   Updated: 2024/10/07 17:54:35 by saandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,6 @@ void	free_minishell(t_msh *msh)
 {
 	free_spl(msh->envc);
 	free_tokens(&msh->token);
-	free_env(&msh->envp);
 	free_node(&msh->node);
 	free(msh->input);
 }

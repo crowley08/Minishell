@@ -6,7 +6,7 @@
 /*   By: saandria <saandria@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/17 10:18:21 by saandria          #+#    #+#             */
-/*   Updated: 2024/10/01 23:15:39 by saandria         ###   ########.fr       */
+/*   Updated: 2024/10/07 17:44:13 by saandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,10 +111,7 @@ t_token	*ms_tokenizer(char *s)
 	token = NULL;
 	while (ms_isspace(s[i]))
 		i++;
-	if (ms_istoken(s[i]))
-		token = check_token(s, &i, token);
-	else
-		token = get_wordtok(s, &i, token);
+	token = check_if(token, s, &i);
 	while (i < len)
 	{
 		if (ms_isspace(s[i]))

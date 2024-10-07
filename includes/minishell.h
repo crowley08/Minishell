@@ -6,7 +6,7 @@
 /*   By: saandria <saandria@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 21:16:12 by saandria          #+#    #+#             */
-/*   Updated: 2024/10/02 10:18:15 by saandria         ###   ########.fr       */
+/*   Updated: 2024/10/07 17:58:41 by saandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,6 +100,7 @@ void	free_tokens(t_token **t);
 void	check_inquotes(char *s, int *i);
 t_token	*check_token(char *s, int *i, t_token *new_token);
 t_token	*get_wordtok(char *s, int *i, t_token *new_token);
+t_token	*check_if(t_token *token, char *s, int *i);
 
 //sig_handler
 void	handle_sigint(int sig);
@@ -125,6 +126,7 @@ void	free_spl(char **env);
 void	exec_pipe(t_node *node, char **env);
 void	ms_exec(t_node *node, char **env);
 void	exec_dir(t_node *node, char **env);
+void	exec_main(t_msh *msh);
 
 //error handling
 void	error(void);
@@ -133,7 +135,7 @@ void	error(void);
 void	free_minishell(t_msh *msh);
 int		count_pipe(t_msh *msh);
 void	free_node(t_node **node);
-void	init_msh(t_msh **msh, char **env);
+void	init_msh(t_msh **msh);
 void	check_exit(t_msh *msh);
 
 //parsing

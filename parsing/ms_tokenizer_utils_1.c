@@ -6,7 +6,7 @@
 /*   By: saandria <saandria@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 22:55:01 by saandria          #+#    #+#             */
-/*   Updated: 2024/10/02 10:40:38 by saandria         ###   ########.fr       */
+/*   Updated: 2024/10/07 17:44:17 by saandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,4 +52,13 @@ void	check_inquotes(char *s, int *i)
 		if (is_in_double_quotes(s, i))
 			*i = is_in_double_quotes(s, i);
 	}
+}
+
+t_token	*check_if(t_token *token, char *s, int *i)
+{
+	if (ms_istoken(s[*i]))
+		token = check_token(s, i, token);
+	else
+		token = get_wordtok(s, i, token);
+	return (token);
 }

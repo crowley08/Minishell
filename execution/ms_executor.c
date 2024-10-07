@@ -6,7 +6,7 @@
 /*   By: saandria <saandria@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 11:31:32 by saandria          #+#    #+#             */
-/*   Updated: 2024/10/07 08:52:41 by saandria         ###   ########.fr       */
+/*   Updated: 2024/10/07 18:00:24 by saandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,4 +43,14 @@ void	ms_exec(t_node *node, char **env)
 		exec_pipe(node, env);
 	else if (node->type == REDIR_OUT_NODE)
 		exec_dir(node, env);
+}
+
+void	exec_main(t_msh *msh)
+{
+	pid_t	pid;
+
+	pid = fork();
+	if (pid == 0)
+		ms_exec(msh->node, msh->envc);
+	waitpid(pid, NULL, 0);
 }

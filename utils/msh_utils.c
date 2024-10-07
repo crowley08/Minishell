@@ -6,7 +6,7 @@
 /*   By: saandria <saandria@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/26 10:38:09 by saandria          #+#    #+#             */
-/*   Updated: 2024/10/07 14:58:37 by saandria         ###   ########.fr       */
+/*   Updated: 2024/10/07 17:54:31 by saandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,15 +23,15 @@ void	check_exit(t_msh *msh)
 	if (ft_strncmp(msh->input, "exit", 4) == 0)
 	{
 		printf("exit\n");
+		free_env(&msh->envp);
 		free(msh->input);
 		free(msh);
 		exit(EXIT_SUCCESS);
 	}
 }
 
-void	init_msh(t_msh **msh, char **env)
+void	init_msh(t_msh **msh)
 {
-	(*msh)->envp = get_env(env);
 	(*msh)->envc = env_copy(&(*msh)->envp);
 	(*msh)->token = ms_tokenizer((*msh)->input);
 	(*msh)->node = parse((*msh)->token);
