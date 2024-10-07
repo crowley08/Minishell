@@ -6,16 +6,17 @@
 /*   By: arakotom <arakotom@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 23:53:58 by arakotom          #+#    #+#             */
-/*   Updated: 2024/10/03 22:53:42 by arakotom         ###   ########.fr       */
+/*   Updated: 2024/10/07 11:48:09 by arakotom         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-int	main(int argc, char *argv[], char *envp[])
+int main(int argc, char *argv[], char *envp[])
 {
-	t_data	data;
-	char	*line;
+	t_data data;
+	char *line;
+	char **prompt;
 
 	init_data(&data, argc, argv);
 	if (!dup_envp(&data, envp))
@@ -27,14 +28,17 @@ int	main(int argc, char *argv[], char *envp[])
 		if (!(data.input))
 		{
 			reset_data(&data);
-			continue ;
+			continue;
 		}
-		data.prompts = split_pipe(data.input);
-		if (!data.prompts)
-			ft_printf("Error, split input to prompts failed");
-		print_prompts(data.prompts);
+		prompt = split_pipe(data.input);
+		if (!prompt)
+			ft_printf("Error, split input to prompts failed\n");
+		if (!set_prompt_data(&data, split_pipe(data.input)))
+			ft_printf("Error, set prompt data\n");
+		print_prompts(prompt);
+		ft_free_tab_str(prompt);
 		reset_data(&data);
-		continue ;
+		continue;
 		// break ;
 	}
 	free_data(&data);
