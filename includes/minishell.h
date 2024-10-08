@@ -6,7 +6,7 @@
 /*   By: arakotom <arakotom@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 23:58:49 by arakotom          #+#    #+#             */
-/*   Updated: 2024/10/07 08:37:26 by arakotom         ###   ########.fr       */
+/*   Updated: 2024/10/08 13:21:15 by arakotom         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include "./types.h"
 # include "enum.h"
 # include "envp.h"
+# include "execution.h"
 # include "input.h"
 # include "prompt.h"
 # include "struct.h"
