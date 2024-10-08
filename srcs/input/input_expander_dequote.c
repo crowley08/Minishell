@@ -6,7 +6,7 @@
 /*   By: arakotom <arakotom@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/03 09:23:48 by arakotom          #+#    #+#             */
-/*   Updated: 2024/10/07 13:23:23 by arakotom         ###   ########.fr       */
+/*   Updated: 2024/10/08 09:48:53 by arakotom         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ char *get_new_input_expander(char *input, t_env *envp, t_bool do_free)
 	init_quote_dt(&quote);
 	while (input && input[i])
 	{
+		update_quote_dt(input[i], &quote);
 		if (input[i] == '$' && (quote.d_q == OPENED || (quote.d_q == CLOSED && quote.s_q == CLOSED)))
 			new_input = re_new_input_expander(new_input, input, &i, &envp);
 		else if (input[i])
