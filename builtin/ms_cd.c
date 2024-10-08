@@ -1,42 +1,46 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   env.c                                              :+:      :+:    :+:   */
+/*   ms_cd.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: saandria <saandria@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/17 15:43:59 by saandria          #+#    #+#             */
-/*   Updated: 2024/10/08 16:03:22 by saandria         ###   ########.fr       */
+/*   Created: 2024/10/08 15:05:14 by saandria          #+#    #+#             */
+/*   Updated: 2024/10/08 16:42:49 by saandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-char	**env_copy(t_env **env)
+static int	check_args(char **cmd)
 {
-	t_env	*tmp;
-	char	**env_copy;
-	char	*tmp_copy;
-	int		i;
+	int	i;
 
-	tmp = *env;
 	i = 0;
-	while (tmp)
-	{
+	while (cmd[i])
 		i++;
-		tmp = tmp->next;
-	}
-	env_copy = (char **)malloc(sizeof(char *) * (i + 1));
-	i = 0;
-	tmp = *env;
-	while (tmp)
+	if (i == 2)
+		return (1);
+	return (0);
+}
+
+void	ms_cd(char **cmd, char **env)
+{
+	char	*path;
+
+	(void)env;
+	if (check_args(cmd))
 	{
-		tmp_copy = ft_strjoin(tmp->name, "=");
-		env_copy[i] = ft_strjoin(tmp_copy, tmp->value);
-		free(tmp_copy);
-		i++;
-		tmp = tmp->next;
+		if (cmd[1][0] == '~')
+			path = ft_strjoin(getenv("HOME"), &cmd[1][1]);
+		else
+			path = ft_strdup(cmd[1]);
+		if (chdir(path) == -1)
+		{
+			ft_putstr_fd("cd", 2);
+			ft_putstr_fd(": No such file or directory\n", 2);
+		}
+		free(path);
 	}
-	env_copy[i] = NULL;
-	return (env_copy);
+	return ;
 }

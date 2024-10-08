@@ -1,42 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   env.c                                              :+:      :+:    :+:   */
+/*   ms_pwd.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: saandria <saandria@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/17 15:43:59 by saandria          #+#    #+#             */
-/*   Updated: 2024/10/08 16:03:22 by saandria         ###   ########.fr       */
+/*   Created: 2024/10/08 14:46:39 by saandria          #+#    #+#             */
+/*   Updated: 2024/10/08 16:10:11 by saandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-char	**env_copy(t_env **env)
+void	ms_pwd(void)
 {
-	t_env	*tmp;
-	char	**env_copy;
-	char	*tmp_copy;
-	int		i;
+	char	*pwd;
 
-	tmp = *env;
-	i = 0;
-	while (tmp)
+	pwd = getcwd(NULL, 0);
+	if (pwd)
 	{
-		i++;
-		tmp = tmp->next;
+		ft_putendl_fd(pwd, 1);
+		free(pwd);
 	}
-	env_copy = (char **)malloc(sizeof(char *) * (i + 1));
-	i = 0;
-	tmp = *env;
-	while (tmp)
-	{
-		tmp_copy = ft_strjoin(tmp->name, "=");
-		env_copy[i] = ft_strjoin(tmp_copy, tmp->value);
-		free(tmp_copy);
-		i++;
-		tmp = tmp->next;
-	}
-	env_copy[i] = NULL;
-	return (env_copy);
+	return ;
 }

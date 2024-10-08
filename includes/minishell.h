@@ -6,7 +6,7 @@
 /*   By: saandria <saandria@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 21:16:12 by saandria          #+#    #+#             */
-/*   Updated: 2024/10/07 17:58:41 by saandria         ###   ########.fr       */
+/*   Updated: 2024/10/08 16:04:14 by saandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -141,5 +141,10 @@ void	check_exit(t_msh *msh);
 //parsing
 t_node	*parse(t_token *token);
 void	print_ast(t_node **node);
+
+//builtin
+void	ms_pwd(void);
+void	ms_cd(char **cmd, char **env);
+void	ms_env(char **env);
 
 #endif

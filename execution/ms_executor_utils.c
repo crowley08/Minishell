@@ -6,7 +6,7 @@
 /*   By: saandria <saandria@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 22:38:31 by saandria          #+#    #+#             */
-/*   Updated: 2024/10/02 11:17:06 by saandria         ###   ########.fr       */
+/*   Updated: 2024/10/08 16:42:25 by saandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,51 +45,64 @@ char	*check_path(char *cmd, char **env)
 	printf("%s\taccess unautorised\n", path);
 */
 
+static int	cmd_is_builtin(char **cmd)
+{
+	if (!ft_strcmp(cmd[0], "cd") || !ft_strcmp(cmd[0], "pwd")
+		|| !ft_strcmp(cmd[0], "export") || !ft_strcmp(cmd[0], "unset")
+		|| !ft_strcmp(cmd[0], "env") || !ft_strcmp(cmd[0], "exit"))
+		return (1);
+	return (0);
+}
+
+static void	exec_built(char **cmd, char **env)
+{
+	if (!ft_strcmp(cmd[0], "pwd"))
+		ms_pwd();
+	else if (!ft_strcmp(cmd[0], "cd"))
+		ms_cd(cmd, env);
+	else if (!ft_strcmp(cmd[0], "env"))
+		ms_env(env);
+	return ;
+}
+
 void	exec(char **cmd, char **env)
 {
 	char	*path;
 
-	path = check_path(cmd[0], env);
-	if (!path)
-	{
-		free_spl(cmd);
-		error();
-	}
-	if (execve(path, cmd, env) == -1)
-		error();
-}
-
-static void	exec_left(int fd[2], t_node *node, char **env)
-{
-	close(fd[0]);
-	dup2(fd[1], STDOUT_FILENO);
-	close(fd[1]);
-	ms_exec(node->left, env);
-}
-
-static void	exec_right(int fd[2], t_node *node, char **env)
-{
-	close(fd[1]);
-	dup2(fd[0], STDIN_FILENO);
-	close(fd[0]);
-	ms_exec(node->right, env);
-}
-
-void	exec_pipe(t_node *node, char **env)
-{
-	int		fd[2];
-	pid_t	child;
-
-	if (pipe(fd) == -1)
-		error();
-	child = fork();
-	if (child == -1)
-		error();
-	else if (child == 0)
-		exec_left(fd, node, env);
+	if (cmd_is_builtin(cmd))
+		exec_built(cmd, env);
 	else
-		exec_right(fd, node, env);
-	close(fd[1]);
-	close(fd[0]);
-	waitpid(child, NULL, 0);
+	{
+		path = check_path(cmd[0], env);
+		if (!path)
+		{
+			free_spl(cmd);
+			error();
+		}
+		if (execve(path, cmd, env) == -1)
+			error();
+	}
+}
+
+void	exec_dir(t_node *node, char **env)
+{
+	int		fd;
+	int		i;
+	mode_t	mode;
+
+	i = 0;
+	mode = S_IRUSR | S_IWUSR | S_IRGRP | S_IROTH ;
+	if (node->right->type == PIPE_NODE
+		&& node->right->left->type == CMD_NODE)
+		node->right = node->right->left;
+	else if (node->right->type == PIPE_NODE
+		&& node->right->left->type != CMD_NODE)
+		node->right = node->right->right;
+	printf("%s\n", node->right->cmd[0]);
+	fd = open(node->right->cmd[0], O_CREAT | O_RDWR | O_TRUNC, mode);
+	if (fd == -1)
+		perror("open");
+	dup2(fd, STDOUT_FILENO);
+	close(fd);
+	ms_exec(node->left, env);
 }
