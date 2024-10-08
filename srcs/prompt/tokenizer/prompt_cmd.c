@@ -6,15 +6,15 @@
 /*   By: arakotom <arakotom@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/07 13:44:41 by arakotom          #+#    #+#             */
-/*   Updated: 2024/10/07 14:10:03 by arakotom         ###   ########.fr       */
+/*   Updated: 2024/10/08 10:35:19 by arakotom         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/minishell.h"
+#include "../../../includes/minishell.h"
 
-t_bool prompt_create_cmd(t_prompt *prompt, char *value)
+t_bool	prompt_create_cmd(t_prompt *prompt, char *value)
 {
-	t_cmd *cmd;
+	t_cmd	*cmd;
 
 	cmd = (t_cmd *)malloc(sizeof(t_cmd));
 	if (!cmd)
@@ -25,10 +25,10 @@ t_bool prompt_create_cmd(t_prompt *prompt, char *value)
 	return (TRUE);
 }
 
-t_bool prompt_add_cmd_arg(t_prompt *prompt, char *arg)
+t_bool	prompt_add_cmd_arg(t_prompt *prompt, char *arg)
 {
-	t_arg *new_arg;
-	t_arg *last_arg;
+	t_arg	*new_arg;
+	t_arg	*last_arg;
 
 	if (!prompt || !prompt->cmd)
 		return (FALSE);

@@ -12,10 +12,10 @@
 
 #include "../../includes/minishell.h"
 
-static int count_pipes(char *str)
+static int	count_pipes(char *str)
 {
-	int count;
-	t_quote_dt quote;
+	int			count;
+	t_quote_dt	quote;
 
 	count = 0;
 	init_quote_dt(&quote);
@@ -23,7 +23,8 @@ static int count_pipes(char *str)
 	{
 		if (*str != '|')
 			count++;
-		while (*str && (*str != '|' || quote.d_q == OPENED || quote.s_q == OPENED))
+		while (*str && (*str != '|' || quote.d_q == OPENED
+				|| quote.s_q == OPENED))
 			update_quote_dt(*(str++), &quote);
 		if (*str)
 			str++;
@@ -31,16 +32,17 @@ static int count_pipes(char *str)
 	return (count);
 }
 
-static int set_next_split_pipe(char **tab, char *str, int index)
+static int	set_next_split_pipe(char **tab, char *str, int index)
 {
-	int len;
-	int space_fount;
-	t_quote_dt quote;
+	int			len;
+	int			space_fount;
+	t_quote_dt	quote;
 
 	len = 0;
 	space_fount = 0;
 	init_quote_dt(&quote);
-	while (str[len] && (str[len] != '|' || quote.d_q == OPENED || quote.s_q == OPENED))
+	while (str[len] && (str[len] != '|' || quote.d_q == OPENED
+			|| quote.s_q == OPENED))
 		update_quote_dt(str[len++], &quote);
 	if (!len)
 		return (0);
@@ -52,10 +54,10 @@ static int set_next_split_pipe(char **tab, char *str, int index)
 	return (len);
 }
 
-static t_bool pipe_splitted(char **tab, char *str)
+static t_bool	pipe_splitted(char **tab, char *str)
 {
-	int index;
-	int len;
+	int	index;
+	int	len;
 
 	index = 0;
 	while (str && *str)
@@ -74,10 +76,10 @@ static t_bool pipe_splitted(char **tab, char *str)
 	return (TRUE);
 }
 
-char **split_pipe(char *str)
+char	**split_pipe(char *str)
 {
-	char **tab;
-	int len;
+	char	**tab;
+	int		len;
 
 	if (!is_trimmed(str))
 		str = trim_space_all(str);

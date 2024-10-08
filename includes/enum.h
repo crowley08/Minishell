@@ -11,21 +11,21 @@
 /* ************************************************************************** */
 
 #ifndef ENUM_H
-#define ENUM_H
+# define ENUM_H
 
-enum e_bool
+enum	e_bool
 {
 	FALSE = 0,
 	TRUE = 1
 };
 
-enum e_quote_stt
+enum	e_quote_stt
 {
 	CLOSED = 0,
 	OPENED = 1,
 };
 
-enum e_error_stt
+enum	e_error_stt
 {
 	INIT = -1,
 	NOTHING = 0,
@@ -35,13 +35,13 @@ enum e_error_stt
 	STX_REDIR = 4,
 };
 
-enum e_rd_out_type
+enum	e_rd_out_type
 {
 	REDIR_TRUNC = 1,
 	REDIR_APPEND = 2,
 };
 
-enum e_token_type
+enum	e_token_type
 {
 	WORD = 0,
 	REDIR_IN = 1,

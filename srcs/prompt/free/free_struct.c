@@ -12,7 +12,7 @@
 
 #include "../../../includes/minishell.h"
 
-void free_cmd(t_cmd *cmd)
+void	free_cmd(t_cmd *cmd)
 {
 	if (cmd->cmd)
 		free(cmd->cmd);
@@ -21,21 +21,21 @@ void free_cmd(t_cmd *cmd)
 	free(cmd);
 }
 
-void free_redir_in(t_redir_in *redir_in)
+void	free_redir_in(t_redir_in *redir_in)
 {
 	if (redir_in->file)
 		free(redir_in->file);
 	free(redir_in);
 }
 
-void free_redir_out(t_redir_out *redir_out)
+void	free_redir_out(t_redir_out *redir_out)
 {
 	if (redir_out->file)
 		free(redir_out->file);
 	free(redir_out);
 }
 
-void free_prompt(t_prompt *prompt)
+void	free_prompt(t_prompt *prompt)
 {
 	if (prompt->cmd)
 		free_cmd(prompt->cmd);
@@ -46,9 +46,9 @@ void free_prompt(t_prompt *prompt)
 	free(prompt);
 }
 
-void free_prompt_list(t_prompt **list)
+void	free_prompt_list(t_prompt **list)
 {
-	t_prompt *prompt;
+	t_prompt	*prompt;
 
 	while (list && *list)
 	{

@@ -6,15 +6,16 @@
 /*   By: arakotom <arakotom@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 23:27:15 by arakotom          #+#    #+#             */
-/*   Updated: 2024/10/07 16:30:29 by arakotom         ###   ########.fr       */
+/*   Updated: 2024/10/08 11:14:20 by arakotom         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-void print_prompts(t_prompt *prompt)
+// ! FIXME: delete this function later
+void	print_prompts(t_prompt *prompt)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	if (prompt)
@@ -31,16 +32,18 @@ void print_prompts(t_prompt *prompt)
 	}
 }
 
-t_token_type get_token_type(char *value)
+t_token_type	get_token_type(char *value)
 {
-	if ((ft_strncmp(value, ">", ft_strlen(value)) == 0) || (ft_strncmp(value, ">>", ft_strlen(value)) == 0))
+	if ((ft_strncmp(value, ">", ft_strlen(value)) == 0) || (ft_strncmp(value,
+				">>", ft_strlen(value)) == 0))
 		return (REDIR_OUT);
 	if (ft_strncmp(value, "<", ft_strlen(value)) == 0)
 		return (REDIR_IN);
 	return (WORD);
 }
 
-void print_arg(t_arg *arg)
+// ! FIXME: delete this function later
+void	print_arg(t_arg *arg)
 {
 	if (arg)
 	{
@@ -52,6 +55,8 @@ void print_arg(t_arg *arg)
 		}
 	}
 }
+
+// ! FIXME: delete this function later
 void print_prompt_cmd(t_cmd *cmd)
 {
 	if (cmd)
@@ -61,6 +66,7 @@ void print_prompt_cmd(t_cmd *cmd)
 	}
 }
 
+// ! FIXME: delete this function later
 void print_prompt_redir_in(t_redir_in *redir_in)
 {
 	if (redir_in)
@@ -74,6 +80,7 @@ void print_prompt_redir_in(t_redir_in *redir_in)
 	}
 }
 
+// ! FIXME: delete this function later
 void print_prompt_redir_out(t_redir_out *redir_out)
 {
 	if (redir_out)

@@ -11,67 +11,67 @@
 /* ************************************************************************** */
 
 #ifndef STRUCT_H
-#define STRUCT_H
+# define STRUCT_H
 
-struct s_env
+struct				s_env
 {
-	char *name;
-	char *value;
-	t_env *next;
+	char			*name;
+	char			*value;
+	t_env			*next;
 };
 
-struct s_data
+struct				s_data
 {
-	t_env *envp;
-	char *input;
-	t_error_stt curr_error;
-	t_prompt *prompt;
+	t_env			*envp;
+	char			*input;
+	t_error_stt		curr_error;
+	t_prompt		*prompt;
 };
 
-struct s_quote_dt
+struct				s_quote_dt
 {
-	t_quote_stt d_q;
-	t_quote_stt s_q;
+	t_quote_stt		d_q;
+	t_quote_stt		s_q;
 };
-struct s_heredoc
+struct				s_heredoc
 {
-	char *eof;
-	char *filename;
-	t_bool expend_var;
-	t_heredoc *next;
+	char			*eof;
+	char			*filename;
+	t_bool			expend_var;
+	t_heredoc		*next;
 };
 
 // at school
-struct s_arg
+struct				s_arg
 {
-	char *value;
-	t_arg *next;
+	char			*value;
+	t_arg			*next;
 };
 
-struct s_cmd
+struct				s_cmd
 {
-	char *cmd;
-	t_arg *args;
+	char			*cmd;
+	t_arg			*args;
 };
 
-struct s_redir_in
+struct				s_redir_in
 {
-	char *file;
-	t_redir_in *next;
+	char			*file;
+	t_redir_in		*next;
 };
-struct s_redir_out
+struct				s_redir_out
 {
-	char *file;
-	t_rd_out_type type;
-	t_redir_out *next;
+	char			*file;
+	t_rd_out_type	type;
+	t_redir_out		*next;
 };
 
-struct s_prompt
+struct				s_prompt
 {
-	t_cmd *cmd;
-	t_redir_in *redir_in;
-	t_redir_out *redir_out;
-	t_prompt *next;
+	t_cmd			*cmd;
+	t_redir_in		*redir_in;
+	t_redir_out		*redir_out;
+	t_prompt		*next;
 };
 
 #endif

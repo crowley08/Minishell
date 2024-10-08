@@ -6,7 +6,7 @@
 #    By: arakotom <arakotom@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/24 23:57:27 by arakotom          #+#    #+#              #
-#    Updated: 2024/10/07 16:04:00 by arakotom         ###   ########.fr        #
+#    Updated: 2024/10/08 10:59:27 by arakotom         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,13 +36,14 @@ SRCS = main.c \
 		input/redir_heredoc/heredoc_input_parse.c \
 		input/redir_heredoc/heredoc_input_parse_utils.c \
 		prompt/init_prompt.c \
-		prompt/prompt_cmd.c \
-		prompt/prompt_redir_in.c \
-		prompt/prompt_redir_out.c \
 		prompt/prompt_utils.c \
 		prompt/prompt_split.c \
 		prompt/free/free_struct.c \
-		prompt/free/free_struct_utils.c
+		prompt/free/free_struct_utils.c \
+		prompt/tokenizer/init_token_prompt.c \
+		prompt/tokenizer/prompt_cmd.c \
+		prompt/tokenizer/prompt_redir_in.c \
+		prompt/tokenizer/prompt_redir_out.c
 
 OBJS = $(addprefix $(OBJ_DIR)/, $(SRCS:.c=.o))
 LIB = $(LIBFT_DIR)/libft.a $(FT_PRINTF_DIR)/libftprintf.a

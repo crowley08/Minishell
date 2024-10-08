@@ -12,10 +12,10 @@
 
 #include "../includes/minishell.h"
 
-int main(int argc, char *argv[], char *envp[])
+int	main(int argc, char *argv[], char *envp[])
 {
-	t_data data;
-	char *line;
+	t_data	data;
+	char	*line;
 
 	init_data(&data, argc, argv);
 	if (!dup_envp(&data, envp))
@@ -28,15 +28,15 @@ int main(int argc, char *argv[], char *envp[])
 		if (!(data.input))
 		{
 			reset_data(&data);
-			break;
-			// continue;
+			break ;
+			// continue ;
 		}
 		if (!set_prompt_data(&data, split_pipe(data.input)))
 			ft_printf("Error, set prompt data\n");
 		print_prompts(data.prompt);
 		reset_data(&data);
-		// continue;
-		break;
+		// continue ;
+		break ;
 	}
 	free_data(&data);
 	return (0);

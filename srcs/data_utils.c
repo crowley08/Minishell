@@ -12,7 +12,7 @@
 
 #include "../includes/minishell.h"
 
-void init_data(t_data *data, int argc, char **argv)
+void	init_data(t_data *data, int argc, char **argv)
 {
 	(void)argc;
 	(void)argv;
@@ -22,7 +22,7 @@ void init_data(t_data *data, int argc, char **argv)
 	data->curr_error = NOTHING;
 }
 
-void free_data(t_data *data)
+void	free_data(t_data *data)
 {
 	if (data->envp)
 		free_env_list(&(data->envp));
@@ -32,7 +32,7 @@ void free_data(t_data *data)
 		free_prompt_list(&(data->prompt));
 }
 
-void reset_data(t_data *data)
+void	reset_data(t_data *data)
 {
 	if (data->input)
 		free(data->input);
