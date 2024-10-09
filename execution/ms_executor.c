@@ -6,7 +6,7 @@
 /*   By: saandria <saandria@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 11:31:32 by saandria          #+#    #+#             */
-/*   Updated: 2024/10/08 15:55:27 by saandria         ###   ########.fr       */
+/*   Updated: 2024/10/09 09:03:57 by saandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,10 +41,12 @@ void	exec_pipe(t_node *node, char **env)
 	else if (child == 0)
 		exec_left(fd, node, env);
 	else
+	{
 		exec_right(fd, node, env);
+	}
 	close(fd[1]);
 	close(fd[0]);
-	waitpid(child, NULL, 0);
+	wait(NULL);
 }
 
 void	ms_exec(t_node *node, char **env)
@@ -66,3 +68,11 @@ void	exec_main(t_msh *msh)
 		ms_exec(msh->node, msh->envc);
 	waitpid(pid, NULL, 0);
 }
+
+/*
+	if (pid > 0)
+	{
+		kill(pid,  SIGTERM);
+		wait(NULL);
+	}
+*/

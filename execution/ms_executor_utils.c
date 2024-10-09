@@ -6,7 +6,7 @@
 /*   By: saandria <saandria@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 22:38:31 by saandria          #+#    #+#             */
-/*   Updated: 2024/10/08 16:42:25 by saandria         ###   ########.fr       */
+/*   Updated: 2024/10/09 08:00:36 by saandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ char	*check_path(char *cmd, char **env)
 	printf("%s\taccess unautorised\n", path);
 */
 
-static int	cmd_is_builtin(char **cmd)
+int	cmd_is_builtin(char **cmd)
 {
 	if (!ft_strcmp(cmd[0], "cd") || !ft_strcmp(cmd[0], "pwd")
 		|| !ft_strcmp(cmd[0], "export") || !ft_strcmp(cmd[0], "unset")
@@ -54,7 +54,7 @@ static int	cmd_is_builtin(char **cmd)
 	return (0);
 }
 
-static void	exec_built(char **cmd, char **env)
+void	exec_built(char **cmd, char **env)
 {
 	if (!ft_strcmp(cmd[0], "pwd"))
 		ms_pwd();

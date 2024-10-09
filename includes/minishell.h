@@ -6,7 +6,7 @@
 /*   By: saandria <saandria@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 21:16:12 by saandria          #+#    #+#             */
-/*   Updated: 2024/10/08 16:04:14 by saandria         ###   ########.fr       */
+/*   Updated: 2024/10/09 08:00:43 by saandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,7 +111,6 @@ void	ms_signal(void);
 t_token	*ms_tokenizer(char *s);
 
 //environment
-//void	print_env(char **env);
 char	**env_copy(t_env **env);
 void	add_env(t_env **env, t_env *new_env);
 t_env	*new_env_list(char *value);
@@ -127,6 +126,8 @@ void	exec_pipe(t_node *node, char **env);
 void	ms_exec(t_node *node, char **env);
 void	exec_dir(t_node *node, char **env);
 void	exec_main(t_msh *msh);
+int		cmd_is_builtin(char **cmd);
+void	exec_built(char **cmd, char **env);
 
 //error handling
 void	error(void);
