@@ -3,18 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   ft_free_tab_chr.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arakotom <arakotom@student.42antananari    +#+  +:+       +#+        */
+/*   By: arakotom <arakotom@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/10 14:56:05 by arakotom          #+#    #+#             */
-/*   Updated: 2024/07/26 11:12:18 by arakotom         ###   ########.fr       */
+/*   Updated: 2024/10/09 08:37:00 by arakotom         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_free_tab_str(char **tab_str)
+void *ft_free_tab_str(char **tab_str)
 {
-	int	i;
+	int i;
 
 	i = 0;
 	if (!tab_str)

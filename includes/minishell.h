@@ -6,7 +6,7 @@
 /*   By: arakotom <arakotom@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 23:58:49 by arakotom          #+#    #+#             */
-/*   Updated: 2024/10/08 13:21:15 by arakotom         ###   ########.fr       */
+/*   Updated: 2024/10/09 11:21:13 by arakotom         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@
 # include <stdlib.h>
 # include <sys/stat.h>
 # include <sys/types.h>
+# include <sys/wait.h>
 # include <unistd.h>
 
 void	init_data(t_data *data, int argc, char **argv);

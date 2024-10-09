@@ -6,7 +6,7 @@
 /*   By: arakotom <arakotom@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 14:05:30 by arakotom          #+#    #+#             */
-/*   Updated: 2024/10/08 15:11:04 by arakotom         ###   ########.fr       */
+/*   Updated: 2024/10/09 08:29:27 by arakotom         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,21 +37,23 @@ int get_len_envp(t_env *envp)
 	return (len);
 }
 
-char **set_arg_execve(t_prompt *prompt)
+char **set_arg_execve(t_cmd *cmd)
 {
 	char **arg;
 	int len;
 	int i;
+	t_arg *arg_cmd;
 
 	len = 2;
 	i = 1;
-	len += get_len_arg(prompt->cmd->args);
+	len += get_len_arg(cmd->args);
 	arg = malloc(sizeof(char *) * len);
-	arg[0] = ft_strdup(prompt->cmd->cmd);
+	arg[0] = ft_strdup(cmd->cmd);
+	arg_cmd = cmd->args;
 	while (i < len - 1)
 	{
-		arg[i++] = ft_strdup(prompt->cmd->args->value);
-		prompt->cmd->args = prompt->cmd->args->next;
+		arg[i++] = ft_strdup(arg_cmd->value);
+		arg_cmd = arg_cmd->next;
 	}
 	arg[len - 1] = NULL;
 	return (arg);
@@ -78,4 +80,3 @@ char **set_env_execve(t_env *envp)
 	list[len - 1] = NULL;
 	return (list);
 }
-

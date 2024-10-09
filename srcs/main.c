@@ -6,7 +6,7 @@
 /*   By: arakotom <arakotom@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 23:53:58 by arakotom          #+#    #+#             */
-/*   Updated: 2024/10/08 15:49:27 by arakotom         ###   ########.fr       */
+/*   Updated: 2024/10/09 11:25:07 by arakotom         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,16 +28,16 @@ int main(int argc, char *argv[], char *envp[])
 		if (!(data.input))
 		{
 			reset_data(&data);
-			break;
-			// continue ;
+			// break;
+			continue;
 		}
 		if (!set_prompt_data(&data, split_pipe(data.input)))
 			ft_printf("Error, set prompt data\n");
-		// print_prompts(data.prompt);
+		print_prompts(data.prompt);
 		exec_list_prompt(data.prompt, data.envp);
 		reset_data(&data);
-		// continue ;
-		break;
+		continue;
+		// break;
 	}
 	free_data(&data);
 	return (0);

@@ -6,7 +6,7 @@
 #    By: arakotom <arakotom@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/24 23:57:27 by arakotom          #+#    #+#              #
-#    Updated: 2024/10/08 15:20:24 by arakotom         ###   ########.fr        #
+#    Updated: 2024/10/09 10:01:04 by arakotom         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -45,8 +45,8 @@ SRCS = main.c \
 		prompt/tokenizer/prompt_redir_in.c \
 		prompt/tokenizer/prompt_redir_out.c \
 		execution/init_exec.c \
-		execution/free.c \
-		execution/exec_utils.c
+		execution/exec_utils.c \
+		execution/redir.c
 
 OBJS = $(addprefix $(OBJ_DIR)/, $(SRCS:.c=.o))
 LIB = $(LIBFT_DIR)/libft.a $(FT_PRINTF_DIR)/libftprintf.a
