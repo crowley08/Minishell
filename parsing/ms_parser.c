@@ -6,7 +6,7 @@
 /*   By: saandria <saandria@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/26 11:26:27 by saandria          #+#    #+#             */
-/*   Updated: 2024/10/07 09:04:23 by saandria         ###   ########.fr       */
+/*   Updated: 2024/10/10 10:25:56 by saandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,10 @@ static t_node	*parse_token(t_token **token)
 t_node	*parse(t_token *token)
 {
 	t_node	*node;
+	t_token *tmp;
 
-	node = parse_token(&token);
+	tmp = token;
+	node = parse_token(&tmp);
+	free_tokens(&token);
 	return (node);
 }

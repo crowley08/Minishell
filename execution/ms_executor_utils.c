@@ -6,7 +6,7 @@
 /*   By: saandria <saandria@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 22:38:31 by saandria          #+#    #+#             */
-/*   Updated: 2024/10/09 08:00:36 by saandria         ###   ########.fr       */
+/*   Updated: 2024/10/10 12:50:07 by saandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,11 +40,6 @@ char	*check_path(char *cmd, char **env)
 	return (0);
 }
 
-/*
-			printf("%s\taccess autorised\n", path);
-	printf("%s\taccess unautorised\n", path);
-*/
-
 int	cmd_is_builtin(char **cmd)
 {
 	if (!ft_strcmp(cmd[0], "cd") || !ft_strcmp(cmd[0], "pwd")
@@ -70,7 +65,10 @@ void	exec(char **cmd, char **env)
 	char	*path;
 
 	if (cmd_is_builtin(cmd))
+	{
 		exec_built(cmd, env);
+		exit (EXIT_SUCCESS);
+	}
 	else
 	{
 		path = check_path(cmd[0], env);
