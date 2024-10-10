@@ -6,7 +6,7 @@
 /*   By: arakotom <arakotom@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 13:17:35 by arakotom          #+#    #+#             */
-/*   Updated: 2024/10/09 20:56:36 by arakotom         ###   ########.fr       */
+/*   Updated: 2024/10/10 12:46:09 by arakotom         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 
 // init_exec
 char	*get_path(char *cmd, t_env *envp);
-void	exec_one_prompt(t_prompt *prompt, t_env *env);
-void	exec_prompt(t_prompt *prompt, t_env *envp, int *fd);
+// void	exec_one_prompt(t_prompt *prompt, t_env *env);
+// void	exec_prompt(t_prompt *prompt, t_env *envp, int *fd);
 void	exec_list_prompt(t_prompt *prompt, t_env *envp);
 
 // exec_utils
