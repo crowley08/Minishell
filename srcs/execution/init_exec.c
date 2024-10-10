@@ -6,18 +6,18 @@
 /*   By: arakotom <arakotom@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 11:25:23 by arakotom          #+#    #+#             */
-/*   Updated: 2024/10/09 14:24:31 by arakotom         ###   ########.fr       */
+/*   Updated: 2024/10/10 07:52:19 by arakotom         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-char *get_path(char *cmd, t_env *envp)
+char	*get_path(char *cmd, t_env *envp)
 {
-	t_env *env_path;
-	int i;
-	char **paths;
-	char *path;
+	t_env	*env_path;
+	int		i;
+	char	**paths;
+	char	*path;
 
 	env_path = get_env("PATH", envp);
 	if (!env_path)
@@ -29,7 +29,7 @@ char *get_path(char *cmd, t_env *envp)
 		path = ft_strjoin(paths[i++], "/");
 		path = heredoc_strjoin(path, cmd);
 		if (access(path, F_OK) == 0 && access(path, X_OK) == 0)
-			break;
+			break ;
 		free(path);
 		path = NULL;
 	}
@@ -37,21 +37,21 @@ char *get_path(char *cmd, t_env *envp)
 	return (path);
 }
 
-void exec_one_prompt(t_prompt *prompt, t_env *envp)
+void	exec_cmd(t_cmd *cmd, t_env *envp)
 {
-	char *path;
-	char **arg;
-	char **env;
+	char	*path;
+	char	**arg;
+	char	**env;
 
-	if (!(prompt->cmd))
-		return;
-	path = get_path(prompt->cmd->cmd, envp);
+	if (!cmd)
+		return ;
+	path = get_path(cmd->cmd, envp);
 	if (path)
 	{
 		//? leak memory
-		arg = set_arg_execve(prompt->cmd);
+		arg = set_arg_execve(cmd);
 		env = set_env_execve(envp);
-		ft_printf("Path for %s: %s\n", prompt->cmd->cmd, path);
+		// ft_printf("Path for %s: %s\n", cmd->cmd, path);
 		if (execve(path, arg, env) == -1)
 		{
 			//! exit
@@ -62,87 +62,98 @@ void exec_one_prompt(t_prompt *prompt, t_env *envp)
 		}
 	}
 	else
-		ft_printf("Path not found for %s\n", prompt->cmd->cmd);
+		ft_printf("Path not found for %s\n", cmd->cmd);
 }
 
-void exec_prompt(t_prompt *prompt, t_env *envp)
+void	exec_prompt(t_prompt *prompt, t_env *envp, int *fd)
 {
-	pid_t pid;
-	(void)envp;
-	(void)prompt;
+	pid_t	pid;
+	int		fd_in_file;
+	int		fd_out_file;
+
 	pid = fork();
 	if (pid == -1)
-	{
-		ft_printf("Fork failed ---------------\n\n");
-		return;
-	}
+		return ;
 	if (pid == 0)
-		exec_one_prompt(prompt, envp);
-	wait(NULL);
-	ft_printf("Fork succeeded +++++++++++++++\n\n");
-}
-
-void set_redir_in(t_redir_in *redir, int fd[2])
-{
-	int fd_file;
-	if (redir)
 	{
-		while (redir->next)
-			redir = redir->next;
-		fd_file = open(redir->file, O_RDONLY);
-		if (!fd_file)
-			return;
-		dup2(fd_file, fd[0]);
-	}
-}
-
-void set_redir_out(t_redir_out *redir, int fd[2])
-{
-	int fd_file;
-	if (redir)
-	{
-		while (redir->next)
+		fd_in_file = set_redir_in(prompt->redir_in);
+		fd_out_file = set_redir_out(prompt->redir_out);
+		if (fd_in_file == -1 || fd_in_file == -1)
+			return ;
+		if (fd_in_file == STDIN_FILENO)
+			dup2(fd[0], STDIN_FILENO);
+		else
 		{
-			if (redir->type == REDIR_APPEND)
-				fd_file = open(redir->file, O_CREAT | O_WRONLY | O_APPEND, 0644);
-			else if (redir->type == REDIR_TRUNC)
-				fd_file = open(redir->file, O_CREAT | O_WRONLY | O_TRUNC, 0644);
-			if (!fd_file)
-				return;
-			close(fd_file);
-			redir = redir->next;
+			dup2(fd_in_file, STDIN_FILENO);
+			close(fd[0]);
 		}
-		if (redir->type == REDIR_APPEND)
-			fd_file = open(redir->file, O_CREAT | O_WRONLY | O_APPEND, 0644);
-		else if (redir->type == REDIR_TRUNC)
-			fd_file = open(redir->file, O_CREAT | O_WRONLY | O_TRUNC, 0644);
-		if (!fd_file)
-			return;
-		dup2(fd_file, fd[1]);
+		if (fd_out_file == STDOUT_FILENO)
+			dup2(fd[1], STDOUT_FILENO);
+		else
+		{
+			dup2(fd_out_file, STDOUT_FILENO);
+			close(fd[1]);
+		}
+		exec_cmd(prompt->cmd, envp);
 	}
+	wait(NULL);
+	close(fd[1]);
+}
+
+void	exec_last_prompt(t_prompt *prompt, t_env *envp, int *fd, int std_out)
+{
+	pid_t	pid;
+	int		fd_in_file;
+	int		fd_out_file;
+
+	pid = fork();
+	if (pid == -1)
+		return ;
+	if (pid == 0)
+	{
+		fd_in_file = set_redir_in(prompt->redir_in);
+		fd_out_file = set_redir_out(prompt->redir_out);
+		if (fd_in_file == -1 || fd_in_file == -1)
+			return ;
+		if (fd_in_file == STDIN_FILENO)
+			dup2(fd[0], STDIN_FILENO);
+		else
+		{
+			dup2(fd_in_file, STDIN_FILENO);
+			close(fd[0]);
+		}
+		close(fd[1]);
+		if (fd_out_file == STDOUT_FILENO)
+			dup2(std_out, STDOUT_FILENO);
+		else
+			dup2(fd_out_file, STDOUT_FILENO);
+		exec_cmd(prompt->cmd, envp);
+	}
+	wait(NULL);
+	close(fd[1]);
 }
 
 //! FIXME: this function
-void exec_list_prompt(t_prompt *prompt, t_env *envp)
+void	exec_list_prompt(t_prompt *prompt, t_env *envp)
 {
-	int fd[2];
-	int fd_std_in;
-	int fd_std_out;
+	int	std_in;
+	int	std_out;
+	int	fd[2];
 
+	std_in = dup(STDIN_FILENO);
+	std_out = dup(STDOUT_FILENO);
 	if (pipe(fd) == -1)
+		return ;
+	while (prompt->next)
 	{
-		ft_printf("Pipe failed ---------------\n\n");
-		return;
-	}
-	fd_std_in = dup(STDIN_FILENO);
-	fd_std_out = dup(STDOUT_FILENO);
-	while (prompt)
-	{
-		if (check_redir_error(prompt->redir_in, prompt->redir_out))
-			break;
-		exec_prompt(prompt, envp);
+		exec_prompt(prompt, envp, fd);
+		dup2(std_in, STDIN_FILENO);
+		dup2(std_out, STDOUT_FILENO);
 		prompt = prompt->next;
 	}
-	dup2(fd_std_in, STDIN_FILENO);
-	dup2(fd_std_out, STDOUT_FILENO);
+	exec_last_prompt(prompt, envp, fd, std_out);
+	dup2(std_in, STDIN_FILENO);
+	dup2(std_out, STDOUT_FILENO);
+	close(std_in);
+	close(std_out);
 }

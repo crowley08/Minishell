@@ -6,7 +6,7 @@
 /*   By: arakotom <arakotom@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/07 08:55:47 by arakotom          #+#    #+#             */
-/*   Updated: 2024/10/08 10:50:29 by arakotom         ###   ########.fr       */
+/*   Updated: 2024/10/10 07:38:22 by arakotom         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ t_prompt	*create_prompt(char *input)
 	prompt = new_prompt();
 	if (!prompt || !input)
 		return (NULL);
+	// ft_printf("input begin : $%s$\n", input);
 	while (input && *input)
 	{
 		len = 0;
@@ -45,7 +46,9 @@ t_prompt	*create_prompt(char *input)
 		input += len;
 		if (ft_isspace(*input))
 			input++;
+		// ft_printf("value: $%s$\n", value);
 		input += fill_prompt_token(&prompt, value, input);
+		// ft_printf("input after: $%s$\n", input);
 		if (ft_isspace(*input))
 			input++;
 		free(value);

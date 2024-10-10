@@ -6,15 +6,15 @@
 /*   By: arakotom <arakotom@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 23:07:00 by arakotom          #+#    #+#             */
-/*   Updated: 2024/10/09 11:20:24 by arakotom         ###   ########.fr       */
+/*   Updated: 2024/10/10 07:39:05 by arakotom         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-t_bool is_input_valid(char *line)
+t_bool	is_input_valid(char *line)
 {
-	t_error_stt error;
+	t_error_stt	error;
 
 	error = NOTHING;
 	if (is_empty_line(line))
@@ -28,10 +28,10 @@ t_bool is_input_valid(char *line)
 	return (TRUE);
 }
 
-char *get_input(void)
+char	*get_input(void)
 {
-	char *line;
-	char *input;
+	char	*line;
+	char	*input;
 
 	while (42)
 	{
@@ -41,22 +41,22 @@ char *get_input(void)
 		if (!line || !is_input_valid(line))
 		{
 			free(line);
-			continue;
+			continue ;
 		}
-		ft_printf("\e[32mSyntax valid: \e[0m%s\n", line);
+		// ft_printf("\e[32mSyntax valid: \e[0m%s\n", line);
 		input = trim_space_all(line);
 		free(line);
 		if (!input)
-			continue;
-		break;
+			continue ;
+		break ;
 	}
 	return (input);
 }
 
-char *parse_input_var(char *input, t_env *envp)
+char	*parse_input_var(char *input, t_env *envp)
 {
-	char *new_input;
-	t_heredoc *heredoc;
+	char		*new_input;
+	t_heredoc	*heredoc;
 
 	heredoc = get_all_heredoc(input);
 	if (heredoc)

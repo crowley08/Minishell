@@ -6,7 +6,7 @@
 /*   By: arakotom <arakotom@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 10:36:45 by arakotom          #+#    #+#             */
-/*   Updated: 2024/10/09 08:14:36 by arakotom         ###   ########.fr       */
+/*   Updated: 2024/10/10 07:35:47 by arakotom         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,11 +29,16 @@ int	get_next_word_len(char *input)
 	while (input && input[len])
 	{
 		update_quote_dt(input[len], &quote);
-		if (quote.d_q == OPENED || quote.s_q == OPENED || ft_isalnum(input[len])
-			|| input[len] == '_' || is_quote(input[len]) || input[len] == '.')
-			len++;
-		else
+		// if (quote.d_q == OPENED || quote.s_q == OPENED
+		// || ft_isalnum(input[len])
+		// 	|| input[len] == '_' || is_quote(input[len]) || input[len] == '.')
+		// 	len++;
+		// else
+		// 	break ;
+		if (quote.d_q == CLOSED && quote.s_q == CLOSED
+			&& (ft_isspace(input[len]) || is_char_redir(input[len])))
 			break ;
+		len++;
 	}
 	return (len);
 }
