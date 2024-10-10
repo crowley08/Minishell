@@ -6,13 +6,13 @@
 /*   By: saandria <saandria@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/26 15:44:01 by saandria          #+#    #+#             */
-/*   Updated: 2024/10/10 09:58:56 by saandria         ###   ########.fr       */
+/*   Updated: 2024/10/10 14:43:28 by saandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-static void	free_all(t_msh *msh)
+void	free_all(t_msh *msh)
 {
 	free_env(&msh->envp);
 	free(msh);

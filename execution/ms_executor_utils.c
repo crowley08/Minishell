@@ -6,7 +6,7 @@
 /*   By: saandria <saandria@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 22:38:31 by saandria          #+#    #+#             */
-/*   Updated: 2024/10/10 12:50:07 by saandria         ###   ########.fr       */
+/*   Updated: 2024/10/10 15:04:03 by saandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,12 +31,13 @@ char	*check_path(char *cmd, char **env)
 		free(tmp_part);
 		if (access(path, F_OK) == 0 && access(path, X_OK) == 0)
 			return (path);
+		free(path);
 		i++;
 	}
-	free(path);
-	i = 0;
+	i = -1;
 	while (paths[++i])
 		free(paths[i]);
+	free(paths);
 	return (0);
 }
 
@@ -60,29 +61,33 @@ void	exec_built(char **cmd, char **env)
 	return ;
 }
 
-void	exec(char **cmd, char **env)
+void	exec(char **cmd, t_msh *msh)
 {
 	char	*path;
 
 	if (cmd_is_builtin(cmd))
 	{
-		exec_built(cmd, env);
+		exec_built(cmd, msh->envc);
+		free_minishell(msh);
+		free_all(msh);
 		exit (EXIT_SUCCESS);
 	}
 	else
 	{
-		path = check_path(cmd[0], env);
+		path = check_path(cmd[0], msh->envc);
 		if (!path)
 		{
-			free_spl(cmd);
+			free_spl(msh->envc);
+			free_node(&msh->node);
+			free_all(msh);
 			error();
 		}
-		if (execve(path, cmd, env) == -1)
+		if (execve(path, cmd, msh->envc) == -1)
 			error();
 	}
 }
 
-void	exec_dir(t_node *node, char **env)
+void	exec_dir(t_node *node, t_msh *msh)
 {
 	int		fd;
 	int		i;
@@ -99,8 +104,14 @@ void	exec_dir(t_node *node, char **env)
 	printf("%s\n", node->right->cmd[0]);
 	fd = open(node->right->cmd[0], O_CREAT | O_RDWR | O_TRUNC, mode);
 	if (fd == -1)
+	{
+		free_spl(msh->envc);
+		free_node(&msh->node);
+		free_all(msh);
 		perror("open");
+		exit (EXIT_FAILURE);
+	}
 	dup2(fd, STDOUT_FILENO);
 	close(fd);
-	ms_exec(node->left, env);
+	ms_exec(node->left, msh);
 }

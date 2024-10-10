@@ -6,13 +6,13 @@
 /*   By: saandria <saandria@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/17 10:18:21 by saandria          #+#    #+#             */
-/*   Updated: 2024/10/07 17:44:13 by saandria         ###   ########.fr       */
+/*   Updated: 2024/10/10 17:20:52 by saandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-static t_token	*create_token(t_tokentype type, char *value, int *i)
+t_token	*create_token(t_tokentype type, char *value, int *i)
 {
 	t_token	*new_token;
 
@@ -83,7 +83,7 @@ t_token	*check_token(char *s, int *i, t_token *new_token)
 	return (new_token);
 }
 
-static void	add_token(t_token **token, t_token *new)
+void	add_token(t_token **token, t_token *new)
 {
 	t_token	*current;
 

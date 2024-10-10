@@ -3,7 +3,8 @@ V_FLAGS			=	valgrind --suppressions=readline.supp --leak-check=full --show-leak-
 SRCS			=	src/main.c src/signal_handler.c parsing/ms_tokenizer.c parsing/ms_tokenizer_utils.c \
 					environnement/env_list.c environnement/env.c execution/ms_executor.c utils/msh_utils.c parsing/ms_parser.c \
 					utils/free_msh.c execution/ms_executor_utils.c parsing/ms_parser_utils.c \
-					builtin/ms_pwd.c builtin/ms_cd.c builtin/ms_env.c
+					builtin/ms_pwd.c builtin/ms_cd.c builtin/ms_env.c 
+					
 OBJS			=	$(SRCS:.c=.o)
 
 
