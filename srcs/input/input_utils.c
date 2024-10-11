@@ -1,29 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_msh.c                                         :+:      :+:    :+:   */
+/*   input_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: arakotom <arakotom@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/11 22:06:35 by arakotom          #+#    #+#             */
-/*   Updated: 2024/10/11 23:04:45 by arakotom         ###   ########.fr       */
+/*   Created: 2024/10/11 23:14:46 by arakotom          #+#    #+#             */
+/*   Updated: 2024/10/11 23:15:19 by arakotom         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/minishell.h"
+#include "../../includes/minishell.h"
 
-void	exit_msh_sig(t_msh *msh)
+t_bool	is_empty_line(char *line)
 {
-	free_msh(msh);
-	ft_printf("^D\n");
-	exit(EXIT_SUCCESS);
-}
-
-t_bool	init_msh(t_msh *msh, int argc, char *argv[], char *envp[])
-{
-	(void)argc;
-	(void)argv;
-	if (!dup_envp(msh, envp))
-		error_dup_env(msh);
+	while (line && *line)
+	{
+		if (!ft_isspace(*line))
+			return (FALSE);
+		line++;
+	}
 	return (TRUE);
 }
