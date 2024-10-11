@@ -6,7 +6,7 @@
 #    By: arakotom <arakotom@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/24 23:57:27 by arakotom          #+#    #+#              #
-#    Updated: 2024/10/11 23:23:33 by arakotom         ###   ########.fr        #
+#    Updated: 2024/10/11 23:55:00 by arakotom         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,12 +23,14 @@ FT_PRINTF_DIR = ft_printf
 SRCS = main.c \
 		init_msh.c \
 		signals.c \
+		quote.c \
 		env/init_env.c \
 		error/error_env.c \
 		free/free_env.c \
 		free/free_msh.c \
 		input/init_input.c \
-		input/input_utils.c
+		input/input_utils.c \
+		input/input_trim.c
 
 OBJS = $(addprefix $(OBJ_DIR)/, $(SRCS:.c=.o))
 LIB = $(LIBFT_DIR)/libft.a $(FT_PRINTF_DIR)/libftprintf.a

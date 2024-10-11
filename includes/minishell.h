@@ -6,7 +6,7 @@
 /*   By: arakotom <arakotom@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/11 21:24:57 by arakotom          #+#    #+#             */
-/*   Updated: 2024/10/11 23:17:13 by arakotom         ###   ########.fr       */
+/*   Updated: 2024/10/11 23:42:50 by arakotom         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,4 +33,10 @@ void	exit_msh_sig(t_msh *msh);
 void	handle_sigint(int sig);
 void	set_signal_handler(void);
 
+// quote
+t_bool	is_quote(char c);
+void	init_quote(t_quote_dt *quote);
+t_bool	quote_opened(t_quote_dt quote);
+t_bool	quote_closed(t_quote_dt quote);
+void	update_quote(char c, t_quote_dt *quote);
 #endif
