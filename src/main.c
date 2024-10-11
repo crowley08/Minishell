@@ -6,7 +6,7 @@
 /*   By: saandria <saandria@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/26 15:44:01 by saandria          #+#    #+#             */
-/*   Updated: 2024/10/11 15:58:05 by saandria         ###   ########.fr       */
+/*   Updated: 2024/10/11 17:07:12 by saandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,11 +41,9 @@ int	main(int ac, char **av, char **env)
 		printf("%s\n", msh->input);
 		check_exit(msh);
 		init_msh(&msh);
-	//	exec_main(msh);
+		exec_main(msh);
 		add_history(msh->input);
 		free_minishell(msh);
-	/*
-	*/
 	}
 	free_all(msh);
 	return (0);
