@@ -6,11 +6,11 @@
 /*   By: saandria <saandria@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/17 10:38:27 by saandria          #+#    #+#             */
-/*   Updated: 2024/10/07 18:26:51 by saandria         ###   ########.fr       */
+/*   Updated: 2024/10/11 16:04:45 by saandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/minishell.h"
+#include "../../includes/minishell.h"
 
 int	is_in_simple_quotes(char *s, int *i)
 {
