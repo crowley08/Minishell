@@ -6,7 +6,7 @@
 /*   By: arakotom <arakotom@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/12 11:46:49 by arakotom          #+#    #+#             */
-/*   Updated: 2024/10/12 12:50:17 by arakotom         ###   ########.fr       */
+/*   Updated: 2024/10/12 13:48:07 by arakotom         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,12 +45,15 @@ t_bool has_syntax_error(t_msh *msh, char *input)
 		ft_printf("Error: fork pid_syntax() returned %d\n", pid_syntax);
 	else if (pid_syntax == 0)
 	{
-		free_msh_syntax(msh, input);
 		// TODO: add child of validation input
-		exit(EXIT_FAILURE);
+		status_syntax = launch_syntax_validation(input);
+		free_msh_syntax(msh, input);
+		exit(status_syntax);
 	}
 	waitpid(pid_syntax, &status_syntax, 0);
 	has_error = FALSE;
 	set_exit_status_syntax(msh, status_syntax, &has_error);
+	if (has_error)
+		error_syntax(msh, input);
 	return (has_error);
 }

@@ -6,7 +6,7 @@
 #    By: arakotom <arakotom@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/24 23:57:27 by arakotom          #+#    #+#              #
-#    Updated: 2024/10/12 12:24:50 by arakotom         ###   ########.fr        #
+#    Updated: 2024/10/12 13:44:42 by arakotom         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,7 +32,8 @@ SRCS = main.c \
 		input/init_input.c \
 		input/input_utils.c \
 		input/input_trim.c \
-		input/input_syntax.c
+		input/input_syntax.c \
+		input/launch_syntax_validation.c
 
 OBJS = $(addprefix $(OBJ_DIR)/, $(SRCS:.c=.o))
 LIB = $(LIBFT_DIR)/libft.a $(FT_PRINTF_DIR)/libftprintf.a

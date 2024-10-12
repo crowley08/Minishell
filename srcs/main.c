@@ -6,7 +6,7 @@
 /*   By: arakotom <arakotom@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/11 21:24:41 by arakotom          #+#    #+#             */
-/*   Updated: 2024/10/12 12:19:58 by arakotom         ###   ########.fr       */
+/*   Updated: 2024/10/12 13:47:47 by arakotom         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,8 @@ void run_msh(t_msh *msh)
 	{
 		input = get_input(msh);
 		if (has_syntax_error(msh, input))
-			error_syntax(msh, input);
+			continue;
+		ft_printf("%s\n", input);
 		free(input);
 	}
 }
