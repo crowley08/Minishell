@@ -1,27 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error.h                                            :+:      :+:    :+:   */
+/*   init_heredoc.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: arakotom <arakotom@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/11 22:32:45 by arakotom          #+#    #+#             */
-/*   Updated: 2024/10/12 14:35:30 by arakotom         ###   ########.fr       */
+/*   Created: 2024/10/12 14:46:26 by arakotom          #+#    #+#             */
+/*   Updated: 2024/10/12 14:49:12 by arakotom         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ERROR_H
-#define ERROR_H
+#include "../../includes/minishell.h"
 
-// error_env
-void error_dup_env(t_msh *msh);
+t_bool has_heredoc_error(t_msh *msh, char *input)
+{
 
-// error_input
-void error_syntax(t_msh *msh, char *input);
-void print_syntax_error(t_error_stt error);
-t_bool set_syntax_error(t_error_stt *error, t_error_stt type);
-
-// error_fork
-void error_fork_syntax(t_msh *msh, char *input);
-
-#endif
+}

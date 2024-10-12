@@ -6,7 +6,7 @@
 /*   By: arakotom <arakotom@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/11 23:14:46 by arakotom          #+#    #+#             */
-/*   Updated: 2024/10/12 13:56:55 by arakotom         ###   ########.fr       */
+/*   Updated: 2024/10/12 14:42:31 by arakotom         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,28 @@ t_bool is_empty_line(char *line)
 		line++;
 	}
 	return (TRUE);
+}
+
+void set_exit_status_syntax(t_msh *msh, int status, t_bool *has_error)
+{
+	if (WIFEXITED(status))
+	{
+		if (WEXITSTATUS(status) == EXIT_FAILURE)
+		{
+			msh->exit_status = 2;
+			*has_error = TRUE;
+		}
+	}
+	else if (WIFSIGNALED(status))
+	{
+		msh->exit_status = WTERMSIG(status);
+		*has_error = TRUE;
+	}
+	else
+	{
+		msh->exit_status = 1;
+		*has_error = TRUE;
+	}
 }
 
 t_bool is_redir(char c)

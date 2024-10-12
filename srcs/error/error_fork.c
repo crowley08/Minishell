@@ -1,27 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error.h                                            :+:      :+:    :+:   */
+/*   error_fork.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: arakotom <arakotom@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/11 22:32:45 by arakotom          #+#    #+#             */
-/*   Updated: 2024/10/12 14:35:30 by arakotom         ###   ########.fr       */
+/*   Created: 2024/10/12 14:32:11 by arakotom          #+#    #+#             */
+/*   Updated: 2024/10/12 14:35:05 by arakotom         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ERROR_H
-#define ERROR_H
+#include "../../includes/minishell.h"
 
-// error_env
-void error_dup_env(t_msh *msh);
-
-// error_input
-void error_syntax(t_msh *msh, char *input);
-void print_syntax_error(t_error_stt error);
-t_bool set_syntax_error(t_error_stt *error, t_error_stt type);
-
-// error_fork
-void error_fork_syntax(t_msh *msh, char *input);
-
-#endif
+void error_fork_syntax(t_msh *msh, char *input)
+{
+	perror("Error: fork pid_syntax() returned");
+	free(input);
+	free_msh(msh);
+	exit(EXIT_FAILURE);
+}

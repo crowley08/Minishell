@@ -6,7 +6,7 @@
 #    By: arakotom <arakotom@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/24 23:57:27 by arakotom          #+#    #+#              #
-#    Updated: 2024/10/12 13:44:42 by arakotom         ###   ########.fr        #
+#    Updated: 2024/10/12 14:42:51 by arakotom         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,12 +27,12 @@ SRCS = main.c \
 		env/init_env.c \
 		error/error_env.c \
 		error/error_input.c \
+		error/error_fork.c \
 		free/free_env.c \
 		free/free_msh.c \
 		input/init_input.c \
 		input/input_utils.c \
 		input/input_trim.c \
-		input/input_syntax.c \
 		input/launch_syntax_validation.c
 
 OBJS = $(addprefix $(OBJ_DIR)/, $(SRCS:.c=.o))
