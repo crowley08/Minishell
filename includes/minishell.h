@@ -6,7 +6,7 @@
 /*   By: arakotom <arakotom@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/11 21:24:57 by arakotom          #+#    #+#             */
-/*   Updated: 2024/10/12 11:39:05 by arakotom         ###   ########.fr       */
+/*   Updated: 2024/10/12 11:50:04 by arakotom         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,14 @@
 #include "error.h"
 #include "free.h"
 #include "input.h"
+#include <fcntl.h>
 #include <readline/history.h>
 #include <readline/readline.h>
-#include <signal.h>
 #include <stdio.h>
+#include <stdlib.h>
+#include <sys/types.h>
+#include <sys/wait.h>
+#include <unistd.h>
 
 // init_msh
 t_bool init_msh(t_msh *msh, int argc, char *argv[], char *envp[]);

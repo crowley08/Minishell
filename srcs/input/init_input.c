@@ -6,13 +6,13 @@
 /*   By: arakotom <arakotom@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/11 22:50:14 by arakotom          #+#    #+#             */
-/*   Updated: 2024/10/12 11:40:03 by arakotom         ###   ########.fr       */
+/*   Updated: 2024/10/12 12:53:50 by arakotom         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-char *get_line(t_msh *msh)
+char *get_input(t_msh *msh)
 {
 	char *line;
 	char *input;
@@ -21,6 +21,7 @@ char *get_line(t_msh *msh)
 	{
 		set_signal_handler();
 		line = readline("\e[33mminishell$ \e[0m");
+		// line = ft_strdup("cat");
 		if (line == NULL)
 			exit_msh_sigeof(msh);
 		if (is_empty_line(line))
@@ -30,7 +31,8 @@ char *get_line(t_msh *msh)
 		free(line);
 		if (ft_strncmp(input, "exit", ft_strlen(input)) == 0)
 			exit_msh_exit(msh, input);
-		ft_printf("input: $%s$\n", input);
-		free(input);
+		ft_printf("input trimmed: $%s$\n", input);
+		break;
 	}
+	return (input);
 }
