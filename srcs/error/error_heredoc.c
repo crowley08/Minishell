@@ -1,37 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_msh.c                                         :+:      :+:    :+:   */
+/*   error_heredoc.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: arakotom <arakotom@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/11 22:06:35 by arakotom          #+#    #+#             */
-/*   Updated: 2024/10/12 17:27:22 by arakotom         ###   ########.fr       */
+/*   Created: 2024/10/12 16:47:18 by arakotom          #+#    #+#             */
+/*   Updated: 2024/10/12 17:12:01 by arakotom         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/minishell.h"
+#include "../../includes/minishell.h"
 
-void exit_msh_sigeof(t_msh *msh)
+void error_heredoc(t_msh *msh, char *input)
 {
-	free_msh(msh);
-	ft_printf("^D\n");
-	exit(EXIT_SUCCESS);
-}
-void exit_msh_exit(t_msh *msh, char *input)
-{
-	free_msh(msh);
+	perror("msh: heredoc error");
 	free(input);
-	ft_printf("exit\n");
-	exit(EXIT_SUCCESS);
-}
-
-t_bool init_msh(t_msh *msh, int argc, char *argv[], char *envp[])
-{
-	(void)argc;
-	(void)argv;
-	msh->heredoc = NULL;
-	if (!dup_envp(msh, envp))
-		error_dup_env(msh);
-	return (TRUE);
+	//! FIXME: reset msh not free msh
+	free_msh_reset(msh);
 }

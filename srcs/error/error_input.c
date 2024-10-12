@@ -6,7 +6,7 @@
 /*   By: arakotom <arakotom@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/12 12:17:41 by arakotom          #+#    #+#             */
-/*   Updated: 2024/10/12 13:51:05 by arakotom         ###   ########.fr       */
+/*   Updated: 2024/10/12 17:12:14 by arakotom         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,5 +35,5 @@ void error_syntax(t_msh *msh, char *input)
 	perror("msh: syntax error");
 	free(input);
 	//! FIXME: reset msh not free msh
-	free_msh(msh);
+	free_msh_reset(msh);
 }

@@ -6,7 +6,7 @@
 /*   By: arakotom <arakotom@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/11 22:24:49 by arakotom          #+#    #+#             */
-/*   Updated: 2024/10/12 12:37:00 by arakotom         ###   ########.fr       */
+/*   Updated: 2024/10/12 17:29:42 by arakotom         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,12 @@ void free_env_list(t_env **list);
 
 // free_msh
 void free_msh(t_msh *msh);
+void free_msh_reset(t_msh *msh);
 void free_msh_syntax(t_msh *msh, char *input);
+void free_msh_heredoc(t_msh *msh, char *input);
+
+// free_heredoc
+void free_heredoc(t_heredoc *heredoc);
+void free_heredoc_list(t_heredoc **list);
 
 #endif

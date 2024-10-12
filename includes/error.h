@@ -6,7 +6,7 @@
 /*   By: arakotom <arakotom@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/11 22:32:45 by arakotom          #+#    #+#             */
-/*   Updated: 2024/10/12 14:35:30 by arakotom         ###   ########.fr       */
+/*   Updated: 2024/10/12 16:48:36 by arakotom         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,5 +23,9 @@ t_bool set_syntax_error(t_error_stt *error, t_error_stt type);
 
 // error_fork
 void error_fork_syntax(t_msh *msh, char *input);
+void error_fork_heredoc(t_msh *msh, char *input);
+
+// error_heredoc
+void error_heredoc(t_msh *msh, char *input);
 
 #endif
