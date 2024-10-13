@@ -6,7 +6,7 @@
 /*   By: arakotom <arakotom@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/13 12:46:49 by arakotom          #+#    #+#             */
-/*   Updated: 2024/10/13 12:46:52 by arakotom         ###   ########.fr       */
+/*   Updated: 2024/10/13 12:56:57 by arakotom         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,8 @@ enum						e_error_stt
 	STX_PIPE_START_END = 2,
 	STX_PIPE_SUCC = 3,
 	STX_REDIR = 4,
-	HEREDOC_EOF = 5,    // * CTRL + D
-	HEREDOC_SIGINT = 6, // * CTRL + C
+	HEREDOC_EOF = 5,
+	HEREDOC_SIGINT = 6,
 	HEREDOC_FD = 7
 };
 #endif

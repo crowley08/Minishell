@@ -6,7 +6,7 @@
 /*   By: arakotom <arakotom@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/11 22:50:14 by arakotom          #+#    #+#             */
-/*   Updated: 2024/10/12 22:54:19 by arakotom         ###   ########.fr       */
+/*   Updated: 2024/10/13 12:51:27 by arakotom         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ char	*get_input(t_msh *msh)
 	{
 		set_signal_handler();
 		line = readline("\e[33mminishell$ \e[0m");
-		// line = ft_strdup("cat");
 		if (line == NULL)
 			exit_msh_sigeof(msh);
 		if (is_empty_line(line))

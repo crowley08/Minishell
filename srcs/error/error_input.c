@@ -6,19 +6,19 @@
 /*   By: arakotom <arakotom@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/12 12:17:41 by arakotom          #+#    #+#             */
-/*   Updated: 2024/10/12 17:12:14 by arakotom         ###   ########.fr       */
+/*   Updated: 2024/10/13 12:50:07 by arakotom         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-t_bool set_syntax_error(t_error_stt *error, t_error_stt type)
+t_bool	set_syntax_error(t_error_stt *error, t_error_stt type)
 {
 	*error = type;
 	return (TRUE);
 }
 
-void print_syntax_error(t_error_stt error)
+void	print_syntax_error(t_error_stt error)
 {
 	if (error == STX_PIPE_START_END)
 		perror("msh: syntax error near unexpected token `|'");
@@ -30,10 +30,9 @@ void print_syntax_error(t_error_stt error)
 		perror("msh: syntax error near unexpected token `newline'");
 }
 
-void error_syntax(t_msh *msh, char *input)
+void	error_syntax(t_msh *msh, char *input)
 {
 	perror("msh: syntax error");
 	free(input);
-	//! FIXME: reset msh not free msh
 	free_msh_reset(msh);
 }

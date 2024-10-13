@@ -6,7 +6,7 @@
 /*   By: arakotom <arakotom@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/13 12:39:34 by arakotom          #+#    #+#             */
-/*   Updated: 2024/10/13 12:39:45 by arakotom         ###   ########.fr       */
+/*   Updated: 2024/10/13 12:57:14 by arakotom         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ void	add_heredoc_list(t_heredoc **list, t_heredoc *heredoc)
 		last->next = heredoc;
 	}
 }
+
 t_heredoc	*create_heredoc(char **input, int i)
 {
 	t_heredoc	*heredoc;

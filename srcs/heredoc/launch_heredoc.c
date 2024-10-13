@@ -6,18 +6,18 @@
 /*   By: arakotom <arakotom@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/12 22:51:29 by arakotom          #+#    #+#             */
-/*   Updated: 2024/10/13 11:52:15 by arakotom         ###   ########.fr       */
+/*   Updated: 2024/10/13 12:52:44 by arakotom         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-t_bool		sig_int_heredoc;
+t_bool		g_sig_int_heredoc;
 
 void	handle_heredoc_sigint(int sig)
 {
 	(void)sig;
-	sig_int_heredoc = TRUE;
+	g_sig_int_heredoc = TRUE;
 	close(STDIN_FILENO);
 }
 
@@ -92,7 +92,7 @@ t_error_stt	create_file_heredoc(int fd, t_msh *msh, t_heredoc *heredoc)
 		line = readline("> ");
 		if (line == NULL)
 		{
-			if (sig_int_heredoc)
+			if (g_sig_int_heredoc)
 				return (HEREDOC_SIGINT);
 			return (HEREDOC_EOF);
 		}

@@ -6,7 +6,7 @@
 /*   By: arakotom <arakotom@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/11 23:39:11 by arakotom          #+#    #+#             */
-/*   Updated: 2024/10/11 23:55:49 by arakotom         ###   ########.fr       */
+/*   Updated: 2024/10/13 12:55:53 by arakotom         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ void	init_quote(t_quote_dt *quote)
 	quote->d_q = CLOSED;
 	quote->s_q = CLOSED;
 }
+
 t_bool	quote_opened(t_quote_dt quote)
 {
 	return (quote.d_q == OPENED || quote.s_q == OPENED);

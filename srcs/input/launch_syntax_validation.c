@@ -6,7 +6,7 @@
 /*   By: arakotom <arakotom@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/12 13:02:42 by arakotom          #+#    #+#             */
-/*   Updated: 2024/10/13 12:23:26 by arakotom         ###   ########.fr       */
+/*   Updated: 2024/10/13 12:53:34 by arakotom         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ t_bool	has_pipe_start_end(char *input)
 		return (TRUE);
 	return (FALSE);
 }
+
 t_bool	has_quote_opened(char *input)
 {
 	t_quote_dt	quote;
@@ -65,6 +66,7 @@ t_bool	has_pipe_succ(char *input)
 	}
 	return (FALSE);
 }
+
 t_bool	has_redir_invalid(char *input)
 {
 	t_quote_dt	quote;

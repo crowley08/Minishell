@@ -20,7 +20,8 @@ void	set_exit_status_heredoc(t_msh *msh, int status, t_bool *has_stop)
 		*has_stop = TRUE;
 		if (WEXITSTATUS(status) == HEREDOC_EOF)
 		{
-			ft_printf("msh: warning: here-document delimited by end-of-file (wanted `eof')\n");
+			ft_printf("msh: warning: here-document delimited by end-of-file \
+			(wanted `eof')\n");
 			msh->exit_status = EXIT_SUCCESS;
 		}
 		else if (WEXITSTATUS(status) == HEREDOC_SIGINT)

@@ -6,7 +6,7 @@
 /*   By: arakotom <arakotom@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/11 22:12:25 by arakotom          #+#    #+#             */
-/*   Updated: 2024/10/11 22:19:31 by arakotom         ###   ########.fr       */
+/*   Updated: 2024/10/13 12:50:15 by arakotom         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	free_env(t_env *env)
 
 void	free_env_list(t_env **list)
 {
-	t_env *env;
+	t_env	*env;
 
 	while (list && *list)
 	{

@@ -6,7 +6,7 @@
 /*   By: arakotom <arakotom@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/12 15:47:11 by arakotom          #+#    #+#             */
-/*   Updated: 2024/10/13 10:52:28 by arakotom         ###   ########.fr       */
+/*   Updated: 2024/10/13 12:55:42 by arakotom         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,7 @@ char	*un_quote(char *str, t_bool do_free)
 		free(str);
 	return (res);
 }
+
 t_bool	has_to_expand_heredoc(char *eof_input)
 {
 	int	i;
