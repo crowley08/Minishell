@@ -6,7 +6,7 @@
 /*   By: arakotom <arakotom@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/11 23:05:46 by arakotom          #+#    #+#             */
-/*   Updated: 2024/10/13 12:47:30 by arakotom         ###   ########.fr       */
+/*   Updated: 2024/10/13 20:27:34 by arakotom         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,14 @@
 
 // init_input
 char	*get_input(t_msh *msh);
+void	set_exit_status_syntax(t_msh *msh, int status, t_bool *has_error);
+int		launch_syntax_validation_proc(t_msh *msh, char *input);
 t_bool	has_syntax_error(t_msh *msh, char *input);
 
 // input_utils
 t_bool	is_empty_line(char *line);
 t_bool	is_redir(char c);
 t_bool	is_redir_valid(char **input);
-void	set_exit_status_syntax(t_msh *msh, int status, t_bool *has_error);
 
 // input_trim
 t_bool	is_trimmed(char *line);

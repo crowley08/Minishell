@@ -31,6 +31,7 @@ struct						s_msh
 {
 	t_env					*env_list;
 	int						exit_status;
+	char					*input;
 	t_heredoc				*heredoc;
 };
 struct						s_quote_dt

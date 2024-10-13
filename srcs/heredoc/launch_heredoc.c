@@ -6,7 +6,7 @@
 /*   By: arakotom <arakotom@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/12 22:51:29 by arakotom          #+#    #+#             */
-/*   Updated: 2024/10/13 18:24:07 by arakotom         ###   ########.fr       */
+/*   Updated: 2024/10/13 20:01:27 by arakotom         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,37 +29,6 @@ void	set_signal_handler_heredoc(void)
 	sa_int.sa_flags = 0;
 	sa_int.sa_handler = &handle_heredoc_sigint;
 	sigaction(SIGINT, &sa_int, NULL);
-}
-
-t_bool	set_heredoc_error(t_error_stt *error, t_error_stt type)
-{
-	*error = type;
-	return (TRUE);
-}
-
-char	*expand_var_heredoc(char *line, t_msh *msh)
-{
-	t_env	*env;
-	char	*name;
-	int		i;
-
-	if (*line == '?')
-		return (ft_itoa(msh->exit_status));
-	else if (*line == '$')
-		return (ft_strdup("288"));
-	else if (ft_isspace(*line))
-		return (ft_strdup("$"));
-	i = 0;
-	while (line && line[i] && (ft_isalnum(line[i]) || line[i] == '_'))
-		i++;
-	if (i == 0)
-		return (ft_strdup(""));
-	name = ft_substr(line, 0, i);
-	env = get_env(name, msh->env_list);
-	free(name);
-	if (env)
-		return (ft_strdup(env->value));
-	return (ft_strdup(""));
 }
 
 void	write_file_heredoc(int fd, char *line, t_bool exp_var, t_msh *msh)

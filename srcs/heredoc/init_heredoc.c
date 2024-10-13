@@ -14,10 +14,10 @@
 
 void	set_exit_status_heredoc(t_msh *msh, int status, t_bool *has_stop)
 {
+	*has_stop = TRUE;
 	if (WIFEXITED(status))
 	{
 		msh->exit_status = EXIT_SUCCESS;
-		*has_stop = TRUE;
 		if (WEXITSTATUS(status) == HEREDOC_EOF)
 		{
 			ft_printf("msh: warning: here-document delimited by end-of-file \
@@ -38,7 +38,16 @@ void	set_exit_status_heredoc(t_msh *msh, int status, t_bool *has_stop)
 	}
 }
 
-t_bool	has_heredoc_error(t_msh *msh, char *input)
+int	launch_heredoc_proc(t_msh *msh, char *input)
+{
+	int	exit_status;
+
+	exit_status = launch_heredoc(msh);
+	free_msh_heredoc(msh, input);
+	return (exit_status);
+}
+
+t_bool	has_heredoc_parse_input_error(t_msh *msh, char *input)
 {
 	pid_t	pid_heredoc;
 	t_bool	has_stop;
@@ -47,16 +56,11 @@ t_bool	has_heredoc_error(t_msh *msh, char *input)
 	msh->heredoc = get_heredoc(input);
 	if (msh->heredoc)
 	{
-		has_stop = FALSE;
 		pid_heredoc = fork();
 		if (pid_heredoc < 0)
 			error_fork_heredoc(msh, input);
 		else if (pid_heredoc == 0)
-		{
-			status_heredoc = launch_heredoc(msh);
-			free_msh_heredoc(msh, input);
-			exit(status_heredoc);
-		}
+			exit(launch_heredoc_proc(msh, input));
 		signal(SIGINT, SIG_IGN);
 		waitpid(pid_heredoc, &status_heredoc, 0);
 		set_exit_status_heredoc(msh, status_heredoc, &has_stop);
@@ -65,8 +69,8 @@ t_bool	has_heredoc_error(t_msh *msh, char *input)
 			error_heredoc(msh, input);
 			return (TRUE);
 		}
-		// TODO: parse input with heredoc
+		input = parse_input_heredoc(msh->heredoc, input, TRUE);
 	}
-	// TODO: parse input with variable
+	msh->input = expand_input_var(msh, input, TRUE);
 	return (FALSE);
 }

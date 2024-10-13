@@ -6,7 +6,7 @@
 /*   By: arakotom <arakotom@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/11 21:24:41 by arakotom          #+#    #+#             */
-/*   Updated: 2024/10/13 18:23:28 by arakotom         ###   ########.fr       */
+/*   Updated: 2024/10/13 19:55:52 by arakotom         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,9 @@ void	run_msh(t_msh *msh)
 		input = get_input(msh);
 		if (has_syntax_error(msh, input))
 			continue ;
-		if (has_heredoc_error(msh, input))
+		if (has_heredoc_parse_input_error(msh, input))
 			continue ;
-		ft_printf("%s\n", input);
-		free(input);
+		ft_printf("input parsed final: $%s$\n", msh->input);
 		free_msh_reset(msh);
 	}
 }

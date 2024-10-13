@@ -6,7 +6,7 @@
 /*   By: arakotom <arakotom@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/11 22:50:14 by arakotom          #+#    #+#             */
-/*   Updated: 2024/10/13 12:51:27 by arakotom         ###   ########.fr       */
+/*   Updated: 2024/10/13 20:25:24 by arakotom         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,37 @@ char	*get_input(t_msh *msh)
 	return (input);
 }
 
+void	set_exit_status_syntax(t_msh *msh, int status, t_bool *has_error)
+{
+	if (WIFEXITED(status))
+	{
+		if (WEXITSTATUS(status) == EXIT_FAILURE)
+		{
+			msh->exit_status = 2;
+			*has_error = TRUE;
+		}
+	}
+	else if (WIFSIGNALED(status))
+	{
+		msh->exit_status = WTERMSIG(status);
+		*has_error = TRUE;
+	}
+	else
+	{
+		msh->exit_status = 1;
+		*has_error = TRUE;
+	}
+}
+
+int	launch_syntax_validation_proc(t_msh *msh, char *input)
+{
+	int	exit_status;
+
+	exit_status = launch_syntax_validation(input);
+	free_msh_syntax(msh, input);
+	return (exit_status);
+}
+
 t_bool	has_syntax_error(t_msh *msh, char *input)
 {
 	int		status_syntax;
@@ -46,11 +77,7 @@ t_bool	has_syntax_error(t_msh *msh, char *input)
 	if (pid_syntax < 0)
 		error_fork_syntax(msh, input);
 	else if (pid_syntax == 0)
-	{
-		status_syntax = launch_syntax_validation(input);
-		free_msh_syntax(msh, input);
-		exit(status_syntax);
-	}
+		exit(launch_syntax_validation_proc(msh, input));
 	waitpid(pid_syntax, &status_syntax, 0);
 	has_error = FALSE;
 	set_exit_status_syntax(msh, status_syntax, &has_error);

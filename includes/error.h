@@ -6,7 +6,7 @@
 /*   By: arakotom <arakotom@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/11 22:32:45 by arakotom          #+#    #+#             */
-/*   Updated: 2024/10/13 12:47:06 by arakotom         ###   ########.fr       */
+/*   Updated: 2024/10/13 20:01:21 by arakotom         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,5 +27,6 @@ void	error_fork_heredoc(t_msh *msh, char *input);
 
 // error_heredoc
 void	error_heredoc(t_msh *msh, char *input);
+t_bool	set_heredoc_error(t_error_stt *error, t_error_stt type);
 
 #endif
