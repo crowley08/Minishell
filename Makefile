@@ -41,7 +41,8 @@ SRCS = main.c \
 		heredoc/heredoc_initializer.c \
 		heredoc/heredoc_utils.c \
 		heredoc/launch_heredoc.c \
-		heredoc/heredoc_parser_expander.c
+		heredoc/heredoc_parser_expander.c \
+		prompt/prompt_split_pipe.c
 
 OBJS = $(addprefix $(OBJ_DIR)/, $(SRCS:.c=.o))
 LIB = $(LIBFT_DIR)/libft.a $(FT_PRINTF_DIR)/libftprintf.a

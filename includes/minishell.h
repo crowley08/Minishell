@@ -6,7 +6,7 @@
 /*   By: arakotom <arakotom@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/11 21:24:57 by arakotom          #+#    #+#             */
-/*   Updated: 2024/10/13 12:47:45 by arakotom         ###   ########.fr       */
+/*   Updated: 2024/10/13 22:03:03 by arakotom         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 # include "free.h"
 # include "heredoc.h"
 # include "input.h"
+# include "prompt.h"
 # include <fcntl.h>
 # include <readline/history.h>
 # include <readline/readline.h>
