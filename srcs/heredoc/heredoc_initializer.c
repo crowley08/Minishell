@@ -5,31 +5,30 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: arakotom <arakotom@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/12 14:55:13 by arakotom          #+#    #+#             */
-/*   Updated: 2024/10/12 17:01:12 by arakotom         ###   ########.fr       */
+/*   Created: 2024/10/13 12:39:34 by arakotom          #+#    #+#             */
+/*   Updated: 2024/10/13 12:39:45 by arakotom         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-t_heredoc *new_heredoc(void)
+t_heredoc	*new_heredoc(void)
 {
-
-	t_heredoc *heredoc;
+	t_heredoc	*heredoc;
 
 	heredoc = (t_heredoc *)malloc(sizeof(t_heredoc));
 	if (!heredoc)
 		return (NULL);
 	heredoc->eof = NULL;
 	heredoc->tmp_file = NULL;
-	heredoc->epx_var = TRUE;
+	heredoc->exp_var = TRUE;
 	heredoc->next = NULL;
 	return (heredoc);
 }
 
-void add_heredoc_list(t_heredoc **list, t_heredoc *heredoc)
+void	add_heredoc_list(t_heredoc **list, t_heredoc *heredoc)
 {
-	t_heredoc *last;
+	t_heredoc	*last;
 
 	if (!(*list))
 		*list = heredoc;
@@ -41,10 +40,10 @@ void add_heredoc_list(t_heredoc **list, t_heredoc *heredoc)
 		last->next = heredoc;
 	}
 }
-t_heredoc *create_heredoc(char **input, int i)
+t_heredoc	*create_heredoc(char **input, int i)
 {
-	t_heredoc *heredoc;
-	int eof_len;
+	t_heredoc	*heredoc;
+	int			eof_len;
 
 	heredoc = new_heredoc();
 	if (!heredoc)
@@ -52,17 +51,17 @@ t_heredoc *create_heredoc(char **input, int i)
 	heredoc->tmp_file = set_filename(i);
 	eof_len = get_eof_len(*input);
 	heredoc->eof = un_quote(ft_substr(*input, 0, eof_len), TRUE);
-	heredoc->epx_var = has_to_expand_heredoc(ft_substr(*input, 0, eof_len));
+	heredoc->exp_var = has_to_expand_heredoc(ft_substr(*input, 0, eof_len));
 	*input += eof_len;
 	return (heredoc);
 }
 
-t_heredoc *get_heredoc(char *input)
+t_heredoc	*get_heredoc(char *input)
 {
-	t_heredoc *list;
-	t_heredoc *heredoc;
-	t_quote_dt quote;
-	int i;
+	t_heredoc	*list;
+	t_heredoc	*heredoc;
+	t_quote_dt	quote;
+	int			i;
 
 	i = 0;
 	list = NULL;

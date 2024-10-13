@@ -6,13 +6,13 @@
 /*   By: arakotom <arakotom@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/12 17:03:41 by arakotom          #+#    #+#             */
-/*   Updated: 2024/10/12 17:28:07 by arakotom         ###   ########.fr       */
+/*   Updated: 2024/10/13 11:14:21 by arakotom         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-void free_heredoc(t_heredoc *heredoc)
+void	free_heredoc(t_heredoc *heredoc)
 {
 	if (heredoc->eof)
 		free(heredoc->eof);
@@ -24,9 +24,10 @@ void free_heredoc(t_heredoc *heredoc)
 	free(heredoc);
 }
 
-void free_heredoc_list(t_heredoc **list)
+void	free_heredoc_list(t_heredoc **list)
 {
-	t_heredoc *heredoc;
+	t_heredoc	*heredoc;
+
 	while (list && *list)
 	{
 		heredoc = *list;
@@ -35,4 +36,3 @@ void free_heredoc_list(t_heredoc **list)
 	}
 	*list = NULL;
 }
-

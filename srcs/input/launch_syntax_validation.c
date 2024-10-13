@@ -6,15 +6,16 @@
 /*   By: arakotom <arakotom@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/12 13:02:42 by arakotom          #+#    #+#             */
-/*   Updated: 2024/10/12 13:51:23 by arakotom         ###   ########.fr       */
+/*   Updated: 2024/10/13 12:23:26 by arakotom         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
-t_bool has_pipe_start_end(char *input)
+
+t_bool	has_pipe_start_end(char *input)
 {
-	int i_start;
-	int i_end;
+	int	i_start;
+	int	i_end;
 
 	i_start = 0;
 	i_end = ft_strlen(input) - 1;
@@ -26,9 +27,9 @@ t_bool has_pipe_start_end(char *input)
 		return (TRUE);
 	return (FALSE);
 }
-t_bool has_quote_opened(char *input)
+t_bool	has_quote_opened(char *input)
 {
-	t_quote_dt quote;
+	t_quote_dt	quote;
 
 	init_quote(&quote);
 	while (*input)
@@ -42,10 +43,10 @@ t_bool has_quote_opened(char *input)
 	return (FALSE);
 }
 
-t_bool has_pipe_succ(char *input)
+t_bool	has_pipe_succ(char *input)
 {
-	int i_pipe;
-	t_quote_dt quote;
+	int			i_pipe;
+	t_quote_dt	quote;
 
 	init_quote(&quote);
 	while (input && *input)
@@ -64,13 +65,13 @@ t_bool has_pipe_succ(char *input)
 	}
 	return (FALSE);
 }
-t_bool has_redir_invalid(char *input)
+t_bool	has_redir_invalid(char *input)
 {
-	t_quote_dt quote;
-	t_bool valid;
+	t_quote_dt	quote;
+	t_bool		valid;
 
 	init_quote(&quote);
-	while (input && *input && *(input + 1))
+	while (input && *input)
 	{
 		update_quote(*input, &quote);
 		if (quote_closed(quote) && is_redir(*input))
@@ -85,23 +86,23 @@ t_bool has_redir_invalid(char *input)
 	return (FALSE);
 }
 
-int launch_syntax_validation(char *input)
+int	launch_syntax_validation(char *input)
 {
-	t_error_stt error;
+	t_error_stt	error;
+
 	error = NOTHING;
 	while (42)
 	{
 		if (has_quote_opened(input) && set_syntax_error(&error, STX_QUOTE))
-			break;
+			break ;
 		if (has_pipe_start_end(input) && set_syntax_error(&error,
-														  STX_PIPE_START_END))
-			break;
-		if (has_pipe_succ(input) && set_syntax_error(&error,
-													 STX_PIPE_SUCC))
-			break;
+				STX_PIPE_START_END))
+			break ;
+		if (has_pipe_succ(input) && set_syntax_error(&error, STX_PIPE_SUCC))
+			break ;
 		if (has_redir_invalid(input) && set_syntax_error(&error, STX_REDIR))
-			break;
-		break;
+			break ;
+		break ;
 	}
 	if (error == NOTHING)
 		return (EXIT_SUCCESS);

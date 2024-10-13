@@ -6,7 +6,7 @@
 /*   By: arakotom <arakotom@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/11 22:11:42 by arakotom          #+#    #+#             */
-/*   Updated: 2024/10/11 22:18:40 by arakotom         ###   ########.fr       */
+/*   Updated: 2024/10/13 12:48:08 by arakotom         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,4 +75,17 @@ t_bool	dup_envp(t_msh *msh, char *envp[])
 		return (FALSE);
 	msh->env_list = list;
 	return (TRUE);
+}
+
+t_env	*get_env(char *name, t_env *list)
+{
+	if (!name)
+		return (NULL);
+	while (list)
+	{
+		if (ft_strncmp(list->name, name, ft_strlen(name)) == 0)
+			return (list);
+		list = list->next;
+	}
+	return (NULL);
 }
