@@ -6,7 +6,7 @@
 /*   By: arakotom <arakotom@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/12 22:51:29 by arakotom          #+#    #+#             */
-/*   Updated: 2024/10/13 12:52:44 by arakotom         ###   ########.fr       */
+/*   Updated: 2024/10/13 18:24:07 by arakotom         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,13 +96,11 @@ t_error_stt	create_file_heredoc(int fd, t_msh *msh, t_heredoc *heredoc)
 				return (HEREDOC_SIGINT);
 			return (HEREDOC_EOF);
 		}
-		ft_printf("line: %s, eof: %s\n", line, heredoc->eof);
 		if (line && *line && ft_strncmp(line, heredoc->eof,
 				ft_strlen(heredoc->eof) + 1) == 0)
 		{
 			free(line);
 			close(fd);
-			ft_printf("stop\n");
 			return (NOTHING);
 		}
 		write_file_heredoc(fd, line, heredoc->exp_var, msh);

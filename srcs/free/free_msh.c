@@ -6,7 +6,7 @@
 /*   By: arakotom <arakotom@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/11 22:30:12 by arakotom          #+#    #+#             */
-/*   Updated: 2024/10/13 12:50:22 by arakotom         ###   ########.fr       */
+/*   Updated: 2024/10/13 18:14:05 by arakotom         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,14 @@ void	free_msh(t_msh *msh)
 		free_env_list(&(msh->env_list));
 	if (msh->heredoc)
 		free_heredoc_list(&(msh->heredoc));
+}
+
+void	free_msh_keep_file(t_msh *msh)
+{
+	if (msh->env_list)
+		free_env_list(&(msh->env_list));
+	if (msh->heredoc)
+		free_heredoc_list_keep_file(&(msh->heredoc));
 }
 
 void	free_msh_reset(t_msh *msh)
@@ -36,5 +44,5 @@ void	free_msh_syntax(t_msh *msh, char *input)
 void	free_msh_heredoc(t_msh *msh, char *input)
 {
 	free(input);
-	free_msh(msh);
+	free_msh_keep_file(msh);
 }
