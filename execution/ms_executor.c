@@ -6,7 +6,7 @@
 /*   By: saandria <saandria@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 11:31:32 by saandria          #+#    #+#             */
-/*   Updated: 2024/10/10 16:12:31 by saandria         ###   ########.fr       */
+/*   Updated: 2024/10/14 15:25:21 by saandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,8 @@ void	ms_exec(t_node *node, t_msh *msh)
 		exec_pipe(node, msh);
 	else if (node->type == REDIR_OUT_NODE)
 		exec_dir(node, msh);
+	else if (node->type == APPEND_NODE)
+		exec_append(node, msh);
 }
 
 void	exec_main(t_msh *msh)

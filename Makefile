@@ -8,7 +8,7 @@ SRCS			=	src/main.c src/signal_handler.c environnement/env_list.c environnement/
 					parsing/input/heredoc/parse_heredoc.c parsing/input/heredoc/tmp_file.c parsing/input/quotes/parse_quotes_utils.c \
 					parsing/input/quotes/parse_quotes.c parsing/input/free_parse.c parsing/input/parse_and_trim.c parsing/input/parse_input_error.c \
 					parsing/input/parse_input_syntax.c parsing/input/parse_input_utils.c parsing/input/parse_input.c parsing/input/parse_redir.c \
-					parsing/input/syntax_error.c
+					parsing/input/syntax_error.c execution/ms_exec_redir.c
 
 OBJS			=	$(SRCS:.c=.o)
 

@@ -6,7 +6,7 @@
 /*   By: saandria <saandria@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/26 10:38:09 by saandria          #+#    #+#             */
-/*   Updated: 2024/10/14 10:30:19 by saandria         ###   ########.fr       */
+/*   Updated: 2024/10/14 15:26:11 by saandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	free_all(t_msh *msh)
 {
-	if(msh->envp)
+	if (msh->envp)
 		free_env(&msh->envp);
 	free(msh);
 }

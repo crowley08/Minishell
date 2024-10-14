@@ -6,7 +6,7 @@
 /*   By: saandria <saandria@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/14 11:02:40 by saandria          #+#    #+#             */
-/*   Updated: 2024/10/14 11:19:08 by saandria         ###   ########.fr       */
+/*   Updated: 2024/10/14 15:04:46 by saandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ void	exit_msh_exit(t_msh *msh, char *input)
 {
 	free_msh(msh);
 	free(input);
+	free(msh);
 	printf("exit\n");
 	exit(EXIT_SUCCESS);
 }

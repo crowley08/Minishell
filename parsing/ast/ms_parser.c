@@ -6,7 +6,7 @@
 /*   By: saandria <saandria@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/26 11:26:27 by saandria          #+#    #+#             */
-/*   Updated: 2024/10/14 10:26:21 by saandria         ###   ########.fr       */
+/*   Updated: 2024/10/14 15:29:09 by saandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,12 +69,15 @@ static t_node	*parse_token(t_token **token)
 
 	left = dup_token(token);
 	if (*token && ((*token)->type == TOK_PIPE
-			|| (*token)->type == TOK_REDIROUT))
+			|| (*token)->type == TOK_REDIROUT
+			|| (*token)->type == TOK_APPEND))
 	{
 		if ((*token)->type == TOK_PIPE)
 			node = init_node(PIPE_NODE);
-		else
+		else if ((*token)->type == TOK_REDIROUT)
 			node = init_node(REDIR_OUT_NODE);
+		else
+			node = init_node(APPEND_NODE);
 		node->left = left;
 		*token = (*token)->next;
 		node->right = parse_token(token);

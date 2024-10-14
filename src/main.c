@@ -6,7 +6,7 @@
 /*   By: saandria <saandria@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/26 15:44:01 by saandria          #+#    #+#             */
-/*   Updated: 2024/10/14 11:50:44 by saandria         ###   ########.fr       */
+/*   Updated: 2024/10/14 15:25:57 by saandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,9 @@ static void	run_msh(t_msh **msh)
 		ms_init(msh);
 		exec_main(*msh);
 		free_msh_reset(*msh);
+		free_minishell(*msh);
 	}
 }
-
-	//	free_minishell(*msh);
 
 int	main(int argc, char **argv, char **env)
 {

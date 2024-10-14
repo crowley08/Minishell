@@ -6,7 +6,7 @@
 /*   By: saandria <saandria@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 21:16:12 by saandria          #+#    #+#             */
-/*   Updated: 2024/10/14 11:48:43 by saandria         ###   ########.fr       */
+/*   Updated: 2024/10/14 15:25:10 by saandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,6 +99,7 @@ enum	e_nodetype
 	CMD_NODE,
 	PIPE_NODE,
 	REDIR_OUT_NODE,
+	APPEND_NODE,
 };
 
 struct	s_token
@@ -177,6 +178,7 @@ void		exec_dir(t_node *node, t_msh *msh);
 void		exec_main(t_msh *msh);
 int			cmd_is_builtin(char **cmd);
 void		exec_built(char **cmd, char **env);
+void		exec_append(t_node *node, t_msh *msh);
 
 //error handling
 void		error(void);

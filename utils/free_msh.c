@@ -6,7 +6,7 @@
 /*   By: saandria <saandria@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 20:46:35 by saandria          #+#    #+#             */
-/*   Updated: 2024/10/14 09:37:12 by saandria         ###   ########.fr       */
+/*   Updated: 2024/10/14 15:03:56 by saandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,12 +82,8 @@ void	free_node(t_node **node)
 
 void	free_minishell(t_msh *msh)
 {
-	if (msh->envc)
-		free_spl(msh->envc);
-	if (msh->node)
-		free_node(&msh->node);
-	if (msh->input)
-		free(msh->input);
-	if (msh->token)
-		free_tokens(&msh->token);
+	free_spl(msh->envc);
+	free_node(&msh->node);
+	free(msh->input);
+//	free_tokens(&msh->token);
 }

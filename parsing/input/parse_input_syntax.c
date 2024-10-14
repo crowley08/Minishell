@@ -6,7 +6,7 @@
 /*   By: saandria <saandria@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/14 11:08:57 by saandria          #+#    #+#             */
-/*   Updated: 2024/10/14 11:53:05 by saandria         ###   ########.fr       */
+/*   Updated: 2024/10/14 15:05:51 by saandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ int	launch_syntax_validation_proc(t_msh *msh, char *input)
 
 	exit_status = launch_syntax_validation(input);
 	free_msh_syntax(msh, input);
+	free(msh);
 	return (exit_status);
 }
 

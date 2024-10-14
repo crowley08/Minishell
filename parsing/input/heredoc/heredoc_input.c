@@ -6,7 +6,7 @@
 /*   By: saandria <saandria@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/14 11:14:50 by saandria          #+#    #+#             */
-/*   Updated: 2024/10/14 11:56:44 by saandria         ###   ########.fr       */
+/*   Updated: 2024/10/14 15:49:30 by saandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,13 @@ char	*re_new_input_var(char *old_input, char *input, int *i, t_msh *msh)
 	if (msh && msh->envp)
 	{
 		*i += 1;
-		value = expand_var_heredoc(input + *i, msh);
+		value = expand_var_heredoc(input + (*i), msh);
 		old_input = msh_strjoin(old_input, value);
 		free(value);
 		len = 0;
 		while (input && input[*i + len] && (ft_isalnum(input[*i + len])
-				|| input[*i + len] == '_'))
+				|| input[*i + len] == '_' || input[*i + len] == '$'
+				||input[*i + len] == '?'))
 			len++;
 		*i += len;
 	}
