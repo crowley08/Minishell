@@ -39,7 +39,9 @@ struct						s_msh
 	int						exit_status;
 	char					*input;
 	t_heredoc				*heredoc;
+	t_prompt                *prompt_list;
 };
+
 struct						s_quote_dt
 {
 	t_quote_stt				d_q;
@@ -75,15 +77,15 @@ struct						s_redir_in
 struct						s_redir_out
 {
 	char					*file;
-	t_redir_out_type		*type;
+	t_redir_out_type		type;
 	t_redir_out				*next;
 };
 
 struct						s_prompt
 {
 	t_cmd					*cmd;
-	t_redir_in				redir_in_list;
-	t_redir_out				redir_out_list;
+	t_redir_in				*redir_in_list;
+	t_redir_out				*redir_out_list;
 	t_prompt				*next;
 };
 

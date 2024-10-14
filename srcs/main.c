@@ -6,7 +6,7 @@
 /*   By: arakotom <arakotom@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/11 21:24:41 by arakotom          #+#    #+#             */
-/*   Updated: 2024/10/14 07:51:10 by arakotom         ###   ########.fr       */
+/*   Updated: 2024/10/14 12:03:55 by arakotom         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,10 @@ void run_msh(t_msh *msh)
 			continue;
 		if (has_heredoc_parse_input_error(msh, input))
 			continue;
-		ft_printf("input parsed final: $%s$\n", msh->input);
-		test_split_pipe(msh->input);
+		printf("input parsed final: $%s$\n", msh->input);
+		if (has_parse_token_prompt_error(msh))
+			continue;
+		print_prompts(msh->prompt_list);
 		free_msh_reset(msh);
 	}
 }
@@ -35,7 +37,7 @@ int main(int argc, char *argv[], char *envp[])
 
 	init_msh(&msh, argc, argv, envp);
 	run_msh(&msh);
-	ft_printf("minishell down...\n");
+	printf("minishell down...\n");
 	free_msh(&msh);
 	return (0);
 }

@@ -6,7 +6,7 @@
 #    By: arakotom <arakotom@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/24 23:57:27 by arakotom          #+#    #+#              #
-#    Updated: 2024/10/14 07:55:40 by arakotom         ###   ########.fr        #
+#    Updated: 2024/10/14 12:03:35 by arakotom         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,9 +29,12 @@ SRCS = main.c \
 		error/error_input.c \
 		error/error_fork.c \
 		error/error_heredoc.c \
+		error/error_prompt.c \
 		free/free_env.c \
 		free/free_msh.c \
 		free/free_heredoc.c \
+		free/free_prompt.c \
+		free/free_prompt_struct.c \
 		input/init_input.c \
 		input/input_utils.c \
 		input/input_trim.c \
@@ -42,8 +45,15 @@ SRCS = main.c \
 		heredoc/heredoc_utils.c \
 		heredoc/launch_heredoc.c \
 		heredoc/heredoc_parser_expander.c \
+		prompt/init_prompt.c \
+		prompt/prompt_utils.c \
 		prompt/prompt_split_pipe.c \
-		prompt/init_prompt.c
+		prompt/prompt_parser.c \
+		prompt/prompt_tokenizer.c \
+		prompt/prompt_cmd_token.c \
+		prompt/prompt_redir_in_token.c \
+		prompt/prompt_redir_out_token.c
+
 
 OBJS = $(addprefix $(OBJ_DIR)/, $(SRCS:.c=.o))
 LIB = $(LIBFT_DIR)/libft.a $(FT_PRINTF_DIR)/libftprintf.a

@@ -6,7 +6,7 @@
 /*   By: arakotom <arakotom@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/13 21:38:47 by arakotom          #+#    #+#             */
-/*   Updated: 2024/10/14 07:54:21 by arakotom         ###   ########.fr       */
+/*   Updated: 2024/10/14 11:58:35 by arakotom         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,7 @@ void print_prompt_splitted(char **tab)
 {
 	while (tab && *tab)
 	{
-		ft_printf("=> $%s$\n", *tab);
+		printf("=> $%s$\n", *tab);
 		tab++;
 	}
 }

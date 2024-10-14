@@ -6,7 +6,7 @@
 /*   By: arakotom <arakotom@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/13 12:46:49 by arakotom          #+#    #+#             */
-/*   Updated: 2024/10/13 22:26:50 by arakotom         ###   ########.fr       */
+/*   Updated: 2024/10/14 10:33:16 by arakotom         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,4 +55,5 @@ enum							e_token_type
 	REDIR_IN = 1,
 	REDIR_OUT = 2
 };
+
 #endif

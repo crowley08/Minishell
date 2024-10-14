@@ -12,7 +12,7 @@
 
 #include "../../includes/minishell.h"
 
-void	set_exit_status_heredoc(t_msh *msh, int status, t_bool *has_stop)
+void set_exit_status_heredoc(t_msh *msh, int status, t_bool *has_stop)
 {
 	*has_stop = TRUE;
 	if (WIFEXITED(status))
@@ -20,7 +20,7 @@ void	set_exit_status_heredoc(t_msh *msh, int status, t_bool *has_stop)
 		msh->exit_status = EXIT_SUCCESS;
 		if (WEXITSTATUS(status) == HEREDOC_EOF)
 		{
-			ft_printf("msh: warning: here-document delimited by end-of-file (wanted `eof')\n");
+			printf("msh: warning: here-document delimited by end-of-file (wanted `eof')\n");
 			msh->exit_status = EXIT_SUCCESS;
 		}
 		else if (WEXITSTATUS(status) == HEREDOC_SIGINT)
@@ -37,20 +37,20 @@ void	set_exit_status_heredoc(t_msh *msh, int status, t_bool *has_stop)
 	}
 }
 
-int	launch_heredoc_proc(t_msh *msh, char *input)
+int launch_heredoc_proc(t_msh *msh, char *input)
 {
-	int	exit_status;
+	int exit_status;
 
 	exit_status = launch_heredoc(msh);
 	free_msh_heredoc(msh, input);
 	return (exit_status);
 }
 
-t_bool	has_heredoc_parse_input_error(t_msh *msh, char *input)
+t_bool has_heredoc_parse_input_error(t_msh *msh, char *input)
 {
-	pid_t	pid_heredoc;
-	t_bool	has_stop;
-	int		status_heredoc;
+	pid_t pid_heredoc;
+	t_bool has_stop;
+	int status_heredoc;
 
 	msh->heredoc = get_heredoc(input);
 	if (msh->heredoc)
