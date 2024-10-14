@@ -6,17 +6,17 @@
 /*   By: arakotom <arakotom@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/13 18:29:55 by arakotom          #+#    #+#             */
-/*   Updated: 2024/10/13 19:58:56 by arakotom         ###   ########.fr       */
+/*   Updated: 2024/10/14 16:15:10 by arakotom         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-char	*expand_var_heredoc(char *line, t_msh *msh)
+char *expand_var_heredoc(char *line, t_msh *msh)
 {
-	t_env	*env;
-	char	*name;
-	int		i;
+	t_env *env;
+	char *name;
+	int i;
 
 	if (*line == '?')
 		return (ft_itoa(msh->exit_status));
@@ -37,9 +37,9 @@ char	*expand_var_heredoc(char *line, t_msh *msh)
 	return (ft_strdup(""));
 }
 
-char	*re_new_input_heredoc(char *old_input, char *input, t_heredoc **list)
+char *re_new_input_heredoc(char *old_input, char *input, t_heredoc **list)
 {
-	char	*tmp_c;
+	char *tmp_c;
 
 	if (list && *list)
 	{
@@ -56,11 +56,11 @@ char	*re_new_input_heredoc(char *old_input, char *input, t_heredoc **list)
 	return (old_input);
 }
 
-char	*parse_input_heredoc(t_heredoc *list, char *input, t_bool do_free)
+char *parse_input_heredoc(t_heredoc *list, char *input, t_bool do_free)
 {
-	int			i;
-	char		*new_input;
-	t_quote_dt	quote;
+	int i;
+	char *new_input;
+	t_quote_dt quote;
 
 	i = 0;
 	new_input = NULL;
@@ -84,11 +84,11 @@ char	*parse_input_heredoc(t_heredoc *list, char *input, t_bool do_free)
 	return (new_input);
 }
 
-char	*re_new_input_var(char *old_input, char *input, int *i, t_msh *msh)
+char *re_new_input_var(char *old_input, char *input, int *i, t_msh *msh)
 {
-	int		len;
-	char	*tmp_c;
-	char	*value;
+	int len;
+	char *tmp_c;
+	char *value;
 
 	if (msh && msh->env_list)
 	{
@@ -97,8 +97,7 @@ char	*re_new_input_var(char *old_input, char *input, int *i, t_msh *msh)
 		old_input = msh_strjoin(old_input, value);
 		free(value);
 		len = 0;
-		while (input && input[*i + len] && (ft_isalnum(input[*i + len])
-				|| input[*i + len] == '_'))
+		while (input && input[*i + len] && (ft_isalnum(input[*i + len]) || input[*i + len] == '_' || input[*i + len] == '?' || input[*i + len] == '$'))
 			len++;
 		*i += len;
 	}
@@ -112,11 +111,11 @@ char	*re_new_input_var(char *old_input, char *input, int *i, t_msh *msh)
 	return (old_input);
 }
 
-char	*expand_input_var(t_msh *msh, char *input, t_bool do_free)
+char *expand_input_var(t_msh *msh, char *input, t_bool do_free)
 {
-	int			i;
-	char		*new_input;
-	t_quote_dt	quote;
+	int i;
+	char *new_input;
+	t_quote_dt quote;
 
 	i = 0;
 	new_input = NULL;

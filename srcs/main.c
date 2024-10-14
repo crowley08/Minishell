@@ -6,7 +6,7 @@
 /*   By: arakotom <arakotom@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/11 21:24:41 by arakotom          #+#    #+#             */
-/*   Updated: 2024/10/14 12:03:55 by arakotom         ###   ########.fr       */
+/*   Updated: 2024/10/14 13:27:59 by arakotom         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ void run_msh(t_msh *msh)
 		if (has_parse_token_prompt_error(msh))
 			continue;
 		print_prompts(msh->prompt_list);
+
 		free_msh_reset(msh);
 	}
 }
