@@ -77,7 +77,7 @@ struct						s_redir_out
 	char					*file;
 	t_redir_out_type		*type;
 	t_redir_out				*next;
-}
+};
 
 struct						s_prompt
 {

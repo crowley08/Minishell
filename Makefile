@@ -6,7 +6,7 @@
 #    By: arakotom <arakotom@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/24 23:57:27 by arakotom          #+#    #+#              #
-#    Updated: 2024/10/12 17:12:38 by arakotom         ###   ########.fr        #
+#    Updated: 2024/10/14 07:55:40 by arakotom         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,7 +42,8 @@ SRCS = main.c \
 		heredoc/heredoc_utils.c \
 		heredoc/launch_heredoc.c \
 		heredoc/heredoc_parser_expander.c \
-		prompt/prompt_split_pipe.c
+		prompt/prompt_split_pipe.c \
+		prompt/init_prompt.c
 
 OBJS = $(addprefix $(OBJ_DIR)/, $(SRCS:.c=.o))
 LIB = $(LIBFT_DIR)/libft.a $(FT_PRINTF_DIR)/libftprintf.a
