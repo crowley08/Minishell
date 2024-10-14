@@ -6,7 +6,7 @@
 /*   By: saandria <saandria@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/30 13:55:42 by saandria          #+#    #+#             */
-/*   Updated: 2024/09/26 11:04:12 by saandria         ###   ########.fr       */
+/*   Updated: 2024/10/14 09:40:09 by saandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ typedef struct s_list
 }					t_list;
 
 //libc func
+int		ft_isspace(int c);
 int		ft_isalpha(int al);
 int		ft_isdigit(int dig);
 int		ft_isalnum(int n);

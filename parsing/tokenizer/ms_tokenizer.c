@@ -6,11 +6,11 @@
 /*   By: saandria <saandria@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/17 10:18:21 by saandria          #+#    #+#             */
-/*   Updated: 2024/10/10 17:20:52 by saandria         ###   ########.fr       */
+/*   Updated: 2024/10/14 10:26:30 by saandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/minishell.h"
+#include "../../includes/minishell.h"
 
 t_token	*create_token(t_tokentype type, char *value, int *i)
 {
