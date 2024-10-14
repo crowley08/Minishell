@@ -6,7 +6,7 @@
 /*   By: arakotom <arakotom@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/13 22:07:46 by arakotom          #+#    #+#             */
-/*   Updated: 2024/10/14 11:58:35 by arakotom         ###   ########.fr       */
+/*   Updated: 2024/10/14 13:00:11 by arakotom         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ t_bool set_exit_status_split(t_msh *msh)
 t_bool set_exit_status_token(t_msh *msh)
 {
 	msh->exit_status = EXIT_SUCCESS;
-	error_prompt_split(msh);
+	error_prompt_token(msh);
 	return (TRUE);
 }
 
