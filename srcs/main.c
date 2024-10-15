@@ -6,7 +6,7 @@
 /*   By: arakotom <arakotom@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/11 21:24:41 by arakotom          #+#    #+#             */
-/*   Updated: 2024/10/15 16:57:01 by arakotom         ###   ########.fr       */
+/*   Updated: 2024/10/15 20:05:55 by arakotom         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ void	run_msh(t_msh *msh)
 			continue ;
 		if (has_heredoc_parse_input_error(msh, input))
 			continue ;
+		// printf("input: %s\n", msh->input);
 		if (has_parse_token_prompt_error(msh))
 			continue ;
 		if (execute_prompts_list_error(msh))

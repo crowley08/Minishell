@@ -6,7 +6,7 @@
 /*   By: arakotom <arakotom@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/13 18:29:55 by arakotom          #+#    #+#             */
-/*   Updated: 2024/10/15 16:45:34 by arakotom         ###   ########.fr       */
+/*   Updated: 2024/10/15 20:05:03 by arakotom         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ char	*expand_var_heredoc(char *line, t_msh *msh)
 	while (line && line[i] && (ft_isalnum(line[i]) || line[i] == '_'))
 		i++;
 	if (i == 0)
-		return (ft_strdup(""));
+		return (ft_strdup("$"));
 	name = ft_substr(line, 0, i);
 	env = get_env(name, msh->env_list);
 	free(name);
@@ -86,7 +86,6 @@ char	*parse_input_heredoc(t_heredoc *list, char *input, t_bool do_free)
 
 char	*re_new_input_var(char *old_input, char *input, int *i, t_msh *msh)
 {
-	int		len;
 	char	*tmp_c;
 	char	*value;
 
@@ -96,12 +95,11 @@ char	*re_new_input_var(char *old_input, char *input, int *i, t_msh *msh)
 		value = expand_var_heredoc(input + *i, msh);
 		old_input = msh_strjoin(old_input, value);
 		free(value);
-		len = 0;
-		while (input && input[*i + len] && (ft_isalnum(input[*i + len])
-				|| input[*i + len] == '_' || input[*i + len] == '?' || input[*i
-				+ len] == '$'))
-			len++;
-		*i += len;
+		while (input && input[*i] && (ft_isalnum(input[*i])
+				|| input[*i] == '_'))
+			(*i)++;
+		if (input[*i] == '?' || input[*i] == '$')
+			(*i)++;
 	}
 	else if (input && *input)
 	{
