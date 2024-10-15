@@ -6,7 +6,7 @@
 /*   By: arakotom <arakotom@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/13 21:38:47 by arakotom          #+#    #+#             */
-/*   Updated: 2024/10/14 11:58:35 by arakotom         ###   ########.fr       */
+/*   Updated: 2024/10/15 16:57:18 by arakotom         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,14 +92,4 @@ char	**split_pipe(char *input)
 	}
 	tab[tab_len] = NULL;
 	return (tab);
-}
-
-//! FIXME:
-void	print_prompt_splitted(char **tab)
-{
-	while (tab && *tab)
-	{
-		printf("=> $%s$\n", *tab);
-		tab++;
-	}
 }

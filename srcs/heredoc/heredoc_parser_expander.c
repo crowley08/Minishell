@@ -97,9 +97,9 @@ char	*re_new_input_var(char *old_input, char *input, int *i, t_msh *msh)
 		old_input = msh_strjoin(old_input, value);
 		free(value);
 		len = 0;
-		while (input && input[*i + len] && (ft_isalnum(input[*i + len]) \
-			|| input[*i + len] == '_' || input[*i + len] == '?' \
-			|| input[*i + len] == '$'))
+		while (input && input[*i + len] && (ft_isalnum(input[*i + len])
+				|| input[*i + len] == '_' || input[*i + len] == '?' || input[*i
+				+ len] == '$'))
 			len++;
 		*i += len;
 	}

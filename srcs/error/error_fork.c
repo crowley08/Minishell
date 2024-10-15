@@ -28,7 +28,7 @@ void	error_fork_heredoc(t_msh *msh, char *input)
 	exit(EXIT_FAILURE);
 }
 
-t_bool error_fork_execute(void)
+t_bool	error_fork_execute(void)
 {
 	perror("Error: fork pid_execute() returned");
 	return (EXIT_FAILURE);

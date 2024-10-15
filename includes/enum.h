@@ -6,7 +6,7 @@
 /*   By: arakotom <arakotom@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/13 12:46:49 by arakotom          #+#    #+#             */
-/*   Updated: 2024/10/15 12:43:53 by arakotom         ###   ########.fr       */
+/*   Updated: 2024/10/15 16:58:44 by arakotom         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,7 @@ enum							e_error_stt
 	EXEC_REDIR_IN_500 = 11,
 	EXEC_REDIR_OUT_500 = 12,
 	EXECVE_FAILED = 13,
-	PATH_404 = 14,
-
+	PATH_404 = 14
 };
 
 enum							e_redir_out_type
