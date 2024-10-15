@@ -6,16 +6,16 @@
 /*   By: arakotom <arakotom@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/11 22:50:14 by arakotom          #+#    #+#             */
-/*   Updated: 2024/10/15 15:01:44 by arakotom         ###   ########.fr       */
+/*   Updated: 2024/10/15 15:35:54 by arakotom         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-char *get_input(t_msh *msh)
+char	*get_input(t_msh *msh)
 {
-	char *line;
-	char *input;
+	char	*line;
+	char	*input;
 
 	while (42)
 	{
@@ -24,20 +24,20 @@ char *get_input(t_msh *msh)
 		if (line == NULL)
 			exit_msh_sigeof(msh);
 		if (is_empty_line(line))
-			continue;
+			continue ;
 		add_history(line);
 		input = trim_sp_all(line);
 		free(line);
 		if (ft_strncmp(input, "exit", ft_strlen(input)) == 0)
 			exit_msh_exit(msh, input);
-		// printf("input trimmed: $%s$\n", input);
-		break;
+		break ;
 	}
 	return (input);
 }
 
-void set_exit_status_syntax(t_msh *msh, int status, t_bool *has_error)
+void	set_exit_status_syntax(t_msh *msh, int status, t_bool *has_error)
 {
+	*has_error = FALSE;
 	if (WIFEXITED(status))
 	{
 		if (WEXITSTATUS(status) == EXIT_FAILURE)
@@ -53,20 +53,20 @@ void set_exit_status_syntax(t_msh *msh, int status, t_bool *has_error)
 	}
 }
 
-int launch_syntax_validation_proc(t_msh *msh, char *input)
+int	launch_syntax_validation_proc(t_msh *msh, char *input)
 {
-	int exit_status;
+	int	exit_status;
 
 	exit_status = launch_syntax_validation(input);
 	free_msh_syntax(msh, input);
 	return (exit_status);
 }
 
-t_bool has_syntax_error(t_msh *msh, char *input)
+t_bool	has_syntax_error(t_msh *msh, char *input)
 {
-	int status_syntax;
-	t_bool has_error;
-	pid_t pid_syntax;
+	pid_t	pid_syntax;
+	int		status_syntax;
+	t_bool	has_error;
 
 	pid_syntax = fork();
 	if (pid_syntax < 0)
@@ -74,7 +74,6 @@ t_bool has_syntax_error(t_msh *msh, char *input)
 	else if (pid_syntax == 0)
 		exit(launch_syntax_validation_proc(msh, input));
 	waitpid(pid_syntax, &status_syntax, 0);
-	has_error = FALSE;
 	set_exit_status_syntax(msh, status_syntax, &has_error);
 	if (has_error)
 		error_syntax(msh, input);

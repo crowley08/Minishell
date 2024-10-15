@@ -6,18 +6,18 @@
 /*   By: arakotom <arakotom@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/15 10:10:04 by arakotom          #+#    #+#             */
-/*   Updated: 2024/10/15 14:47:44 by arakotom         ###   ########.fr       */
+/*   Updated: 2024/10/15 16:24:38 by arakotom         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-char *search_path(char *cmd_value, t_env *env_list)
+char	*search_path(char *cmd_value, t_env *env_list)
 {
-	char **paths;
-	char *path;
-	t_env *env_path;
-	int i;
+	char	**paths;
+	char	*path;
+	t_env	*env_path;
+	int		i;
 
 	env_path = get_env("PATH", env_list);
 	if (!env_path)
@@ -30,7 +30,7 @@ char *search_path(char *cmd_value, t_env *env_list)
 		path = ft_strjoin(paths[i++], "/");
 		path = msh_strjoin(path, cmd_value);
 		if (access(path, F_OK) == 0 && access(path, X_OK) == 0)
-			break;
+			break ;
 		free(path);
 		path = NULL;
 	}
@@ -38,12 +38,12 @@ char *search_path(char *cmd_value, t_env *env_list)
 	return (path);
 }
 
-char **set_argv_execve(t_cmd *cmd)
+char	**set_argv_execve(t_cmd *cmd)
 {
-	char **argv;
-	int len;
-	int i;
-	t_arg *arg_list;
+	char	**argv;
+	int		len;
+	int		i;
+	t_arg	*arg_list;
 
 	len = 2;
 	i = 1;
@@ -60,12 +60,12 @@ char **set_argv_execve(t_cmd *cmd)
 	return (argv);
 }
 
-char **set_envp_execve(t_env *env_list)
+char	**set_envp_execve(t_env *env_list)
 {
-	char **envp;
-	char *env;
-	int len;
-	int i;
+	char	**envp;
+	char	*env;
+	int		len;
+	int		i;
 
 	len = 1;
 	i = 0;
@@ -82,12 +82,11 @@ char **set_envp_execve(t_env *env_list)
 	return (envp);
 }
 
-int exec_execve(t_msh *msh, t_cmd *cmd)
+int	exec_execve(t_msh *msh, t_cmd *cmd)
 {
-
-	char *path;
-	char **argv;
-	char **envp;
+	char	*path;
+	char	**argv;
+	char	**envp;
 
 	if (!cmd)
 		return (EXIT_SUCCESS);
@@ -96,18 +95,14 @@ int exec_execve(t_msh *msh, t_cmd *cmd)
 		return (EXIT_FAILURE);
 	else
 	{
-		ft_printf("exec_execve: %s\n", path);
 		argv = set_argv_execve(cmd);
 		envp = set_envp_execve(msh->env_list);
-		free_msh(msh);
-		if (execve(path, argv, envp) == -1)
-		{
-			ft_printf("exec_execve ERROR: %s\n", path);
-			ft_free_tab_str(argv);
-			ft_free_tab_str(envp);
-			free(path);
-			return (EXECVE_FAILED);
-		}
-		return (EXIT_SUCCESS);
+		free_msh_keep_file(msh);
+		if (execve(path, argv, envp) != -1)
+			return (EXIT_SUCCESS);
+		ft_free_tab_str(argv);
+		ft_free_tab_str(envp);
+		free(path);
+		return (EXECVE_FAILED);
 	}
 }

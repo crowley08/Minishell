@@ -39,7 +39,7 @@ struct						s_msh
 	int						exit_status;
 	char					*input;
 	t_heredoc				*heredoc;
-	t_prompt                *prompt_list;
+	t_prompt				*prompt_list;
 };
 
 struct						s_quote_dt

@@ -12,9 +12,9 @@
 
 #include "../../includes/minishell.h"
 
-t_bool set_redir_stdout_error(t_redir_out *redir)
+t_bool	set_redir_stdout_error(t_redir_out *redir)
 {
-	int fd_file;
+	int	fd_file;
 
 	if (!redir)
 		return (set_error_redir(NOTHING));
@@ -40,9 +40,9 @@ t_bool set_redir_stdout_error(t_redir_out *redir)
 	return (set_error_redir(NOTHING));
 }
 
-t_bool set_redir_stdin_error(t_redir_in *redir)
+t_bool	set_redir_stdin_error(t_redir_in *redir)
 {
-	int fd_file;
+	int	fd_file;
 
 	if (!redir)
 		return (set_error_redir(NOTHING));
@@ -62,7 +62,7 @@ t_bool set_redir_stdin_error(t_redir_in *redir)
 	return (set_error_redir(NOTHING));
 }
 
-t_bool set_redir_std_in_out_error(t_prompt *prompt)
+t_bool	set_redir_std_in_out_error(t_prompt *prompt)
 {
 	if (set_redir_stdin_error(prompt->redir_in_list))
 		return (TRUE);

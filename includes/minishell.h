@@ -11,41 +11,41 @@
 /* ************************************************************************** */
 
 #ifndef MINISHELL_H
-#define MINISHELL_H
-#include "../ft_printf/includes/ft_printf.h"
-#include "../libft/libft.h"
-#include "./enum.h"
-#include "./struct.h"
-#include "env.h"
-#include "error.h"
-#include "free.h"
-#include "heredoc.h"
-#include "input.h"
-#include "execute.h"
-#include "prompt.h"
-#include <fcntl.h>
-#include <readline/history.h>
-#include <readline/readline.h>
-#include <signal.h>
-#include <stdio.h>
-#include <stdlib.h>
-#include <sys/types.h>
-#include <sys/wait.h>
-#include <unistd.h>
+# define MINISHELL_H
+# include "../ft_printf/includes/ft_printf.h"
+# include "../libft/libft.h"
+# include "./enum.h"
+# include "./struct.h"
+# include "env.h"
+# include "error.h"
+# include "execute.h"
+# include "free.h"
+# include "heredoc.h"
+# include "input.h"
+# include "prompt.h"
+# include <fcntl.h>
+# include <readline/history.h>
+# include <readline/readline.h>
+# include <signal.h>
+# include <stdio.h>
+# include <stdlib.h>
+# include <sys/types.h>
+# include <sys/wait.h>
+# include <unistd.h>
 
 // init_msh
-t_bool init_msh(t_msh *msh, int argc, char *argv[], char *envp[]);
-void exit_msh_sigeof(t_msh *msh);
-void exit_msh_exit(t_msh *msh, char *input);
+t_bool	init_msh(t_msh *msh, int argc, char *argv[], char *envp[]);
+void	exit_msh_sigeof(t_msh *msh);
+void	exit_msh_exit(t_msh *msh, char *input);
 
 // signals
-void handle_sigint(int sig);
-void set_signal_handler(void);
+void	handle_sigint(int sig);
+void	set_signal_handler(void);
 
 // quote
-t_bool is_quote(char c);
-void init_quote(t_quote_dt *quote);
-t_bool quote_opened(t_quote_dt quote);
-t_bool quote_closed(t_quote_dt quote);
-void update_quote(char c, t_quote_dt *quote);
+t_bool	is_quote(char c);
+void	init_quote(t_quote_dt *quote);
+t_bool	quote_opened(t_quote_dt quote);
+t_bool	quote_closed(t_quote_dt quote);
+void	update_quote(char c, t_quote_dt *quote);
 #endif

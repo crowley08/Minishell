@@ -12,16 +12,16 @@
 
 #include "../../includes/minishell.h"
 
-void free_arg(t_arg *arg)
+void	free_arg(t_arg *arg)
 {
 	if (arg->value)
 		free(arg->value);
 	free(arg);
 }
 
-void free_arg_list(t_arg **list)
+void	free_arg_list(t_arg **list)
 {
-	t_arg *arg;
+	t_arg	*arg;
 
 	while (list && *list)
 	{
@@ -32,21 +32,21 @@ void free_arg_list(t_arg **list)
 	*list = NULL;
 }
 
-void free_redir_in(t_redir_in *redir_in)
+void	free_redir_in(t_redir_in *redir_in)
 {
 	if (redir_in->file)
 		free(redir_in->file);
 	free(redir_in);
 }
 
-void free_redir_out(t_redir_out *redir_out)
+void	free_redir_out(t_redir_out *redir_out)
 {
 	if (redir_out->file)
 		free(redir_out->file);
 	free(redir_out);
 }
 
-void free_prompt(t_prompt *prompt)
+void	free_prompt(t_prompt *prompt)
 {
 	if (prompt->cmd)
 		free_cmd(prompt->cmd);

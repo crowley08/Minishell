@@ -12,19 +12,21 @@
 
 #include "../../includes/minishell.h"
 
-t_token_type get_token_type(char *value)
+t_token_type	get_token_type(char *value)
 {
-	if (ft_strncmp(value, ">", ft_strlen(value)) == 0 || ft_strncmp(value, ">>", ft_strlen(value)) == 0)
+	if (ft_strncmp(value, ">", ft_strlen(value)) == 0 || ft_strncmp(value, ">>",
+			ft_strlen(value)) == 0)
 		return (REDIR_OUT);
 	if (ft_strncmp(value, "<", ft_strlen(value)) == 0)
 		return (REDIR_IN);
 	return (WORD);
 }
 
-int set_token_redir(t_prompt **prompt, char *value, t_token_type type, char *input)
+int	set_token_redir(t_prompt **prompt, char *value, t_token_type type,
+		char *input)
 {
-	int len;
-	char *next_value;
+	int		len;
+	char	*next_value;
 
 	len = next_value_len(input);
 	next_value = ft_substr(input, 0, len);
@@ -36,15 +38,16 @@ int set_token_redir(t_prompt **prompt, char *value, t_token_type type, char *inp
 		if (ft_strncmp(value, ">", ft_strlen(value)) == 0)
 			prompt_add_redir_out(*prompt, un_quote(next_value, TRUE), RO_TRUNC);
 		else if (ft_strncmp(value, ">>", ft_strlen(value)) == 0)
-			prompt_add_redir_out(*prompt, un_quote(next_value, TRUE), RO_APPEND);
+			prompt_add_redir_out(*prompt, un_quote(next_value, TRUE),
+				RO_APPEND);
 	}
 	return (len);
 }
 
-int set_prompt_token(t_prompt **prompt, char *value, char *input)
+int	set_prompt_token(t_prompt **prompt, char *value, char *input)
 {
-	int len;
-	t_token_type type;
+	int				len;
+	t_token_type	type;
 
 	len = 0;
 	type = get_token_type(value);

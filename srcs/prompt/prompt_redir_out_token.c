@@ -12,9 +12,9 @@
 
 #include "../../includes/minishell.h"
 
-t_redir_out *prompt_create_redir_out(char *file, t_redir_out_type type)
+t_redir_out	*prompt_create_redir_out(char *file, t_redir_out_type type)
 {
-	t_redir_out *redir;
+	t_redir_out	*redir;
 
 	redir = (t_redir_out *)malloc(sizeof(t_redir_out));
 	if (!redir)
@@ -25,11 +25,11 @@ t_redir_out *prompt_create_redir_out(char *file, t_redir_out_type type)
 	return (redir);
 }
 
-t_bool prompt_add_redir_out(t_prompt *prompt, char *file,
-							t_redir_out_type type)
+t_bool	prompt_add_redir_out(t_prompt *prompt, char *file,
+		t_redir_out_type type)
 {
-	t_redir_out *last_redir;
-	t_redir_out *new_redir;
+	t_redir_out	*last_redir;
+	t_redir_out	*new_redir;
 
 	if (!prompt)
 		return (FALSE);

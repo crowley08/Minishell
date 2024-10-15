@@ -12,7 +12,7 @@
 
 #include "../../includes/minishell.h"
 
-t_bool set_error_redir(t_error_stt type)
+t_bool	set_error_redir(t_error_stt type)
 {
 	if (type == NOTHING)
 		return (FALSE);
@@ -29,7 +29,7 @@ t_bool set_error_redir(t_error_stt type)
 	return (TRUE);
 }
 
-t_bool has_error_redir_in(t_redir_in *redir)
+t_bool	has_error_redir_in(t_redir_in *redir)
 {
 	while (redir)
 	{
@@ -51,7 +51,7 @@ t_bool has_error_redir_in(t_redir_in *redir)
 	return (set_error_redir(NOTHING));
 }
 
-t_bool has_error_redir_out(t_redir_out *redir)
+t_bool	has_error_redir_out(t_redir_out *redir)
 {
 	while (redir)
 	{
@@ -69,7 +69,7 @@ t_bool has_error_redir_out(t_redir_out *redir)
 	return (set_error_redir(NOTHING));
 }
 
-t_bool has_error_redir_exec(t_prompt *prompt)
+t_bool	has_error_redir_exec(t_prompt *prompt)
 {
 	if (has_error_redir_in(prompt->redir_in_list))
 		return (TRUE);

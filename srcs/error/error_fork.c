@@ -6,7 +6,7 @@
 /*   By: arakotom <arakotom@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/12 14:32:11 by arakotom          #+#    #+#             */
-/*   Updated: 2024/10/13 12:49:32 by arakotom         ###   ########.fr       */
+/*   Updated: 2024/10/15 16:50:09 by arakotom         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,4 +26,10 @@ void	error_fork_heredoc(t_msh *msh, char *input)
 	free(input);
 	free_msh(msh);
 	exit(EXIT_FAILURE);
+}
+
+t_bool error_fork_execute(void)
+{
+	perror("Error: fork pid_execute() returned");
+	return (EXIT_FAILURE);
 }

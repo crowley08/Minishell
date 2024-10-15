@@ -12,9 +12,9 @@
 
 #include "../../includes/minishell.h"
 
-t_prompt *new_prompt(void)
+t_prompt	*new_prompt(void)
 {
-	t_prompt *prompt;
+	t_prompt	*prompt;
 
 	prompt = (t_prompt *)malloc(sizeof(t_prompt));
 	if (!prompt)
@@ -26,10 +26,10 @@ t_prompt *new_prompt(void)
 	return (prompt);
 }
 
-int next_value_len(char *input)
+int	next_value_len(char *input)
 {
-	int len;
-	t_quote_dt quote;
+	int			len;
+	t_quote_dt	quote;
 
 	len = 0;
 	if (is_redir(input[len]))
@@ -43,18 +43,19 @@ int next_value_len(char *input)
 	while (input && input[len])
 	{
 		update_quote(input[len], &quote);
-		if (quote_closed(quote) && (ft_isspace(input[len]) || is_redir(input[len])))
-			break;
+		if (quote_closed(quote) && (ft_isspace(input[len])
+				|| is_redir(input[len])))
+			break ;
 		len++;
 	}
 	return (len);
 }
 
-t_prompt *create_prompt(char *input)
+t_prompt	*create_prompt(char *input)
 {
-	t_prompt *prompt;
-	char *value;
-	int len;
+	t_prompt	*prompt;
+	char		*value;
+	int			len;
 
 	prompt = new_prompt();
 	if (!prompt)
@@ -63,7 +64,7 @@ t_prompt *create_prompt(char *input)
 	{
 		len = next_value_len(input);
 		if (!len)
-			break;
+			break ;
 		value = ft_substr(input, 0, len);
 		input += len;
 		if (ft_isspace(*input))
@@ -76,9 +77,9 @@ t_prompt *create_prompt(char *input)
 	return (prompt);
 }
 
-void add_prompt_list(t_prompt **list, t_prompt *prompt)
+void	add_prompt_list(t_prompt **list, t_prompt *prompt)
 {
-	t_prompt *last;
+	t_prompt	*last;
 
 	if (!list || !(*list))
 		*list = prompt;
@@ -91,11 +92,11 @@ void add_prompt_list(t_prompt **list, t_prompt *prompt)
 	}
 }
 
-t_prompt *parse_prompt(char **tab)
+t_prompt	*parse_prompt(char **tab)
 {
-	t_prompt *list;
-	t_prompt *prompt;
-	int i;
+	t_prompt	*list;
+	t_prompt	*prompt;
+	int			i;
 
 	list = NULL;
 	i = 0;
