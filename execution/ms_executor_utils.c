@@ -6,7 +6,7 @@
 /*   By: saandria <saandria@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 22:38:31 by saandria          #+#    #+#             */
-/*   Updated: 2024/10/14 15:22:54 by saandria         ###   ########.fr       */
+/*   Updated: 2024/10/15 14:52:22 by saandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,14 +30,14 @@ char	*check_path(char *cmd, char **env)
 		path = ft_strjoin(tmp_part, cmd);
 		free(tmp_part);
 		if (access(path, F_OK) == 0 && access(path, X_OK) == 0)
+		{
+			free_spl(paths);
 			return (path);
+		}
 		free(path);
 		i++;
 	}
-	i = -1;
-	while (paths[++i])
-		free(paths[i]);
-	free(paths);
+	free_spl(paths);
 	return (0);
 }
 

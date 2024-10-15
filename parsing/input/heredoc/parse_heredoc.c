@@ -6,7 +6,7 @@
 /*   By: saandria <saandria@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/14 11:00:24 by saandria          #+#    #+#             */
-/*   Updated: 2024/10/14 11:56:22 by saandria         ###   ########.fr       */
+/*   Updated: 2024/10/15 15:52:14 by saandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ void	set_exit_status_heredoc(t_msh *msh, int status, t_bool *has_stop)
 		msh->exit_status = EXIT_SUCCESS;
 		if (WEXITSTATUS(status) == HEREDOC_EOF)
 		{
-			printf("msh: warning: here-document delimited by end-of-file (wanted `eof')\n");
+			printf("msh: warning: heredoc delimited by end-of-file (`eof')\n");
 			msh->exit_status = EXIT_SUCCESS;
 		}
 		else if (WEXITSTATUS(status) == HEREDOC_SIGINT)

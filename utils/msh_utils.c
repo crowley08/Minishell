@@ -6,7 +6,7 @@
 /*   By: saandria <saandria@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/26 10:38:09 by saandria          #+#    #+#             */
-/*   Updated: 2024/10/14 15:26:11 by saandria         ###   ########.fr       */
+/*   Updated: 2024/10/15 14:49:16 by saandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	free_all(t_msh *msh)
 
 void	error(void)
 {
-	perror("\033[31mError");
+	perror("bash");
 	exit(EXIT_FAILURE);
 }
 

@@ -6,7 +6,7 @@
 /*   By: saandria <saandria@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 21:16:12 by saandria          #+#    #+#             */
-/*   Updated: 2024/10/14 15:25:10 by saandria         ###   ########.fr       */
+/*   Updated: 2024/10/15 17:37:28 by saandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,6 +99,7 @@ enum	e_nodetype
 	CMD_NODE,
 	PIPE_NODE,
 	REDIR_OUT_NODE,
+	REDIR_IN_NODE,
 	APPEND_NODE,
 };
 
@@ -178,7 +179,9 @@ void		exec_dir(t_node *node, t_msh *msh);
 void		exec_main(t_msh *msh);
 int			cmd_is_builtin(char **cmd);
 void		exec_built(char **cmd, char **env);
-void		exec_append(t_node *node, t_msh *msh);
+void		free_if_fd_invalid(t_msh *msh, char *file, char *path);
+int			is_rout_or_append(int type);
+void		exec_redirin(t_node *node, t_msh *msh);
 
 //error handling
 void		error(void);
