@@ -6,7 +6,7 @@
 /*   By: arakotom <arakotom@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/11 22:50:14 by arakotom          #+#    #+#             */
-/*   Updated: 2024/10/14 11:58:35 by arakotom         ###   ########.fr       */
+/*   Updated: 2024/10/15 15:01:44 by arakotom         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ char *get_input(t_msh *msh)
 		free(line);
 		if (ft_strncmp(input, "exit", ft_strlen(input)) == 0)
 			exit_msh_exit(msh, input);
-		printf("input trimmed: $%s$\n", input);
+		// printf("input trimmed: $%s$\n", input);
 		break;
 	}
 	return (input);
@@ -49,11 +49,6 @@ void set_exit_status_syntax(t_msh *msh, int status, t_bool *has_error)
 	else if (WIFSIGNALED(status))
 	{
 		msh->exit_status = WTERMSIG(status);
-		*has_error = TRUE;
-	}
-	else
-	{
-		msh->exit_status = 1;
 		*has_error = TRUE;
 	}
 }

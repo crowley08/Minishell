@@ -6,7 +6,7 @@
 #    By: arakotom <arakotom@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/24 23:57:27 by arakotom          #+#    #+#              #
-#    Updated: 2024/10/14 12:03:35 by arakotom         ###   ########.fr        #
+#    Updated: 2024/10/15 13:54:32 by arakotom         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -52,7 +52,12 @@ SRCS = main.c \
 		prompt/prompt_tokenizer.c \
 		prompt/prompt_cmd_token.c \
 		prompt/prompt_redir_in_token.c \
-		prompt/prompt_redir_out_token.c
+		prompt/prompt_redir_out_token.c \
+		execute/init_execute.c \
+		execute/exec_set_redir.c \
+		execute/exec_redir_validation.c \
+		execute/exec_execve.c \
+		execute/exec_execve_utils.c \
 
 
 OBJS = $(addprefix $(OBJ_DIR)/, $(SRCS:.c=.o))
