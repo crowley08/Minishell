@@ -6,14 +6,14 @@
 /*   By: arakotom <arakotom@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/14 13:27:03 by arakotom          #+#    #+#             */
-/*   Updated: 2024/10/15 16:40:04 by arakotom         ###   ########.fr       */
+/*   Updated: 2024/10/15 17:52:36 by arakotom         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
 //! NOT DONE
-t_bool	execute_prompt_child_pipe(t_msh *msh, t_prompt *prompt)
+t_bool execute_prompt_child_pipe(t_msh *msh, t_prompt *prompt)
 {
 	if (has_error_redir_exec(prompt))
 		return (EXIT_FAILURE);
@@ -25,18 +25,18 @@ t_bool	execute_prompt_child_pipe(t_msh *msh, t_prompt *prompt)
 		return (exec_execve(msh, prompt->cmd));
 }
 
-t_bool	execute_prompt_last(t_msh *msh, t_prompt *prompt, int stn_out)
+t_bool execute_prompt_last(t_msh *msh, t_prompt *prompt, int stn_out)
 {
-	pid_t	pid_exec_last;
-	int		status_exec_last;
-	t_bool	has_error;
+	pid_t pid_exec_last;
+	int status_exec_last;
+	t_bool has_error;
 
 	dup2(stn_out, STDOUT_FILENO);
 	if (has_error_redir_exec(prompt))
 		return (EXIT_FAILURE);
 	else if (set_redir_std_in_out_error(prompt))
 		return (EXIT_FAILURE);
-	if (0)
+	if (0) // builtin
 		return (EXIT_SUCCESS);
 	pid_exec_last = fork();
 	if (pid_exec_last < 0)
@@ -53,7 +53,7 @@ t_bool	execute_prompt_last(t_msh *msh, t_prompt *prompt, int stn_out)
 	return (has_error);
 }
 
-void	set_exit_status_exec(t_msh *msh, int status, t_bool *has_error)
+void set_exit_status_exec(t_msh *msh, int status, t_bool *has_error)
 {
 	*has_error = FALSE;
 	if (WIFEXITED(status))
@@ -76,12 +76,12 @@ void	set_exit_status_exec(t_msh *msh, int status, t_bool *has_error)
 	}
 }
 
-int	launch_exec_prompt_child_pipe(t_msh *msh, t_prompt *prompt)
+int launch_exec_prompt_child_pipe(t_msh *msh, t_prompt *prompt)
 {
-	pid_t	pid_exec;
-	int		fd[2];
-	int		status_exec;
-	t_bool	has_error;
+	pid_t pid_exec;
+	int fd[2];
+	int status_exec;
+	t_bool has_error;
 
 	if (pipe(fd) == -1)
 		return (EXIT_FAILURE);
@@ -104,12 +104,12 @@ int	launch_exec_prompt_child_pipe(t_msh *msh, t_prompt *prompt)
 	return (has_error);
 }
 
-t_bool	execute_prompts_list_error(t_msh *msh)
+t_bool execute_prompts_list_error(t_msh *msh)
 {
-	t_prompt	*prompt_list;
-	int			std_in;
-	int			std_out;
-	t_bool		has_error;
+	t_prompt *prompt_list;
+	int std_in;
+	int std_out;
+	t_bool has_error;
 
 	std_in = dup(STDIN_FILENO);
 	std_out = dup(STDOUT_FILENO);
@@ -118,12 +118,8 @@ t_bool	execute_prompts_list_error(t_msh *msh)
 	while (prompt_list->next)
 	{
 		has_error = launch_exec_prompt_child_pipe(msh, prompt_list);
-		if (has_error)
-			break ;
 		prompt_list = prompt_list->next;
 	}
-	if (has_error && free_msh_reset(msh))
-		return (TRUE);
 	has_error = execute_prompt_last(msh, prompt_list, std_out);
 	if (has_error)
 		free_msh_reset(msh);
