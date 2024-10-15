@@ -20,11 +20,15 @@ void	set_exit_status_heredoc(t_msh *msh, int status, t_bool *has_stop)
 		msh->exit_status = EXIT_SUCCESS;
 		if (WEXITSTATUS(status) == HEREDOC_EOF)
 		{
-			printf("msh: warning: here-document delimited by end-of-file (wanted `eof')\n");
+			printf("msh: warning: here-document delimited by end-of-file \
+			(wanted `eof')\n");
 			msh->exit_status = EXIT_SUCCESS;
 		}
 		else if (WEXITSTATUS(status) == HEREDOC_SIGINT)
+		{
+			printf("> ^C\n");
 			msh->exit_status = 130;
+		}
 		else if (WEXITSTATUS(status) == HEREDOC_FD)
 			msh->exit_status = EXIT_FAILURE;
 		else
@@ -57,7 +61,7 @@ t_bool	has_heredoc_parse_input_error(t_msh *msh, char *input)
 	{
 		pid_heredoc = fork();
 		if (pid_heredoc < 0)
-			error_fork_heredoc(msh, input);
+			error_fork(msh, input);
 		else if (pid_heredoc == 0)
 			exit(launch_heredoc_proc(msh, input));
 		signal(SIGINT, SIG_IGN);
@@ -65,7 +69,7 @@ t_bool	has_heredoc_parse_input_error(t_msh *msh, char *input)
 		set_exit_status_heredoc(msh, status_heredoc, &has_stop);
 		if (has_stop)
 		{
-			error_heredoc(msh, input);
+			error_syntax_heredoc(msh, input);
 			return (TRUE);
 		}
 		input = parse_input_heredoc(msh->heredoc, input, TRUE);

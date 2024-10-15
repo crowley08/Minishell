@@ -6,7 +6,7 @@
 /*   By: arakotom <arakotom@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/11 22:50:14 by arakotom          #+#    #+#             */
-/*   Updated: 2024/10/15 15:35:54 by arakotom         ###   ########.fr       */
+/*   Updated: 2024/10/15 19:41:11 by arakotom         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,12 +70,12 @@ t_bool	has_syntax_error(t_msh *msh, char *input)
 
 	pid_syntax = fork();
 	if (pid_syntax < 0)
-		error_fork_syntax(msh, input);
+		error_fork(msh, input);
 	else if (pid_syntax == 0)
 		exit(launch_syntax_validation_proc(msh, input));
 	waitpid(pid_syntax, &status_syntax, 0);
 	set_exit_status_syntax(msh, status_syntax, &has_error);
 	if (has_error)
-		error_syntax(msh, input);
+		error_syntax_heredoc(msh, input);
 	return (has_error);
 }

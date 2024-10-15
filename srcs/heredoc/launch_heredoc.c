@@ -6,7 +6,7 @@
 /*   By: arakotom <arakotom@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/12 22:51:29 by arakotom          #+#    #+#             */
-/*   Updated: 2024/10/15 16:45:01 by arakotom         ###   ########.fr       */
+/*   Updated: 2024/10/15 19:37:30 by arakotom         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ int	launch_heredoc(t_msh *msh)
 	{
 		set_signal_handler_heredoc();
 		fd = open(heredoc->tmp_file, O_CREAT | O_WRONLY | O_TRUNC, 0644);
-		if (fd < 0 && set_heredoc_error(&error, HEREDOC_FD))
+		if (fd < 0 && set_error(&error, HEREDOC_FD))
 			break ;
 		error = create_file_heredoc(fd, msh, heredoc);
 		if (error != NOTHING)

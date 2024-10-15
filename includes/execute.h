@@ -6,7 +6,7 @@
 /*   By: arakotom <arakotom@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/14 14:55:33 by arakotom          #+#    #+#             */
-/*   Updated: 2024/10/15 16:20:00 by arakotom         ###   ########.fr       */
+/*   Updated: 2024/10/15 19:31:38 by arakotom         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ t_bool	set_redir_std_in_out_error(t_prompt *prompt);
 
 // init_execute
 t_bool	execute_prompt_child_pipe(t_msh *msh, t_prompt *prompt);
-t_bool	execute_prompt_last(t_msh *msh, t_prompt *prompt, int stn_out);
+t_bool	exec_prompt_child_last(t_msh *msh, t_prompt *prompt, int stn_out);
 void	set_exit_status_exec(t_msh *msh, int status, t_bool *has_error);
 int		launch_exec_prompt_child_pipe(t_msh *msh, t_prompt *prompt);
 t_bool	execute_prompts_list_error(t_msh *msh);

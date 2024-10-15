@@ -6,7 +6,7 @@
 #    By: arakotom <arakotom@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/24 23:57:27 by arakotom          #+#    #+#              #
-#    Updated: 2024/10/15 13:54:32 by arakotom         ###   ########.fr        #
+#    Updated: 2024/10/15 19:47:41 by arakotom         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,11 +25,7 @@ SRCS = main.c \
 		signals.c \
 		quote.c \
 		env/init_env.c \
-		error/error_env.c \
-		error/error_input.c \
-		error/error_fork.c \
-		error/error_heredoc.c \
-		error/error_prompt.c \
+		error/error_parse.c \
 		free/free_env.c \
 		free/free_msh.c \
 		free/free_heredoc.c \
@@ -46,7 +42,6 @@ SRCS = main.c \
 		heredoc/launch_heredoc.c \
 		heredoc/heredoc_parser_expander.c \
 		prompt/init_prompt.c \
-		prompt/prompt_utils.c \
 		prompt/prompt_split_pipe.c \
 		prompt/prompt_parser.c \
 		prompt/prompt_tokenizer.c \
@@ -57,7 +52,7 @@ SRCS = main.c \
 		execute/exec_set_redir.c \
 		execute/exec_redir_validation.c \
 		execute/exec_execve.c \
-		execute/exec_execve_utils.c \
+		execute/exec_execve_utils.c
 
 
 OBJS = $(addprefix $(OBJ_DIR)/, $(SRCS:.c=.o))

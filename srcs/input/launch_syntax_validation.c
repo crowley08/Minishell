@@ -6,7 +6,7 @@
 /*   By: arakotom <arakotom@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/12 13:02:42 by arakotom          #+#    #+#             */
-/*   Updated: 2024/10/13 12:53:34 by arakotom         ###   ########.fr       */
+/*   Updated: 2024/10/15 19:37:08 by arakotom         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,14 +95,13 @@ int	launch_syntax_validation(char *input)
 	error = NOTHING;
 	while (42)
 	{
-		if (has_quote_opened(input) && set_syntax_error(&error, STX_QUOTE))
+		if (has_quote_opened(input) && set_error(&error, STX_QUOTE))
 			break ;
-		if (has_pipe_start_end(input) && set_syntax_error(&error,
-				STX_PIPE_START_END))
+		if (has_pipe_start_end(input) && set_error(&error, STX_PIPE_START_END))
 			break ;
-		if (has_pipe_succ(input) && set_syntax_error(&error, STX_PIPE_SUCC))
+		if (has_pipe_succ(input) && set_error(&error, STX_PIPE_SUCC))
 			break ;
-		if (has_redir_invalid(input) && set_syntax_error(&error, STX_REDIR))
+		if (has_redir_invalid(input) && set_error(&error, STX_REDIR))
 			break ;
 		break ;
 	}
