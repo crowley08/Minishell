@@ -6,7 +6,7 @@
 /*   By: saandria <saandria@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/17 10:18:21 by saandria          #+#    #+#             */
-/*   Updated: 2024/10/14 10:26:30 by saandria         ###   ########.fr       */
+/*   Updated: 2024/10/16 18:05:12 by saandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,3 +127,34 @@ t_token	*ms_tokenizer(char *s)
 	}
 	return (token);
 }
+
+t_token	*join_token(t_token **token)
+{
+	t_token	*tmp;
+	t_token	*tmp2;
+
+	tmp = *token;
+	while (*token)
+	{
+		if ((*token)->type == TOK_REDIRIN)
+		{
+			(*token)->value = ft_strjoin((*token)->value, " ");
+			(*token)->value = ft_strjoin((*token)->value, (*token)->next->value);
+			tmp2 = (*token)->next;
+			(*token)->next = (*token)->next->next;
+			free(tmp2->value);
+			free(tmp2);
+		}
+		*token = (*token)->next;
+	}
+	*token = tmp;
+	return (*token);
+}
+
+/*
+//!!!TO DO
+t_token	*final_token(t_token **token)
+{
+	
+}
+*/

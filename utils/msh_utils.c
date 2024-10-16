@@ -6,7 +6,7 @@
 /*   By: saandria <saandria@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/26 10:38:09 by saandria          #+#    #+#             */
-/*   Updated: 2024/10/15 14:49:16 by saandria         ###   ########.fr       */
+/*   Updated: 2024/10/16 17:56:42 by saandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,11 @@ void	ms_init(t_msh **msh)
 {
 	(*msh)->envc = env_copy(&(*msh)->envp);
 	(*msh)->token = ms_tokenizer((*msh)->input);
+	(*msh)->token = join_token(&(*msh)->token);
+	//(*msh)->token = final_token(&(*msh)->token);
+	print_token((*msh)->token);
 	(*msh)->node = parse((*msh)->token);
+	print_ast(&(*msh)->node);
 }
 
 t_bool	init_msh(t_msh **msh, int argc, char **argv, char **env)

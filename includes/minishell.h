@@ -6,7 +6,7 @@
 /*   By: saandria <saandria@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 21:16:12 by saandria          #+#    #+#             */
-/*   Updated: 2024/10/15 17:37:28 by saandria         ###   ########.fr       */
+/*   Updated: 2024/10/16 17:56:36 by saandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -160,6 +160,8 @@ void		ms_signal(void);
 
 //tokenizer
 t_token		*ms_tokenizer(char *s);
+t_token		*join_token(t_token **token);
+//t_token		*final_token(t_token **token);
 
 //environment
 char		**env_copy(t_env **env);
