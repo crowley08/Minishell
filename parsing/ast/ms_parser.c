@@ -6,7 +6,7 @@
 /*   By: saandria <saandria@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/26 11:26:27 by saandria          #+#    #+#             */
-/*   Updated: 2024/10/16 17:05:55 by saandria         ###   ########.fr       */
+/*   Updated: 2024/10/17 09:29:37 by saandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ static t_node	*dup_redir_in_token(t_token **token)
 	i = -1;
 	node = init_node(REDIR_IN_NODE);
 	node->cmd = ft_split((*token)->value, ' ');
-	do_free = F;
+	do_free = T;
 	while (node->cmd[++i])
 		node->cmd[i] = un_quote(node->cmd[i], do_free);
 	return (node);

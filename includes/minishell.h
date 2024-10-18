@@ -6,7 +6,7 @@
 /*   By: saandria <saandria@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 21:16:12 by saandria          #+#    #+#             */
-/*   Updated: 2024/10/16 17:56:36 by saandria         ###   ########.fr       */
+/*   Updated: 2024/10/18 10:52:44 by saandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,6 +108,7 @@ struct	s_token
 	t_tokentype		type;
 	char			*value;
 	t_token			*next;
+	t_token			*prev;
 };
 
 struct	s_env
@@ -160,8 +161,11 @@ void		ms_signal(void);
 
 //tokenizer
 t_token		*ms_tokenizer(char *s);
+
+//re_tokenizer
+t_token		*re_create(t_tokentype type, char *value);
 t_token		*join_token(t_token **token);
-//t_token		*final_token(t_token **token);
+t_token		*final_token(t_token **token);
 
 //environment
 char		**env_copy(t_env **env);

@@ -6,7 +6,7 @@
 /*   By: saandria <saandria@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/14 11:02:40 by saandria          #+#    #+#             */
-/*   Updated: 2024/10/14 15:04:46 by saandria         ###   ########.fr       */
+/*   Updated: 2024/10/17 09:21:09 by saandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,8 @@ t_bool	is_empty_line(char *line)
 
 void	exit_msh_exit(t_msh *msh, char *input)
 {
+	if (msh->node)
+		free_node(&msh->node);
 	free_msh(msh);
 	free(input);
 	free(msh);
