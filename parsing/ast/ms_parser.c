@@ -6,42 +6,11 @@
 /*   By: saandria <saandria@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/26 11:26:27 by saandria          #+#    #+#             */
-/*   Updated: 2024/10/17 09:29:37 by saandria         ###   ########.fr       */
+/*   Updated: 2024/10/19 12:41:07 by saandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
-
-static int	count_token_word(t_token *token)
-{
-	t_token	*tmp;
-	int		i;
-
-	i = 0;
-	tmp = token;
-	while (tmp && tmp->type == TOK_WORD)
-	{
-		i++;
-		tmp = tmp->next;
-	}
-	return (i);
-}
-
-static t_node	*init_node(t_nodetype type)
-{
-	t_node	*new_node;
-
-	new_node = malloc(sizeof(t_node));
-	if (!new_node)
-		error();
-	new_node->type = type;
-	new_node->left = NULL;
-	new_node->right = NULL;
-	if (type == PIPE_NODE || type == REDIR_OUT_NODE
-		|| type == APPEND_NODE)
-		new_node->cmd = NULL;
-	return (new_node);
-}
 
 static t_node	*dup_redir_in_token(t_token **token)
 {

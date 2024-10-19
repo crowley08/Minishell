@@ -6,7 +6,7 @@
 /*   By: saandria <saandria@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 22:49:33 by saandria          #+#    #+#             */
-/*   Updated: 2024/10/14 10:26:17 by saandria         ###   ########.fr       */
+/*   Updated: 2024/10/19 13:00:16 by saandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,4 +44,35 @@ void	print_ast(t_node **node)
 		printf("%s\n", (*node)->cmd[0]);
 	print_ast(&(*node)->left);
 	print_ast(&(*node)->right);
+}
+
+int	count_token_word(t_token *token)
+{
+	t_token	*tmp;
+	int		i;
+
+	i = 0;
+	tmp = token;
+	while (tmp && tmp->type == TOK_WORD)
+	{
+		i++;
+		tmp = tmp->next;
+	}
+	return (i);
+}
+
+t_node	*init_node(t_nodetype type)
+{
+	t_node	*new_node;
+
+	new_node = malloc(sizeof(t_node));
+	if (!new_node)
+		error();
+	new_node->type = type;
+	new_node->left = NULL;
+	new_node->right = NULL;
+	if (type == PIPE_NODE || type == REDIR_OUT_NODE
+		|| type == APPEND_NODE)
+		new_node->cmd = NULL;
+	return (new_node);
 }

@@ -6,7 +6,7 @@
 /*   By: saandria <saandria@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 20:46:35 by saandria          #+#    #+#             */
-/*   Updated: 2024/10/17 09:26:02 by saandria         ###   ########.fr       */
+/*   Updated: 2024/10/19 12:43:13 by saandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,16 +65,10 @@ void	free_tokens(t_token **t)
 
 void	free_node(t_node **node)
 {
-//	char	**cmd;
-
-//	cmd = NULL;
 	if (!*node)
 		return ;
 	if ((*node)->cmd)
-	{
-	//	cmd = (*node)->cmd;
 		free_spl((*node)->cmd);
-	}
 	free_node(&(*node)->left);
 	free_node(&(*node)->right);
 	free(*node);

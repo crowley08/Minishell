@@ -9,6 +9,7 @@ SRCS			=	src/main.c src/signal_handler.c environnement/env_list.c environnement/
 					parsing/input/quotes/parse_quotes.c parsing/input/free_parse.c parsing/input/parse_and_trim.c parsing/input/parse_input_error.c \
 					parsing/input/parse_input_syntax.c parsing/input/parse_input_utils.c parsing/input/parse_input.c parsing/input/parse_redir.c \
 					parsing/input/syntax_error.c execution/ms_exec_redir_out_utils.c execution/ms_exec_redir_out.c execution/ms_exec_redir_in.c \
+					parsing/tokenizer/ms_re_tokenizer.c
 
 OBJS			=	$(SRCS:.c=.o)
 
