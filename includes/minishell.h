@@ -6,7 +6,7 @@
 /*   By: saandria <saandria@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 21:16:12 by saandria          #+#    #+#             */
-/*   Updated: 2024/10/19 13:09:55 by saandria         ###   ########.fr       */
+/*   Updated: 2024/10/19 15:09:15 by saandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ void		exec_dir(t_node *node, t_msh *msh);
 void		exec_main(t_msh *msh);
 int			cmd_is_builtin(char **cmd);
 void		exec_built(char **cmd, char **env);
-void		free_if_fd_invalid(t_msh *msh, char *file, char *path);
+void		free_if_fd_invalid(t_msh *msh, char *file);
 int			is_rout_or_append(int type);
 void		exec_redirin(t_node *node, t_msh *msh);
 

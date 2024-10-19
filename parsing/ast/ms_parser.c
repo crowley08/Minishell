@@ -6,20 +6,20 @@
 /*   By: saandria <saandria@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/26 11:26:27 by saandria          #+#    #+#             */
-/*   Updated: 2024/10/19 12:41:07 by saandria         ###   ########.fr       */
+/*   Updated: 2024/10/19 15:05:31 by saandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-static t_node	*dup_redir_in_token(t_token **token)
+static t_node	*dup_redir_token(t_token **token, t_nodetype type)
 {
 	t_node	*node;
 	t_bool	do_free;
 	int		i;
 
 	i = -1;
-	node = init_node(REDIR_IN_NODE);
+	node = init_node(type);
 	node->cmd = ft_split((*token)->value, ' ');
 	do_free = T;
 	while (node->cmd[++i])
@@ -65,11 +65,11 @@ static t_node	*parse_token(t_token **token)
 		if ((*token)->type == TOK_PIPE)
 			node = init_node(PIPE_NODE);
 		else if ((*token)->type == TOK_APPEND)
-			node = init_node(APPEND_NODE);
+			node = dup_redir_token(token, APPEND_NODE);
 		else if ((*token)->type == TOK_REDIROUT)
-			node = init_node(REDIR_OUT_NODE);
+			node = dup_redir_token(token, REDIR_OUT_NODE);
 		else
-			node = dup_redir_in_token(token);
+			node = dup_redir_token(token, REDIR_IN_NODE);
 		node->left = left;
 		*token = (*token)->next;
 		node->right = parse_token(token);
