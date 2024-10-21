@@ -5,20 +5,20 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: arakotom <arakotom@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/11 23:14:46 by arakotom          #+#    #+#             */
-/*   Updated: 2024/10/13 20:28:12 by arakotom         ###   ########.fr       */
+/*   Created: 2024/10/20 10:29:54 by arakotom          #+#    #+#             */
+/*   Updated: 2024/10/20 21:21:52 by arakotom         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-t_bool	is_empty_line(char *line)
+t_bool	is_empty_str(char *str)
 {
-	while (line && *line)
+	while (str && *str)
 	{
-		if (!ft_isspace(*line))
+		if (!ft_isspace(*str))
 			return (FALSE);
-		line++;
+		str++;
 	}
 	return (TRUE);
 }

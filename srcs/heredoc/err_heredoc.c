@@ -1,26 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   env.h                                              :+:      :+:    :+:   */
+/*   err_heredoc.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: arakotom <arakotom@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/17 14:37:00 by arakotom          #+#    #+#             */
-/*   Updated: 2024/10/20 23:36:48 by arakotom         ###   ########.fr       */
+/*   Created: 2024/10/20 12:29:53 by arakotom          #+#    #+#             */
+/*   Updated: 2024/10/20 23:56:43 by arakotom         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ENV_H
-# define ENV_H
+#include "../../includes/minishell.h"
 
-//* init_env
-t_env	*new_env(void);
-t_env	*create_env(char *str);
-void	add_env_list(t_env **list, t_env *env);
-t_bool	dup_envp_ok(t_msh *msh, char *envp[]);
-t_env	*get_env(char *name, t_env *list);
-//* free_env
-t_bool	free_env(t_env *env, t_bool val);
-t_bool	free_env_list(t_env **list, t_bool val);
-void	exit_err_dup_env(t_msh *msh);
-#endif
+void	print_err_hdc(t_error_state error)
+{
+	if (error == HDC_FD)
+		perror("msh: ");
+	else if (error == HDC_CTRL_C)
+	{
+		write(1, "\n", 1);
+		rl_on_new_line();
+		rl_replace_line("", 0);
+	}
+	else if (error == HDC_CTRL_D)
+		ft_putstr_fd("msh: warning: here-document delimited by end-of-file \
+		(wanted `eof')\n", STDERR_FILENO);
+}

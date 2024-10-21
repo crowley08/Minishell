@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: arakotom <arakotom@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/13 12:39:34 by arakotom          #+#    #+#             */
-/*   Updated: 2024/10/13 19:07:08 by arakotom         ###   ########.fr       */
+/*   Created: 2024/10/20 21:54:13 by arakotom          #+#    #+#             */
+/*   Updated: 2024/10/21 12:44:01 by arakotom         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,21 +26,6 @@ t_heredoc	*new_heredoc(void)
 	return (heredoc);
 }
 
-void	add_heredoc_list(t_heredoc **list, t_heredoc *heredoc)
-{
-	t_heredoc	*last;
-
-	if (!(*list))
-		*list = heredoc;
-	else
-	{
-		last = *list;
-		while (last->next)
-			last = last->next;
-		last->next = heredoc;
-	}
-}
-
 t_heredoc	*create_heredoc(char **input, int i)
 {
 	t_heredoc	*heredoc;
@@ -57,11 +42,26 @@ t_heredoc	*create_heredoc(char **input, int i)
 	return (heredoc);
 }
 
+void	add_heredoc_list(t_heredoc **list, t_heredoc *heredoc)
+{
+	t_heredoc	*last;
+
+	if (!(*list))
+		*list = heredoc;
+	else
+	{
+		last = *list;
+		while (last->next)
+			last = last->next;
+		last->next = heredoc;
+	}
+}
+
 t_heredoc	*get_heredoc(char *input)
 {
 	t_heredoc	*list;
 	t_heredoc	*heredoc;
-	t_quote_dt	quote;
+	t_quote		quote;
 	int			i;
 
 	i = 0;

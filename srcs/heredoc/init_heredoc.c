@@ -2,78 +2,73 @@
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   init_heredoc.c                                     :+:      :+:    :+:   */
-/*                                                    +:+ +:+			+:+   */
+/*                                                    +:+ +:+         +:+     */
 /*   By: arakotom <arakotom@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/12 14:46:26 by arakotom          #+#    #+#             */
-/*   Updated: 2024/10/12 17:45:21 by arakotom         ###   ########.fr       */
+/*   Created: 2024/10/20 21:45:41 by arakotom          #+#    #+#             */
+/*   Updated: 2024/10/20 23:35:21 by arakotom         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-void	set_exit_status_heredoc(t_msh *msh, int status, t_bool *has_stop)
+void	set_exit_status_msh_hdc(t_msh *msh, t_error_state exit_status,
+		t_bool *has_stop)
 {
-	*has_stop = TRUE;
-	if (WIFEXITED(status))
+	*has_stop = FALSE;
+	if (WIFEXITED(exit_status))
 	{
-		msh->exit_status = EXIT_SUCCESS;
-		if (WEXITSTATUS(status) == HEREDOC_EOF)
+		if (WEXITSTATUS(exit_status) != NOTHING)
 		{
-			printf("msh: warning: here-document delimited by end-of-file \
-			(wanted `eof')\n");
-			msh->exit_status = EXIT_SUCCESS;
+			*has_stop = TRUE;
+			if (WEXITSTATUS(exit_status) == HDC_CTRL_D)
+				msh->exit_status = 0;
+			else if (WEXITSTATUS(exit_status) == HDC_CTRL_C)
+				msh->exit_status = 130;
+			else
+				msh->exit_status = EXIT_FAILURE;
 		}
-		else if (WEXITSTATUS(status) == HEREDOC_SIGINT)
-		{
-			printf("> ^C\n");
-			msh->exit_status = 130;
-		}
-		else if (WEXITSTATUS(status) == HEREDOC_FD)
-			msh->exit_status = EXIT_FAILURE;
-		else
-			*has_stop = FALSE;
 	}
-	else if (WIFSIGNALED(status))
+	else if (WIFSIGNALED(exit_status))
 	{
-		msh->exit_status = EXIT_FAILURE;
 		*has_stop = TRUE;
+		msh->exit_status = WTERMSIG(exit_status);
 	}
 }
 
-int	launch_heredoc_proc(t_msh *msh, char *input)
+void	run_heredoc(t_msh *msh)
 {
-	int	exit_status;
+	t_error_state	error;
 
-	exit_status = launch_heredoc(msh);
-	free_msh_heredoc(msh, input);
-	return (exit_status);
+	error = check_parser_heredoc(msh);
+	free_msh_keep_file(msh, TRUE);
+	if (error == NOTHING)
+		exit(EXIT_SUCCESS);
+	print_err_hdc(error);
+	exit(error);
 }
 
-t_bool	has_heredoc_parse_input_error(t_msh *msh, char *input)
+t_bool	heredoc_parse_input_ok(t_msh *msh)
 {
-	pid_t	pid_heredoc;
-	int		status_heredoc;
+	pid_t	pid_hdc;
+	int		exit_status_hdc;
 	t_bool	has_stop;
 
-	msh->heredoc = get_heredoc(input);
-	if (msh->heredoc)
+	msh->heredoc_list = get_heredoc(msh->input);
+	if (msh->heredoc_list)
 	{
-		pid_heredoc = fork();
-		if (pid_heredoc < 0)
-			error_fork(msh, input);
-		else if (pid_heredoc == 0)
-			exit(launch_heredoc_proc(msh, input));
+		pid_hdc = fork();
+		if (pid_hdc < 0)
+			exit_err_fork(msh);
+		else if (pid_hdc == 0)
+			run_heredoc(msh);
 		signal(SIGINT, SIG_IGN);
-		waitpid(pid_heredoc, &status_heredoc, 0);
-		set_exit_status_heredoc(msh, status_heredoc, &has_stop);
+		waitpid(pid_hdc, &exit_status_hdc, 0);
+		set_exit_status_msh_hdc(msh, exit_status_hdc, &has_stop);
 		if (has_stop)
-		{
-			error_syntax_heredoc(msh, input);
-			return (TRUE);
-		}
-		input = parse_input_heredoc(msh->heredoc, input, TRUE);
+			return (free_msh_reset(msh, FALSE));
+		msh->input = parse_input_heredoc(msh->heredoc_list, msh->input, TRUE);
 	}
-	msh->input = expand_input_var(msh, input, TRUE);
-	return (FALSE);
+	msh->input = expand_input_var(msh, msh->input, TRUE);
+	return (TRUE);
 }

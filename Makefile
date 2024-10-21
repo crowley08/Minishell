@@ -6,7 +6,7 @@
 #    By: arakotom <arakotom@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/24 23:57:27 by arakotom          #+#    #+#              #
-#    Updated: 2024/10/15 19:47:41 by arakotom         ###   ########.fr        #
+#    Updated: 2024/10/21 15:34:20 by arakotom         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,45 +18,48 @@ SRC_DIR = srcs
 OBJ_DIR = objs
 INCLUDE_DIR = includes
 LIBFT_DIR = libft
-FT_PRINTF_DIR = ft_printf
 
 SRCS = main.c \
-		init_msh.c \
+		quotes.c \
 		signals.c \
-		quote.c \
 		env/init_env.c \
-		error/error_parse.c \
-		free/free_env.c \
-		free/free_msh.c \
-		free/free_heredoc.c \
-		free/free_prompt.c \
-		free/free_prompt_struct.c \
+		env/free_env.c \
+		msh/init_msh.c \
+		msh/free_msh.c \
+		msh/err_msh.c \
+		heredoc/free_heredoc.c \
 		input/init_input.c \
 		input/input_utils.c \
 		input/input_trim.c \
-		input/launch_syntax_validation.c \
+		input/syntax_validation.c \
+		input/err_input.c \
 		heredoc/init_heredoc.c \
-		heredoc/heredoc_eof.c \
+		heredoc/err_heredoc.c \
+		heredoc/free_heredoc.c \
+		heredoc/heredoc_expander.c \
 		heredoc/heredoc_initializer.c \
 		heredoc/heredoc_utils.c \
-		heredoc/launch_heredoc.c \
-		heredoc/heredoc_parser_expander.c \
+		heredoc/parser_heredoc.c \
+		prompt/free_prompt.c \
+		prompt/free_prompt_struct.c \
 		prompt/init_prompt.c \
 		prompt/prompt_split_pipe.c \
-		prompt/prompt_parser.c \
-		prompt/prompt_tokenizer.c \
+		prompt/prompt_utils.c \
 		prompt/prompt_cmd_token.c \
 		prompt/prompt_redir_in_token.c \
 		prompt/prompt_redir_out_token.c \
-		execute/init_execute.c \
-		execute/exec_set_redir.c \
-		execute/exec_redir_validation.c \
-		execute/exec_execve.c \
-		execute/exec_execve_utils.c
+		prompt/print_prompt.c \
+		execution/init_execute.c \
+		execution/execute_utils.c \
+		execution/execute_cmd.c \
+		execution/execute_set_redir.c \
+		execution/execute_list_prompt.c \
+		execution/execute_one_prompt.c
+
 
 
 OBJS = $(addprefix $(OBJ_DIR)/, $(SRCS:.c=.o))
-LIB = $(LIBFT_DIR)/libft.a $(FT_PRINTF_DIR)/libftprintf.a
+LIB = $(LIBFT_DIR)/libft.a
 
 RM = rm -rf
 
@@ -73,16 +76,13 @@ $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
 
 $(LIB) :
 	@make -C $(LIBFT_DIR)
-	@make -C $(FT_PRINTF_DIR)
 
 clean :
 	@make clean -C $(LIBFT_DIR)
-	@make clean -C $(FT_PRINTF_DIR)
 	$(RM) $(OBJ_DIR)
 
 fclean : clean
 	@make fclean -C $(LIBFT_DIR)
-	@make fclean -C $(FT_PRINTF_DIR)
 	$(RM) $(NAME)
 
 re : fclean all
@@ -90,7 +90,7 @@ re : fclean all
 run: $(NAME)
 	./$(NAME)
 
-valgrind:$(NAME)
+val:$(NAME)
 	$(VGRLFLAGS) ./$(NAME)
 
 .PHONY: all clean fclean re

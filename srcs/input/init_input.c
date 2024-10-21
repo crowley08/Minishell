@@ -5,77 +5,80 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: arakotom <arakotom@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/11 22:50:14 by arakotom          #+#    #+#             */
-/*   Updated: 2024/10/15 19:41:11 by arakotom         ###   ########.fr       */
+/*   Created: 2024/10/20 10:28:44 by arakotom          #+#    #+#             */
+/*   Updated: 2024/10/20 21:26:54 by arakotom         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-char	*get_input(t_msh *msh)
+t_bool	get_input_line_ok(t_msh *msh)
 {
 	char	*line;
-	char	*input;
 
 	while (42)
 	{
 		set_signal_handler();
 		line = readline("\e[33mminishell$ \e[0m");
 		if (line == NULL)
-			exit_msh_sigeof(msh);
-		if (is_empty_line(line))
+			exit_msh_eof(msh);
+		if (is_empty_str(line))
 			continue ;
 		add_history(line);
-		input = trim_sp_all(line);
-		free(line);
-		if (ft_strncmp(input, "exit", ft_strlen(input)) == 0)
-			exit_msh_exit(msh, input);
 		break ;
 	}
-	return (input);
+	msh->input = trim_space_all(line);
+	free(line);
+	if (!(msh->input))
+		return (reset_msh_err_get_input_line(msh, FALSE));
+	return (TRUE);
 }
 
-void	set_exit_status_syntax(t_msh *msh, int status, t_bool *has_error)
+void	set_exit_status_msh_stx(t_msh *msh, t_error_state exit_status,
+		t_bool *has_err)
 {
-	*has_error = FALSE;
-	if (WIFEXITED(status))
+	*has_err = FALSE;
+	if (WIFEXITED(exit_status))
 	{
-		if (WEXITSTATUS(status) == EXIT_FAILURE)
+		if (WEXITSTATUS(exit_status) != NOTHING)
 		{
+			*has_err = TRUE;
 			msh->exit_status = 2;
-			*has_error = TRUE;
 		}
 	}
-	else if (WIFSIGNALED(status))
+	else if (WIFSIGNALED(exit_status))
 	{
-		msh->exit_status = WTERMSIG(status);
-		*has_error = TRUE;
+		*has_err = TRUE;
+		msh->exit_status = WTERMSIG(exit_status);
 	}
 }
 
-int	launch_syntax_validation_proc(t_msh *msh, char *input)
+void	run_syntax_validation(t_msh *msh)
 {
-	int	exit_status;
+	t_error_state	error;
 
-	exit_status = launch_syntax_validation(input);
-	free_msh_syntax(msh, input);
-	return (exit_status);
+	error = check_syntax_validation(msh->input);
+	free_msh(msh, TRUE);
+	if (error == NOTHING)
+		exit(EXIT_SUCCESS);
+	print_err_stx(error);
+	exit(error);
 }
 
-t_bool	has_syntax_error(t_msh *msh, char *input)
+t_bool	syntax_input_ok(t_msh *msh)
 {
-	pid_t	pid_syntax;
-	int		status_syntax;
-	t_bool	has_error;
+	pid_t	pid_stx;
+	int		exit_status_stx;
+	t_bool	has_err;
 
-	pid_syntax = fork();
-	if (pid_syntax < 0)
-		error_fork(msh, input);
-	else if (pid_syntax == 0)
-		exit(launch_syntax_validation_proc(msh, input));
-	waitpid(pid_syntax, &status_syntax, 0);
-	set_exit_status_syntax(msh, status_syntax, &has_error);
-	if (has_error)
-		error_syntax_heredoc(msh, input);
-	return (has_error);
+	pid_stx = fork();
+	if (pid_stx < 0)
+		exit_err_fork(msh);
+	else if (pid_stx == 0)
+		run_syntax_validation(msh);
+	waitpid(pid_stx, &exit_status_stx, 0);
+	set_exit_status_msh_stx(msh, exit_status_stx, &has_err);
+	if (has_err)
+		return (free_msh_reset(msh, FALSE));
+	return (TRUE);
 }

@@ -1,26 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   env.h                                              :+:      :+:    :+:   */
+/*   msh.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: arakotom <arakotom@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/17 14:37:00 by arakotom          #+#    #+#             */
-/*   Updated: 2024/10/20 23:36:48 by arakotom         ###   ########.fr       */
+/*   Created: 2024/10/17 14:37:08 by arakotom          #+#    #+#             */
+/*   Updated: 2024/10/20 21:28:51 by arakotom         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ENV_H
-# define ENV_H
+#ifndef MSH_H
+# define MSH_H
+//*init_msh
+void	init_msh_ok(int argc, char *argv[], t_msh *msh);
+void	exit_msh_eof(t_msh *msh);
+void	run_msh(t_msh *msh);
+//*free_msh
+t_bool	free_msh(t_msh *msh, t_bool val);
+t_bool	free_msh_keep_file(t_msh *msh, t_bool val);
+t_bool	free_msh_reset(t_msh *msh, t_bool val);
+//*err_msh
+t_bool	reset_msh_err_get_input_line(t_msh *msh, t_bool val);
+void	exit_err_fork(t_msh *msh);
 
-//* init_env
-t_env	*new_env(void);
-t_env	*create_env(char *str);
-void	add_env_list(t_env **list, t_env *env);
-t_bool	dup_envp_ok(t_msh *msh, char *envp[]);
-t_env	*get_env(char *name, t_env *list);
-//* free_env
-t_bool	free_env(t_env *env, t_bool val);
-t_bool	free_env_list(t_env **list, t_bool val);
-void	exit_err_dup_env(t_msh *msh);
 #endif

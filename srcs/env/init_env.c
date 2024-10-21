@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: arakotom <arakotom@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/11 22:11:42 by arakotom          #+#    #+#             */
-/*   Updated: 2024/10/13 12:48:08 by arakotom         ###   ########.fr       */
+/*   Created: 2024/10/17 17:46:04 by arakotom          #+#    #+#             */
+/*   Updated: 2024/10/21 15:34:49 by arakotom         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,12 +56,12 @@ void	add_env_list(t_env **list, t_env *env)
 	}
 }
 
-t_bool	dup_envp(t_msh *msh, char *envp[])
+t_bool	dup_envp_ok(t_msh *msh, char *envp[])
 {
 	t_env	*list;
 	t_env	*env;
 
-	if (!(*envp))
+	if (!envp)
 		return (FALSE);
 	list = NULL;
 	while (envp && *envp)

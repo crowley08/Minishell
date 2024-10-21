@@ -5,39 +5,21 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: arakotom <arakotom@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/11 21:24:41 by arakotom          #+#    #+#             */
-/*   Updated: 2024/10/15 20:05:55 by arakotom         ###   ########.fr       */
+/*   Created: 2024/10/17 16:03:23 by arakotom          #+#    #+#             */
+/*   Updated: 2024/10/20 21:28:51 by arakotom         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-void	run_msh(t_msh *msh)
-{
-	char	*input;
-
-	while (42)
-	{
-		input = get_input(msh);
-		if (has_syntax_error(msh, input))
-			continue ;
-		if (has_heredoc_parse_input_error(msh, input))
-			continue ;
-		// printf("input: %s\n", msh->input);
-		if (has_parse_token_prompt_error(msh))
-			continue ;
-		if (execute_prompts_list_error(msh))
-			continue ;
-		free_msh_reset(msh);
-	}
-}
-
 int	main(int argc, char *argv[], char *envp[])
 {
 	t_msh	msh;
 
-	init_msh(&msh, argc, argv, envp);
+	init_msh_ok(argc, argv, &msh);
+	if (!dup_envp_ok(&msh, envp))
+		exit_err_dup_env(&msh);
 	run_msh(&msh);
-	free_msh(&msh);
+	free_msh(&msh, TRUE);
 	return (0);
 }

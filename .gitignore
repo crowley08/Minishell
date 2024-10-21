@@ -6,6 +6,5 @@
 *.o
 *.a
 *.txt
-.vscode
 minishell
 objs
