@@ -6,21 +6,11 @@
 /*   By: saandria <saandria@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/19 12:39:40 by saandria          #+#    #+#             */
-/*   Updated: 2024/10/19 15:49:37 by saandria         ###   ########.fr       */
+/*   Updated: 2024/10/21 08:38:04 by saandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
-
-/*
-void	join_then_del(t_token *node1, t_token node2)
-{
-	t_token	*tmp2;
-	char	*str;
-
-		
-}
-*/
 
 t_token	*join_token(t_token **token)
 {
@@ -77,6 +67,13 @@ static void	inverse_nodes(t_token *node1, t_token *node2)
 	node2->value = tmp;
 }
 
+static int	is_redirection(t_tokentype type)
+{
+	if (type == TOK_APPEND || type == TOK_REDIRIN || type == TOK_REDIROUT)
+		return (1);
+	return (0);
+}
+
 t_token	*final_token(t_token **token)
 {
 	t_token	*tmp;
@@ -85,8 +82,7 @@ t_token	*final_token(t_token **token)
 	while (*token)
 	{
 		if (*token && (*token)->type == TOK_WORD && (*token)->next
-			&& (((*token)->next->type == TOK_REDIRIN
-					|| (*token)->next->type == TOK_REDIROUT)))
+			&& is_redirection((*token)->next->type))
 		{
 			inverse_nodes((*token), (*token)->next);
 			*token = tmp;

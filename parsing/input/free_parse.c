@@ -6,7 +6,7 @@
 /*   By: saandria <saandria@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/14 11:28:48 by saandria          #+#    #+#             */
-/*   Updated: 2024/10/14 11:51:47 by saandria         ###   ########.fr       */
+/*   Updated: 2024/10/21 09:09:28 by saandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,6 @@ void	free_msh(t_msh *msh)
 	if (msh->heredoc)
 		free_heredoc_list(&(msh->heredoc));
 }
-
-//free(msh);
-//	free_minishell(msh);
 
 void	free_msh_reset(t_msh *msh)
 {

@@ -6,7 +6,7 @@
 /*   By: saandria <saandria@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 11:31:32 by saandria          #+#    #+#             */
-/*   Updated: 2024/10/19 15:30:24 by saandria         ###   ########.fr       */
+/*   Updated: 2024/10/21 10:50:43 by saandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,17 +61,29 @@ void	ms_exec(t_node *node, t_msh *msh)
 		exec_redirin(node, msh);
 }
 
+static int	free_exec(t_msh *msh, int status)
+{
+	status = msh->exit_status;
+	free_minishell(msh);
+	free_env(&msh->envp);
+	free(msh);
+	return (status);
+}
+
 void	exec_main(t_msh *msh)
 {
 	int		status;
 	pid_t	pid;
 
+	status = 0;
 	pid = fork();
 	if (pid == 0)
 	{
 		signal(SIGINT, SIG_DFL);
 		signal(SIGQUIT, SIG_DFL);
 		ms_exec(msh->node, msh);
+		free_exec(msh, status);
+		exit(status);
 	}
 	signal(SIGINT, SIG_IGN);
 	waitpid(pid, &status, 0);

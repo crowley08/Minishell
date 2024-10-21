@@ -6,7 +6,7 @@
 /*   By: saandria <saandria@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 21:16:12 by saandria          #+#    #+#             */
-/*   Updated: 2024/10/19 15:09:15 by saandria         ###   ########.fr       */
+/*   Updated: 2024/10/21 10:03:13 by saandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,7 @@ void		exec_built(char **cmd, char **env);
 void		free_if_fd_invalid(t_msh *msh, char *file);
 int			is_rout_or_append(int type);
 void		exec_redirin(t_node *node, t_msh *msh);
+int			wait_pipe(int left, int right, int fd[2], int status);
 
 //error handling
 void		error(void);

@@ -6,7 +6,7 @@
 /*   By: saandria <saandria@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/14 09:31:24 by saandria          #+#    #+#             */
-/*   Updated: 2024/10/19 13:32:54 by saandria         ###   ########.fr       */
+/*   Updated: 2024/10/21 08:45:09 by saandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ char	*get_input(t_msh *msh)
 	while (42)
 	{
 		ms_signal();
-		line = readline("$> ");
+		line = readline("Saandria $> ");
 		if (line == NULL)
 			exit_msh_sigeof(msh);
 		if (is_empty_line(line))

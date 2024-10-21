@@ -6,7 +6,7 @@
 /*   By: saandria <saandria@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 22:49:33 by saandria          #+#    #+#             */
-/*   Updated: 2024/10/19 13:00:16 by saandria         ###   ########.fr       */
+/*   Updated: 2024/10/21 09:54:48 by saandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,8 +66,6 @@ t_node	*init_node(t_nodetype type)
 	t_node	*new_node;
 
 	new_node = malloc(sizeof(t_node));
-	if (!new_node)
-		error();
 	new_node->type = type;
 	new_node->left = NULL;
 	new_node->right = NULL;
