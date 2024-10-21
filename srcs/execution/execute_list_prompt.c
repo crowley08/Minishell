@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   execute_list_prompt.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arakotom <arakotom@student.42.fr>          +#+  +:+       +#+        */
+/*   By: saandria <saandria@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 11:28:37 by arakotom          #+#    #+#             */
-/*   Updated: 2024/10/21 15:50:01 by arakotom         ###   ########.fr       */
+/*   Updated: 2024/10/21 18:31:35 by saandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-void set_exit_status_msh_exec_one_last_cmd(t_msh *msh, int exit_status)
+void	set_exit_status_msh_exec_one_last_cmd(t_msh *msh, int exit_status)
 {
 	if (WIFEXITED(exit_status))
 		msh->exit_status = WEXITSTATUS(exit_status);
@@ -22,10 +22,10 @@ void set_exit_status_msh_exec_one_last_cmd(t_msh *msh, int exit_status)
 		msh->exit_status = exit_status;
 }
 
-void execute_last_cmd_in_list(t_msh *msh, t_prompt *prompt)
+void	execute_last_cmd_in_list(t_msh *msh, t_prompt *prompt)
 {
-	pid_t pid_exec_last;
-	int exit_status_last;
+	pid_t	pid_exec_last;
+	int		exit_status_last;
 
 	pid_exec_last = fork();
 	if (pid_exec_last < 0)
@@ -44,10 +44,10 @@ void execute_last_cmd_in_list(t_msh *msh, t_prompt *prompt)
 		;
 }
 
-void execute_list_prompt(t_msh *msh, t_prompt *list)
+void	execute_list_prompt(t_msh *msh, t_prompt *list)
 {
-	pid_t pid_exec_list;
-	int fd[2];
+	pid_t	pid_exec_list;
+	int		fd[2];
 
 	while (list->next)
 	{

@@ -3,19 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   prompt_split_pipe.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arakotom <arakotom@student.42.fr>          +#+  +:+       +#+        */
+/*   By: saandria <saandria@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/13 21:38:47 by arakotom          #+#    #+#             */
-/*   Updated: 2024/10/21 09:41:34 by arakotom         ###   ########.fr       */
+/*   Updated: 2024/10/21 18:42:54 by saandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-int count_pipe(char *input)
+int	count_pipe(char *input)
 {
-	int count;
-	t_quote quote;
+	int		count;
+	t_quote	quote;
 
 	count = 0;
 	init_quote(&quote);
@@ -31,11 +31,11 @@ int count_pipe(char *input)
 	return (count);
 }
 
-int set_next_pipe(char **tab, char *input, int tab_index)
+int	set_next_pipe(char **tab, char *input, int tab_index)
 {
-	int len;
-	t_quote quote;
-	int found_space;
+	int		len;
+	t_quote	quote;
+	int		found_space;
 
 	len = 0;
 	found_space = 0;
@@ -52,10 +52,10 @@ int set_next_pipe(char **tab, char *input, int tab_index)
 	return (len);
 }
 
-t_bool pipe_splitted(char **tab, char *input)
+t_bool	pipe_splitted(char **tab, char *input)
 {
-	int tab_index;
-	int len;
+	int	tab_index;
+	int	len;
 
 	tab_index = 0;
 	while (input && *input)
@@ -74,10 +74,10 @@ t_bool pipe_splitted(char **tab, char *input)
 	return (TRUE);
 }
 
-char **split_pipe(char *input)
+char	**split_pipe(char *input)
 {
-	char **tab;
-	int tab_len;
+	char	**tab;
+	int		tab_len;
 
 	tab_len = count_pipe(input);
 	if (!tab_len)

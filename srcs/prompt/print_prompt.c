@@ -3,18 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   print_prompt.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arakotom <arakotom@student.42.fr>          +#+  +:+       +#+        */
+/*   By: saandria <saandria@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 10:16:58 by arakotom          #+#    #+#             */
-/*   Updated: 2024/10/21 10:17:12 by arakotom         ###   ########.fr       */
+/*   Updated: 2024/10/21 18:36:33 by saandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-void print_prompts(t_prompt *prompt)
+void	print_prompts(t_prompt *prompt)
 {
-	int i;
+	int	i;
+
 	i = 0;
 	if (prompt)
 	{
@@ -29,8 +30,9 @@ void print_prompts(t_prompt *prompt)
 		}
 	}
 }
+
 // ! FIXME: delete this function later
-void print_arg(t_arg *arg)
+void	print_arg(t_arg *arg)
 {
 	if (arg)
 	{
@@ -42,8 +44,9 @@ void print_arg(t_arg *arg)
 		}
 	}
 }
+
 // ! FIXME: delete this function later
-void print_prompt_cmd(t_cmd *cmd)
+void	print_prompt_cmd(t_cmd *cmd)
 {
 	if (cmd)
 	{
@@ -51,8 +54,9 @@ void print_prompt_cmd(t_cmd *cmd)
 		print_arg(cmd->arg_list);
 	}
 }
+
 // ! FIXME: delete this function later
-void print_prompt_redir_in(t_redir_in *redir_in)
+void	print_prompt_redir_in(t_redir_in *redir_in)
 {
 	if (redir_in)
 	{
@@ -64,8 +68,9 @@ void print_prompt_redir_in(t_redir_in *redir_in)
 		}
 	}
 }
+
 // ! FIXME: delete this function later
-void print_prompt_redir_out(t_redir_out *redir_out)
+void	print_prompt_redir_out(t_redir_out *redir_out)
 {
 	if (redir_out)
 	{

@@ -3,19 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   execute_one_prompt.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arakotom <arakotom@student.42.fr>          +#+  +:+       +#+        */
+/*   By: saandria <saandria@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 11:30:22 by arakotom          #+#    #+#             */
-/*   Updated: 2024/10/21 15:31:08 by arakotom         ###   ########.fr       */
+/*   Updated: 2024/10/21 18:43:52 by saandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-void execute_one_prompt(t_msh *msh, t_prompt *prompt)
+void	execute_one_prompt(t_msh *msh, t_prompt *prompt)
 {
-	pid_t pid_one_pmt;
-	int exit_status_one;
+	pid_t	pid_one_pmt;
+	int		exit_status_one;
 
 	if (0) // todo: condition if it is builtins
 	{

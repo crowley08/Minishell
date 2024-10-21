@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   execute_set_redir.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arakotom <arakotom@student.42.fr>          +#+  +:+       +#+        */
+/*   By: saandria <saandria@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 13:37:55 by arakotom          #+#    #+#             */
-/*   Updated: 2024/10/21 15:53:13 by arakotom         ###   ########.fr       */
+/*   Updated: 2024/10/21 18:30:17 by saandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-t_bool check_redir_in_ok(t_redir_in *redir)
+t_bool	check_redir_in_ok(t_redir_in *redir)
 {
 	while (redir)
 	{
@@ -28,7 +28,7 @@ t_bool check_redir_in_ok(t_redir_in *redir)
 	return (TRUE);
 }
 
-t_bool check_redir_out_ok(t_redir_out *redir)
+t_bool	check_redir_out_ok(t_redir_out *redir)
 {
 	while (redir)
 	{
@@ -42,9 +42,9 @@ t_bool check_redir_out_ok(t_redir_out *redir)
 	return (TRUE);
 }
 
-t_bool set_redir_in_ok(t_redir_in *redir)
+t_bool	set_redir_in_ok(t_redir_in *redir)
 {
-	int fd_rdr;
+	int	fd_rdr;
 
 	while (redir)
 	{
@@ -58,9 +58,9 @@ t_bool set_redir_in_ok(t_redir_in *redir)
 	return (TRUE);
 }
 
-t_bool set_redir_out_ok(t_redir_out *redir)
+t_bool	set_redir_out_ok(t_redir_out *redir)
 {
-	int fd_rdr;
+	int	fd_rdr;
 
 	while (redir)
 	{
@@ -77,7 +77,7 @@ t_bool set_redir_out_ok(t_redir_out *redir)
 	return (TRUE);
 }
 
-t_bool set_all_redir_ok(t_prompt *prompt)
+t_bool	set_all_redir_ok(t_prompt *prompt)
 {
 	if (!check_redir_in_ok(prompt->redir_in_list))
 		return (FALSE);
