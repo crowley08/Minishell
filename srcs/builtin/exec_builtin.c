@@ -6,7 +6,7 @@
 /*   By: saandria <saandria@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/22 13:38:01 by saandria          #+#    #+#             */
-/*   Updated: 2024/10/22 15:35:19 by saandria         ###   ########.fr       */
+/*   Updated: 2024/10/22 15:59:58 by saandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,11 @@
 
 int	ms_exec_builtin(t_msh *msh, t_cmd *cmd)
 {
+	if (!set_all_redir_ok(msh->prompt_list))
+	{
+		free_msh_keep_file(msh, TRUE);
+		return (EXIT_FAILURE);
+	}
 	if (!ft_strncmp(cmd->value, "env", 4))
 		return (ms_env(msh, cmd));
 	if (!ft_strncmp(cmd->value, "pwd", 4))
@@ -24,5 +29,7 @@ int	ms_exec_builtin(t_msh *msh, t_cmd *cmd)
 		return (ms_exit(msh, cmd));
 	if (!ft_strncmp(cmd->value, "unset", 6))
 		return (ms_unset(msh, cmd));
+	if (!ft_strncmp(cmd->value, "export", 7))
+		return (ms_export(msh, cmd));
 	return (0);
 }

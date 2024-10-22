@@ -6,13 +6,13 @@
 /*   By: saandria <saandria@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/22 15:19:01 by saandria          #+#    #+#             */
-/*   Updated: 2024/10/22 15:33:58 by saandria         ###   ########.fr       */
+/*   Updated: 2024/10/22 15:44:27 by saandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-static t_env	*unset(char *name, t_env **env)
+t_env	*unset(char *name, t_env **env)
 {
 	t_env	*current;
 	t_env	*prev;
