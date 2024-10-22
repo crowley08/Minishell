@@ -5,12 +5,10 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: saandria <saandria@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2024/10/22 16:10:46 by saandria         ###   ########.fr       */
+/*   Created: 2024/10/22 16:12:50 by saandria          #+#    #+#             */
+/*   Updated: 2024/10/22 16:12:52 by saandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-
 
 #include "../../includes/minishell.h"
 
