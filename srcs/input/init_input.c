@@ -6,11 +6,23 @@
 /*   By: arakotom <arakotom@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/20 10:28:44 by arakotom          #+#    #+#             */
-/*   Updated: 2024/10/20 21:26:54 by arakotom         ###   ########.fr       */
+/*   Updated: 2024/10/22 15:22:34 by arakotom         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
+
+volatile sig_atomic_t g_exit_sig_int_input;
+
+void handle_input_sigint(int sig)
+{
+	(void)sig;
+	g_exit_sig_int_input = 130;
+	write(1, "\n", 1);
+	rl_on_new_line();
+	rl_replace_line("", 0);
+	rl_redisplay();
+}
 
 t_bool	get_input_line_ok(t_msh *msh)
 {
@@ -18,10 +30,12 @@ t_bool	get_input_line_ok(t_msh *msh)
 
 	while (42)
 	{
+		g_exit_sig_int_input = msh->exit_status;
 		set_signal_handler();
 		line = readline("\e[33mminishell$ \e[0m");
-		if (line == NULL)
-			exit_msh_eof(msh);
+		msh->exit_status = g_exit_sig_int_input;
+			if (line == NULL)
+				exit_msh_eof(msh);
 		if (is_empty_str(line))
 			continue ;
 		add_history(line);

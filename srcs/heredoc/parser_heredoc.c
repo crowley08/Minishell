@@ -6,7 +6,7 @@
 /*   By: arakotom <arakotom@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/20 22:47:38 by arakotom          #+#    #+#             */
-/*   Updated: 2024/10/20 23:57:58 by arakotom         ###   ########.fr       */
+/*   Updated: 2024/10/22 15:20:37 by arakotom         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,16 +19,6 @@ void	handle_heredoc_sigint(int sig)
 	(void)sig;
 	g_sig_int_heredoc = 2;
 	close(STDIN_FILENO);
-}
-
-void	set_signal_handler_heredoc(void)
-{
-	struct sigaction	sa_int;
-
-	sigemptyset(&sa_int.sa_mask);
-	sa_int.sa_flags = 0;
-	sa_int.sa_handler = &handle_heredoc_sigint;
-	sigaction(SIGINT, &sa_int, NULL);
 }
 
 void	write_file_heredoc(int fd, char *line, t_bool exp_var, t_msh *msh)

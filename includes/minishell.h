@@ -6,7 +6,7 @@
 /*   By: arakotom <arakotom@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/17 14:35:14 by arakotom          #+#    #+#             */
-/*   Updated: 2024/10/20 21:20:44 by arakotom         ###   ########.fr       */
+/*   Updated: 2024/10/22 15:32:35 by arakotom         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,13 +32,14 @@
 # include <sys/wait.h>
 # include <unistd.h>
 
+//* quotes
 t_bool	is_quote(char c);
 void	init_quote(t_quote *quote);
 t_bool	quote_opened(t_quote quote);
 t_bool	quote_closed(t_quote quote);
 void	update_quote(char c, t_quote *quote);
-
-void	handle_sigint(int sig);
+// *signals
 void	set_signal_handler(void);
+void	set_signal_handler_heredoc(void);
 
 #endif
