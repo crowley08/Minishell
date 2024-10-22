@@ -1,28 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   builtins.h                                         :+:      :+:    :+:   */
+/*   ms_exit.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: saandria <saandria@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/17 14:36:57 by arakotom          #+#    #+#             */
-/*   Updated: 2024/10/22 14:58:06 by saandria         ###   ########.fr       */
+/*   Created: 2024/10/22 14:19:08 by saandria          #+#    #+#             */
+/*   Updated: 2024/10/22 14:59:37 by saandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef BUILTINS_H
-# define BUILTINS_H
+#include "../../includes/minishell.h"
 
-//exec
-int		ms_env(t_msh *msh, t_cmd *cmd);
-int		ms_exec_builtin(t_msh *msh, t_cmd *cmd);
-int		ms_pwd(void);
-int		ms_echo(t_cmd *cmd);
-int		ms_exit(t_msh *msh, t_cmd *cmd);
+static int	print_exit_error(int status)
+{
+	ft_putstr_fd("msh: exit: too many arguments\n", 2);
+	return (status);
+}
 
-//utils
-int		cmd_is_builtin(t_cmd *cmd);
-int		cmd_is_echo(t_cmd *cmd);
-int		ms_atoi(char *nptr);
+int	ms_exit(t_msh *msh, t_cmd *cmd)
+{
+	int	status;
 
-#endif
+	status = 0;
+	if (cmd->arg_list)
+	{
+		if (cmd->arg_list->next)
+			return (print_exit_error(-127));
+		else
+			status = ms_atoi(cmd->arg_list->value);
+	}
+	free_msh(msh, TRUE);
+	exit(status);
+}

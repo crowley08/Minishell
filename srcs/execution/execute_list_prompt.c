@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execute_list_prompt.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arakotom <arakotom@student.42.fr>          +#+  +:+       +#+        */
+/*   By: saandria <saandria@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 11:28:37 by arakotom          #+#    #+#             */
-/*   Updated: 2024/10/21 15:50:01 by arakotom         ###   ########.fr       */
+/*   Updated: 2024/10/22 14:41:47 by saandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

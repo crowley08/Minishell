@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: arakotom <arakotom@student.42.fr>          +#+  +:+       +#+         #
+#    By: saandria <saandria@student.42antananari    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/24 23:57:27 by arakotom          #+#    #+#              #
-#    Updated: 2024/10/21 15:34:20 by arakotom         ###   ########.fr        #
+#    Updated: 2024/10/22 14:30:22 by saandria         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -54,10 +54,12 @@ SRCS = main.c \
 		execution/execute_cmd.c \
 		execution/execute_set_redir.c \
 		execution/execute_list_prompt.c \
-		execution/execute_one_prompt.c
-
-
-
+		execution/execute_one_prompt.c \
+		builtin/ms_env.c builtin/builtin_utils.c \
+		builtin/exec_builtin.c \
+		builtin/ms_pwd.c builtin/ms_echo.c\
+		builtin/ms_exit.c
+		
 OBJS = $(addprefix $(OBJ_DIR)/, $(SRCS:.c=.o))
 LIB = $(LIBFT_DIR)/libft.a
 

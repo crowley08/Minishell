@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execute_cmd.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arakotom <arakotom@student.42.fr>          +#+  +:+       +#+        */
+/*   By: saandria <saandria@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 13:11:40 by arakotom          #+#    #+#             */
-/*   Updated: 2024/10/21 16:03:58 by arakotom         ###   ########.fr       */
+/*   Updated: 2024/10/22 13:40:35 by saandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,8 +114,8 @@ int execute_cmd_in_list(t_msh *msh, t_prompt *prompt)
 		free_msh_keep_file(msh, TRUE);
 		return (EXIT_FAILURE);
 	}
-	if (0)					   // todo: condition if it is builtins
-		return (EXIT_SUCCESS); //! builtins
+	if (cmd_is_builtin(prompt->cmd))					   // todo: condition if it is builtins
+		return (ms_exec_builtin(msh, prompt->cmd)); //! builtins
 	else
 		return (exec_execve(msh, prompt->cmd));
 }
