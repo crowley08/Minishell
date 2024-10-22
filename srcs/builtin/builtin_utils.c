@@ -6,7 +6,7 @@
 /*   By: saandria <saandria@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/22 13:28:11 by saandria          #+#    #+#             */
-/*   Updated: 2024/10/22 15:05:10 by saandria         ###   ########.fr       */
+/*   Updated: 2024/10/22 17:04:14 by saandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@ int	print_exit(char *s)
 	ft_putstr_fd("exit\n", 2);
 	ft_putstr_fd("msh: exit: ", 2);
 	ft_putstr_fd(s, 2);
-	free(s);
 	ft_putstr_fd(": numeric argument required\n", 2);
+	free(s);
 	return (2);
 }
 
@@ -54,6 +54,7 @@ int	ms_atoi(char *nptr)
 		nbr = nbr * 10 + *nptr - 48;
 		nptr++;
 	}
+	free(s);
 	return (nbr * sign);
 }
 

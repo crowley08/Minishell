@@ -6,7 +6,7 @@
 /*   By: saandria <saandria@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/17 14:36:57 by arakotom          #+#    #+#             */
-/*   Updated: 2024/10/22 15:51:54 by saandria         ###   ########.fr       */
+/*   Updated: 2024/10/22 16:49:43 by saandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,5 +27,6 @@ int		cmd_is_builtin(t_cmd *cmd);
 int		cmd_is_echo(t_cmd *cmd);
 int		ms_atoi(char *nptr);
 t_env	*unset(char *name, t_env **env);
+t_env	*export(char *arg, t_env **env, int *status);
 
 #endif
