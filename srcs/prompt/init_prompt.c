@@ -3,18 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   init_prompt.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arakotom <arakotom@student.42.fr>          +#+  +:+       +#+        */
+/*   By: saandria <saandria@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 09:10:11 by arakotom          #+#    #+#             */
-/*   Updated: 2024/10/21 10:28:29 by arakotom         ###   ########.fr       */
+/*   Updated: 2024/10/21 18:38:11 by saandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-t_prompt *new_prompt(void)
+t_prompt	*new_prompt(void)
 {
-	t_prompt *prompt;
+	t_prompt	*prompt;
 
 	prompt = (t_prompt *)malloc(sizeof(t_prompt));
 	if (!prompt)
@@ -26,11 +26,11 @@ t_prompt *new_prompt(void)
 	return (prompt);
 }
 
-t_prompt *create_prompt(char *input)
+t_prompt	*create_prompt(char *input)
 {
-	t_prompt *prompt;
-	char *value;
-	int len;
+	t_prompt	*prompt;
+	char		*value;
+	int			len;
 
 	prompt = new_prompt();
 	if (!prompt)
@@ -39,7 +39,7 @@ t_prompt *create_prompt(char *input)
 	{
 		len = next_value_len(input);
 		if (!len)
-			break;
+			break ;
 		value = ft_substr(input, 0, len);
 		input += len;
 		if (ft_isspace(*input))
@@ -52,9 +52,9 @@ t_prompt *create_prompt(char *input)
 	return (prompt);
 }
 
-void add_prompt_list(t_prompt **list, t_prompt *prompt)
+void	add_prompt_list(t_prompt **list, t_prompt *prompt)
 {
-	t_prompt *last;
+	t_prompt	*last;
 
 	if (!list || !(*list))
 		*list = prompt;
@@ -67,11 +67,11 @@ void add_prompt_list(t_prompt **list, t_prompt *prompt)
 	}
 }
 
-t_prompt *parse_input_prompt(char **tab)
+t_prompt	*parse_input_prompt(char **tab)
 {
-	t_prompt *list;
-	t_prompt *prompt;
-	int i;
+	t_prompt	*list;
+	t_prompt	*prompt;
+	int			i;
 
 	i = 0;
 	list = NULL;
@@ -85,9 +85,9 @@ t_prompt *parse_input_prompt(char **tab)
 	return (list);
 }
 
-t_bool parse_token_prompt_ok(t_msh *msh)
+t_bool	parse_token_prompt_ok(t_msh *msh)
 {
-	char **tab;
+	char	**tab;
 
 	tab = split_pipe(msh->input);
 	if (!tab)

@@ -3,18 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   execute_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arakotom <arakotom@student.42.fr>          +#+  +:+       +#+        */
+/*   By: saandria <saandria@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 13:14:53 by arakotom          #+#    #+#             */
-/*   Updated: 2024/10/21 13:15:11 by arakotom         ###   ########.fr       */
+/*   Updated: 2024/10/21 18:43:25 by saandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-int arg_list_len(t_arg *list)
+int	arg_list_len(t_arg *list)
 {
-	int len;
+	int	len;
 
 	len = 0;
 	while (list)
@@ -25,9 +25,9 @@ int arg_list_len(t_arg *list)
 	return (len);
 }
 
-int env_list_len(t_env *list)
+int	env_list_len(t_env *list)
 {
-	int len;
+	int	len;
 
 	len = 0;
 	while (list)

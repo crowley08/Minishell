@@ -6,7 +6,7 @@
 /*   By: arakotom <arakotom@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/20 21:08:57 by arakotom          #+#    #+#             */
-/*   Updated: 2024/10/20 21:29:37 by arakotom         ###   ########.fr       */
+/*   Updated: 2024/10/22 15:31:36 by arakotom         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ int				trim_in_len(char *line);
 char			*trim_space_in(char *line);
 char			*trim_space_all(char *line);
 //*init_input
+void			handle_input_sigint(int sig);
 t_bool			get_input_line_ok(t_msh *msh);
 void			set_exit_status_msh_stx(t_msh *msh, t_error_state exit_status,
 					t_bool *has_err);

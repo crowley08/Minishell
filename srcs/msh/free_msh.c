@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   free_msh.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arakotom <arakotom@student.42.fr>          +#+  +:+       +#+        */
+/*   By: saandria <saandria@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/17 17:55:26 by arakotom          #+#    #+#             */
-/*   Updated: 2024/10/21 11:02:52 by arakotom         ###   ########.fr       */
+/*   Updated: 2024/10/21 18:28:24 by saandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-t_bool free_msh(t_msh *msh, t_bool val)
+t_bool	free_msh(t_msh *msh, t_bool val)
 {
 	if (msh->env_list)
 		free_env_list(&(msh->env_list), val);
@@ -25,7 +25,7 @@ t_bool free_msh(t_msh *msh, t_bool val)
 	return (val);
 }
 
-t_bool free_msh_keep_file(t_msh *msh, t_bool val)
+t_bool	free_msh_keep_file(t_msh *msh, t_bool val)
 {
 	if (msh->env_list)
 		free_env_list(&(msh->env_list), val);
@@ -38,7 +38,7 @@ t_bool free_msh_keep_file(t_msh *msh, t_bool val)
 	return (val);
 }
 
-t_bool free_msh_reset(t_msh *msh, t_bool val)
+t_bool	free_msh_reset(t_msh *msh, t_bool val)
 {
 	if (msh->input)
 		free(msh->input);

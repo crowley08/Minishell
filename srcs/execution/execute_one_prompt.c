@@ -5,17 +5,19 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: saandria <saandria@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/21 11:30:22 by arakotom          #+#    #+#             */
-/*   Updated: 2024/10/22 14:35:57 by saandria         ###   ########.fr       */
+/*   Created: Invalid date        by                   #+#    #+#             */
+/*   Updated: 2024/10/22 16:10:46 by saandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+
+
 #include "../../includes/minishell.h"
 
-void execute_one_prompt(t_msh *msh, t_prompt *prompt)
+void	execute_one_prompt(t_msh *msh, t_prompt *prompt)
 {
-	pid_t pid_one_pmt;
-	int exit_status_one;
+	pid_t	pid_one_pmt;
+	int		exit_status_one;
 
 	if (cmd_is_builtin(prompt->cmd)) // todo: condition if it is builtins
 	{
