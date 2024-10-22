@@ -3,18 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   init_input.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arakotom <arakotom@student.42.fr>          +#+  +:+       +#+        */
+/*   By: saandria <saandria@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/20 10:28:44 by arakotom          #+#    #+#             */
-/*   Updated: 2024/10/22 15:22:34 by arakotom         ###   ########.fr       */
+/*   Updated: 2024/10/22 17:40:17 by saandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-volatile sig_atomic_t g_exit_sig_int_input;
+volatile sig_atomic_t	g_exit_sig_int_input;
 
-void handle_input_sigint(int sig)
+void	handle_input_sigint(int sig)
 {
 	(void)sig;
 	g_exit_sig_int_input = 130;
@@ -34,8 +34,8 @@ t_bool	get_input_line_ok(t_msh *msh)
 		set_signal_handler();
 		line = readline("\e[33mminishell$ \e[0m");
 		msh->exit_status = g_exit_sig_int_input;
-			if (line == NULL)
-				exit_msh_eof(msh);
+		if (line == NULL)
+			exit_msh_eof(msh);
 		if (is_empty_str(line))
 			continue ;
 		add_history(line);
