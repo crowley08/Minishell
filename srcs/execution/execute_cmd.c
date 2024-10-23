@@ -6,7 +6,7 @@
 /*   By: saandria <saandria@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/22 16:12:24 by saandria          #+#    #+#             */
-/*   Updated: 2024/10/22 17:40:51 by saandria         ###   ########.fr       */
+/*   Updated: 2024/10/23 13:44:17 by saandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,8 +114,6 @@ int	execute_cmd_in_list(t_msh *msh, t_prompt *prompt)
 		free_msh_keep_file(msh, TRUE);
 		return (EXIT_FAILURE);
 	}
-	if (0) // todo: condition if it is builtins
-		return (EXIT_SUCCESS);//! builtins
 	if (cmd_is_builtin(prompt->cmd)) // todo: condition if it is builtins
 		return (ms_exec_builtin(msh, prompt->cmd)); //! builtins
 	else

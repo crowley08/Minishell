@@ -6,7 +6,7 @@
 #    By: saandria <saandria@student.42antananari    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/24 23:57:27 by arakotom          #+#    #+#              #
-#    Updated: 2024/10/22 15:51:34 by saandria         ###   ########.fr        #
+#    Updated: 2024/10/23 13:22:32 by saandria         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -59,7 +59,8 @@ SRCS = main.c \
 		builtin/exec_builtin.c \
 		builtin/ms_pwd.c builtin/ms_echo.c \
 		builtin/ms_exit.c builtin/ms_unset.c \
-		builtin/ms_export.c
+		builtin/ms_export.c builtin/ms_export_utils.c \
+		builtin/ms_cd_utils.c builtin/ms_cd.c \
 		
 OBJS = $(addprefix $(OBJ_DIR)/, $(SRCS:.c=.o))
 LIB = $(LIBFT_DIR)/libft.a

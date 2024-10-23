@@ -6,7 +6,7 @@
 /*   By: saandria <saandria@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/22 13:38:01 by saandria          #+#    #+#             */
-/*   Updated: 2024/10/22 15:59:58 by saandria         ###   ########.fr       */
+/*   Updated: 2024/10/23 13:25:42 by saandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,5 +31,7 @@ int	ms_exec_builtin(t_msh *msh, t_cmd *cmd)
 		return (ms_unset(msh, cmd));
 	if (!ft_strncmp(cmd->value, "export", 7))
 		return (ms_export(msh, cmd));
+	if (!ft_strncmp(cmd->value, "cd", 3))
+		return (ms_cd(msh, cmd));
 	return (0);
 }

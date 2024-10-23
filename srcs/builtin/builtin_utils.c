@@ -6,7 +6,7 @@
 /*   By: saandria <saandria@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/22 13:28:11 by saandria          #+#    #+#             */
-/*   Updated: 2024/10/22 17:04:14 by saandria         ###   ########.fr       */
+/*   Updated: 2024/10/23 11:11:52 by saandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,17 +20,18 @@ int	cmd_is_echo(t_cmd *cmd)
 	return (0);
 }
 
-int	print_exit(char *s)
+static int	print_exit(char *s, t_bool *num)
 {
 	ft_putstr_fd("exit\n", 2);
 	ft_putstr_fd("msh: exit: ", 2);
 	ft_putstr_fd(s, 2);
 	ft_putstr_fd(": numeric argument required\n", 2);
 	free(s);
+	*num = TRUE;
 	return (2);
 }
 
-int	ms_atoi(char *nptr)
+int	ms_atoi(char *nptr, t_bool *num)
 {
 	int		sign;
 	long	nbr;
@@ -50,7 +51,7 @@ int	ms_atoi(char *nptr)
 	while (*nptr)
 	{
 		if (*nptr < '0' || *nptr > '9')
-			return (print_exit(s));
+			return (print_exit(s, num));
 		nbr = nbr * 10 + *nptr - 48;
 		nptr++;
 	}
@@ -60,10 +61,13 @@ int	ms_atoi(char *nptr)
 
 int	cmd_is_builtin(t_cmd *cmd)
 {
-	if (!ft_strncmp(cmd->value, "exit", 5) || !ft_strncmp(cmd->value, "cd", 3)
-		|| !ft_strncmp(cmd->value, "pwd", 4) || !ft_strncmp(cmd->value, "env", 4)
+	if (!ft_strncmp(cmd->value, "exit", 5)
+		|| !ft_strncmp(cmd->value, "cd", 3)
+		|| !ft_strncmp(cmd->value, "pwd", 4)
+		|| !ft_strncmp(cmd->value, "env", 4)
 		|| !ft_strncmp(cmd->value, "export", 7)
-		|| !ft_strncmp(cmd->value, "unset", 6) || cmd_is_echo(cmd))
+		|| !ft_strncmp(cmd->value, "unset", 6)
+		|| cmd_is_echo(cmd))
 		return (1);
 	return (0);
 }

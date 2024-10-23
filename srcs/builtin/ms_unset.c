@@ -6,7 +6,7 @@
 /*   By: saandria <saandria@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/22 15:19:01 by saandria          #+#    #+#             */
-/*   Updated: 2024/10/22 15:44:27 by saandria         ###   ########.fr       */
+/*   Updated: 2024/10/23 11:55:47 by saandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,18 +26,19 @@ t_env	*unset(char *name, t_env **env)
 	if (current == NULL)
 		return (*env);
 	prev->next = current->next;
-	free(current->name);
-	free(current->value);
-	free(current);
+	free_env(current, TRUE);
 	return (*env);
 }
 
 int	ms_unset(t_msh *msh, t_cmd *cmd)
 {
-	while (cmd->arg_list)
+	t_arg	*args;
+
+	args = cmd->arg_list;
+	while (args)
 	{
-		msh->env_list = unset(cmd->arg_list->value, &msh->env_list);
-		cmd->arg_list = cmd->arg_list->next;
+		unset(args->value, &msh->env_list);
+		args = args->next;
 	}
 	return (0);
 }

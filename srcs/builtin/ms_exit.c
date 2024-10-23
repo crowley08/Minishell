@@ -6,7 +6,7 @@
 /*   By: saandria <saandria@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/22 14:19:08 by saandria          #+#    #+#             */
-/*   Updated: 2024/10/22 17:18:35 by saandria         ###   ########.fr       */
+/*   Updated: 2024/10/23 11:57:12 by saandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,15 +20,18 @@ static int	print_exit_error(int status)
 
 int	ms_exit(t_msh *msh, t_cmd *cmd)
 {
-	int	status;
+	t_bool	is_non_num;
+	int		status;
+	t_arg	*args;
 
 	status = 0;
-	if (cmd->arg_list)
+	is_non_num = FALSE;
+	args = cmd->arg_list;
+	if (args)
 	{
-		if (cmd->arg_list->next)
+		status = ms_atoi(args->value, &is_non_num);
+		if (args->next && is_non_num == FALSE)
 			return (print_exit_error(-127));
-		else
-			status = ms_atoi(cmd->arg_list->value);
 	}
 	free_msh(msh, TRUE);
 	exit(status);

@@ -6,7 +6,7 @@
 /*   By: saandria <saandria@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/17 17:38:54 by arakotom          #+#    #+#             */
-/*   Updated: 2024/10/21 18:27:51 by saandria         ###   ########.fr       */
+/*   Updated: 2024/10/23 13:42:30 by saandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,6 @@ void	run_msh(t_msh *msh)
 {
 	while (42)
 	{
-		printf("==================== EXIT STATUS %d =====\n", msh->exit_status);
 		if (!get_input_line_ok(msh))
 			continue ;
 		if (!syntax_input_ok(msh))
@@ -49,6 +48,4 @@ void	run_msh(t_msh *msh)
 	}
 }
 
-		// printf("->%s\n", msh->input);
-		// print_prompts(msh->prompt_list);
-		// free_msh_reset(msh, TRUE);
+//		printf("==================== EXIT STATUS %d =====\n", msh->exit_status);

@@ -6,7 +6,7 @@
 /*   By: saandria <saandria@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/20 10:28:44 by arakotom          #+#    #+#             */
-/*   Updated: 2024/10/22 17:40:17 by saandria         ###   ########.fr       */
+/*   Updated: 2024/10/23 13:42:43 by saandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ t_bool	get_input_line_ok(t_msh *msh)
 	{
 		g_exit_sig_int_input = msh->exit_status;
 		set_signal_handler();
-		line = readline("\e[33mminishell$ \e[0m");
+		line = readline("minishell$ ");
 		msh->exit_status = g_exit_sig_int_input;
 		if (line == NULL)
 			exit_msh_eof(msh);

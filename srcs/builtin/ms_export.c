@@ -6,53 +6,19 @@
 /*   By: saandria <saandria@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/22 15:44:58 by saandria          #+#    #+#             */
-/*   Updated: 2024/10/22 17:08:22 by saandria         ###   ########.fr       */
+/*   Updated: 2024/10/23 11:54:42 by saandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
-
-static t_env	*new_env_list(char *value)
-{
-	int		i;
-	int		start;	
-	t_env	*new;
-
-	i = 0;
-	start = i;
-	new = (t_env *)malloc(sizeof(t_env));
-	if (!new)
-		return (NULL);
-	while (value[i] != '=')
-		i++;
-	new->name = ft_substr(value, start, i - start);
-	start = i + 1;
-	while (value[i])
-		i++;
-	new->value = ft_substr(value, start, i - start);
-	new->next = NULL;
-	return (new);
-}
-
-static int	name_is_valid(char *name)
-{
-	int	i;
-
-	i = 0;
-	while (name[i])
-	{
-		if (!ft_isalnum(name[i]) && name[i] != '_')
-			return (0);
-		i++;
-	}
-	return (1);
-}
 
 t_env	*export(char *arg, t_env **env, int *status)
 {
 	t_env	*new;
 
 	new = new_env_list(arg);
+	if (!new)
+		return (*env);
 	if (!name_is_valid(new->name))
 	{
 		ft_putstr_fd("msh: export: ", 2);
@@ -64,45 +30,91 @@ t_env	*export(char *arg, t_env **env, int *status)
 		free(new);
 		*status = -127;
 	}
-	else if (name_is_valid(new->name))
+	else
 	{
-		if (new->value != NULL)
+		if (name_exists(new->name, env))
 			add_env_list(env, new);
-		else
-		{
-			free(new->name);
-			if (new->value)
-				free(new->value);
-			free(new);
-			return (*env);
-		}
 	}
 	return (*env);
+}
+
+static t_env	*dup_env(t_env *env)
+{
+	t_env	*dup;
+	t_env	*new_dup;
+
+	dup = NULL;
+	new_dup = NULL;
+	while (env)
+	{
+		new_dup = malloc(sizeof(t_env));
+		new_dup->name = ft_strdup(env->name);
+		new_dup->value = ft_strdup(env->value);
+		new_dup->next = NULL;
+		add_env_list(&dup, new_dup);
+		env = env->next;
+	}
+	return (dup);
+}
+/*
+*/
+
+static void	print_export(t_env *print)
+{
+	while (print)
+	{
+		printf("export %s", print->name);
+		if (print->value)
+			printf("=\"%s\"", print->value);
+		printf("\n");
+		print = print->next;
+	}
+}
+
+static void	free_envl(t_env **env)
+{
+	t_env	*current;
+	t_env	*next;
+
+	current = *env;
+	while (current)
+	{
+		next = current->next;
+		free(current->name);
+		free(current->value);
+		free(current);
+		current = next;
+	}
+	*env = NULL;
+	free(current);
+	current = NULL;
+	next = NULL;
+	return ;
 }
 
 int	ms_export(t_msh *msh, t_cmd *cmd)
 {
 	t_env	*print;
-	int		status;
+	int		s;
+	t_arg	*args;
 
-	status = 0;
-	print = msh->env_list;
-	if (cmd->arg_list)
+	s = 0;
+	args = cmd->arg_list;
+	if (args)
 	{
-		while (cmd->arg_list)
+		while (args)
 		{
-			msh->env_list = export(cmd->arg_list->value, &msh->env_list, &status);
-			cmd->arg_list = cmd->arg_list->next;
+			export(args->value, &msh->env_list, &s);
+			args = args->next;
 		}
-		return (status);
+		return (s);
 	}
 	else
 	{
-		while (print)
-		{
-			printf("export %s=%s\n", print->name, print->value);
-			print = print->next;
-		}
+		print = dup_env(msh->env_list);
+		print = sort_env(&print);
+		print_export(print);
+		free_envl(&print);
 		return (0);
 	}
 	return (0);
