@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print_prompt.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: saandria <saandria@student.42antananari    +#+  +:+       +#+        */
+/*   By: arakotom <arakotom@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 10:16:58 by arakotom          #+#    #+#             */
-/*   Updated: 2024/10/21 18:36:33 by saandria         ###   ########.fr       */
+/*   Updated: 2024/10/23 16:10:13 by arakotom         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ void	print_prompts(t_prompt *prompt)
 	}
 }
 
-// ! FIXME: delete this function later
 void	print_arg(t_arg *arg)
 {
 	if (arg)
@@ -45,7 +44,6 @@ void	print_arg(t_arg *arg)
 	}
 }
 
-// ! FIXME: delete this function later
 void	print_prompt_cmd(t_cmd *cmd)
 {
 	if (cmd)
@@ -55,7 +53,6 @@ void	print_prompt_cmd(t_cmd *cmd)
 	}
 }
 
-// ! FIXME: delete this function later
 void	print_prompt_redir_in(t_redir_in *redir_in)
 {
 	if (redir_in)
@@ -69,7 +66,6 @@ void	print_prompt_redir_in(t_redir_in *redir_in)
 	}
 }
 
-// ! FIXME: delete this function later
 void	print_prompt_redir_out(t_redir_out *redir_out)
 {
 	if (redir_out)

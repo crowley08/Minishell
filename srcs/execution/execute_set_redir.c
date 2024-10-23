@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execute_set_redir.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: saandria <saandria@student.42antananari    +#+  +:+       +#+        */
+/*   By: arakotom <arakotom@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 13:37:55 by arakotom          #+#    #+#             */
-/*   Updated: 2024/10/23 14:06:19 by saandria         ###   ########.fr       */
+/*   Updated: 2024/10/23 16:09:04 by arakotom         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,11 @@ t_bool	check_redir_in_ok(t_redir_in *redir)
 {
 	while (redir)
 	{
-		if (ft_strncmp(redir->file, ".msh_", 5) != 0) //* not heredoc file
+		if (ft_strncmp(redir->file, ".msh_", 5) != 0)
 		{
-			if (access(redir->file, F_OK) != 0) //* not exists
+			if (access(redir->file, F_OK) != 0)
 				return (print_err_redir(FALSE));
-			if (access(redir->file, R_OK) != 0) //* not readable
+			if (access(redir->file, R_OK) != 0)
 				return (print_err_redir(FALSE));
 		}
 		redir = redir->next;
@@ -32,9 +32,9 @@ t_bool	check_redir_out_ok(t_redir_out *redir)
 {
 	while (redir)
 	{
-		if (access(redir->file, F_OK) == 0) //* exists
+		if (access(redir->file, F_OK) == 0)
 		{
-			if (access(redir->file, W_OK) != 0) //* not writable
+			if (access(redir->file, W_OK) != 0)
 				return (print_err_redir(FALSE));
 		}
 		redir = redir->next;

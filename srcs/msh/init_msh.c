@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_msh.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: saandria <saandria@student.42antananari    +#+  +:+       +#+        */
+/*   By: arakotom <arakotom@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/17 17:38:54 by arakotom          #+#    #+#             */
-/*   Updated: 2024/10/23 13:55:23 by saandria         ###   ########.fr       */
+/*   Updated: 2024/10/23 16:09:51 by arakotom         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,5 +47,3 @@ void	run_msh(t_msh *msh)
 		execute_msh(msh);
 	}
 }
-
-//		printf("==================== EXIT STATUS %d =====\n", msh->exit_status);

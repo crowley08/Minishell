@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ms_echo.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: saandria <saandria@student.42antananari    +#+  +:+       +#+        */
+/*   By: arakotom <arakotom@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/22 13:56:49 by saandria          #+#    #+#             */
-/*   Updated: 2024/10/23 15:34:09 by saandria         ###   ########.fr       */
+/*   Updated: 2024/10/23 16:10:35 by arakotom         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int	ms_echo(t_cmd *cmd)
 		return (0);
 	}
 	if (ft_strncmp(args->value, "-n", 2) == 0)
-	{	
+	{
 		args = args->next;
 		print_with_n_option(args);
 	}

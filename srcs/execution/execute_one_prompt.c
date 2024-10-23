@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execute_one_prompt.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: saandria <saandria@student.42antananari    +#+  +:+       +#+        */
+/*   By: arakotom <arakotom@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/22 16:12:50 by saandria          #+#    #+#             */
-/*   Updated: 2024/10/23 11:39:39 by saandria         ###   ########.fr       */
+/*   Updated: 2024/10/23 16:09:37 by arakotom         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,9 @@ void	execute_one_prompt(t_msh *msh, t_prompt *prompt)
 	pid_t	pid_one_pmt;
 	int		exit_status_one;
 
-	if (cmd_is_builtin(prompt->cmd)) // todo: condition if it is builtins
+	if (cmd_is_builtin(prompt->cmd))
 	{
-		exit_status_one = ms_exec_builtin(msh, prompt->cmd); //! builtins
+		exit_status_one = ms_exec_builtin(msh, prompt->cmd);
 		set_exit_status_msh_exec_one_last_cmd(msh, exit_status_one);
 	}
 	else

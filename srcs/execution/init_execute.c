@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_execute.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: saandria <saandria@student.42antananari    +#+  +:+       +#+        */
+/*   By: arakotom <arakotom@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 11:00:00 by arakotom          #+#    #+#             */
-/*   Updated: 2024/10/21 18:44:41 by saandria         ###   ########.fr       */
+/*   Updated: 2024/10/23 16:09:46 by arakotom         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,10 +31,8 @@ void	execute_msh(t_msh *msh)
 
 	prompt_list = msh->prompt_list;
 	if (prompt_list->next)
-// todo: create one child proc and execute in all prompts on child proc even if it's a builtins cmd
 		execute_list_prompt(msh, prompt_list);
 	else
-// todo:execute prompt on main proc if it's a builtins cmd,if not execute it on child proc
 		execute_one_prompt(msh, prompt_list);
 	free_msh_reset(msh, TRUE);
 }

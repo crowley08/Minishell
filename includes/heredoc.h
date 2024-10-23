@@ -6,7 +6,7 @@
 /*   By: arakotom <arakotom@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/17 14:37:03 by arakotom          #+#    #+#             */
-/*   Updated: 2024/10/22 15:21:00 by arakotom         ###   ########.fr       */
+/*   Updated: 2024/10/23 16:11:03 by arakotom         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ char			*re_new_input_var(char *old_input, char *input, int *i,
 					t_msh *msh);
 char			*expand_input_var(t_msh *msh, char *input, t_bool do_free);
 //* parser_heredoc
+
 void			handle_heredoc_sigint(int sig);
 void			write_file_heredoc(int fd, char *line, t_bool exp_var,
 					t_msh *msh);

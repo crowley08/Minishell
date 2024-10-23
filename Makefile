@@ -3,16 +3,15 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: saandria <saandria@student.42antananari    +#+  +:+       +#+         #
+#    By: arakotom <arakotom@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/24 23:57:27 by arakotom          #+#    #+#              #
-#    Updated: 2024/10/23 13:22:32 by saandria         ###   ########.fr        #
+#    Updated: 2024/10/23 16:13:52 by arakotom         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CFLAGS = -Wall -Wextra -Werror -g
 RDLFLAGS = -lreadline
-VGRLFLAGS = valgrind --suppressions=readline.supp --leak-check=full --track-origins=yes --show-leak-kinds=all
 
 SRC_DIR = srcs
 OBJ_DIR = objs
@@ -61,7 +60,7 @@ SRCS = main.c \
 		builtin/ms_exit.c builtin/ms_unset.c \
 		builtin/ms_export.c builtin/ms_export_utils.c \
 		builtin/ms_cd_utils.c builtin/ms_cd.c \
-		
+
 OBJS = $(addprefix $(OBJ_DIR)/, $(SRCS:.c=.o))
 LIB = $(LIBFT_DIR)/libft.a
 
@@ -90,11 +89,5 @@ fclean : clean
 	$(RM) $(NAME)
 
 re : fclean all
-
-run: $(NAME)
-	./$(NAME)
-
-val:$(NAME)
-	$(VGRLFLAGS) ./$(NAME)
 
 .PHONY: all clean fclean re
