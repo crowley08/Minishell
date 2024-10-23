@@ -6,7 +6,7 @@
 /*   By: saandria <saandria@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 12:34:58 by saandria          #+#    #+#             */
-/*   Updated: 2024/10/23 13:41:37 by saandria         ###   ########.fr       */
+/*   Updated: 2024/10/23 13:54:57 by saandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,15 @@ static void	update_pwd(t_msh *msh, char *path)
 	free(pwd);
 }
 
+static int	no_directory(char *path)
+{
+	ft_putstr_fd("cd: ", 2);
+	ft_putstr_fd(path, 2);
+	ft_putstr_fd(": no such file or directory\n", 2);
+	free(path);
+	return (-127);
+}
+
 int	ms_cd(t_msh *msh, t_cmd *cmd)
 {
 	t_arg	*arg;
@@ -68,7 +77,7 @@ int	ms_cd(t_msh *msh, t_cmd *cmd)
 	if (status == 0)
 		update_pwd(msh, path);
 	else if (status == -1)
-		status *= -1;
+		return (no_directory(path));
 	else
 		perror(path);
 	free(path);

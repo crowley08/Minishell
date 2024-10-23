@@ -6,7 +6,7 @@
 /*   By: saandria <saandria@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/22 13:28:11 by saandria          #+#    #+#             */
-/*   Updated: 2024/10/23 11:11:52 by saandria         ###   ########.fr       */
+/*   Updated: 2024/10/23 15:37:32 by saandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ int	cmd_is_echo(t_cmd *cmd)
 
 static int	print_exit(char *s, t_bool *num)
 {
-	ft_putstr_fd("exit\n", 2);
 	ft_putstr_fd("msh: exit: ", 2);
 	ft_putstr_fd(s, 2);
 	ft_putstr_fd(": numeric argument required\n", 2);
@@ -67,7 +66,7 @@ int	cmd_is_builtin(t_cmd *cmd)
 		|| !ft_strncmp(cmd->value, "env", 4)
 		|| !ft_strncmp(cmd->value, "export", 7)
 		|| !ft_strncmp(cmd->value, "unset", 6)
-		|| cmd_is_echo(cmd))
+		|| !ft_strncmp(cmd->value, "echo", 5))
 		return (1);
 	return (0);
 }

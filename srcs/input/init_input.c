@@ -6,7 +6,7 @@
 /*   By: saandria <saandria@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/20 10:28:44 by arakotom          #+#    #+#             */
-/*   Updated: 2024/10/23 13:42:43 by saandria         ###   ########.fr       */
+/*   Updated: 2024/10/23 14:29:08 by saandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,18 @@ void	handle_input_sigint(int sig)
 	rl_redisplay();
 }
 
+static t_bool	is_spec_line(t_msh *msh, char *line)
+{
+	if (ft_strcmp(line, ":") == 0 || ft_strcmp(line, "!") == 0)
+	{
+		add_history(line);
+		free(line);
+		msh->exit_status = 0;
+		return (TRUE);
+	}
+	return (FALSE);
+}
+
 t_bool	get_input_line_ok(t_msh *msh)
 {
 	char	*line;
@@ -36,7 +48,7 @@ t_bool	get_input_line_ok(t_msh *msh)
 		msh->exit_status = g_exit_sig_int_input;
 		if (line == NULL)
 			exit_msh_eof(msh);
-		if (is_empty_str(line))
+		if (is_empty_str(line) || is_spec_line(msh, line))
 			continue ;
 		add_history(line);
 		break ;
@@ -46,25 +58,6 @@ t_bool	get_input_line_ok(t_msh *msh)
 	if (!(msh->input))
 		return (reset_msh_err_get_input_line(msh, FALSE));
 	return (TRUE);
-}
-
-void	set_exit_status_msh_stx(t_msh *msh, t_error_state exit_status,
-		t_bool *has_err)
-{
-	*has_err = FALSE;
-	if (WIFEXITED(exit_status))
-	{
-		if (WEXITSTATUS(exit_status) != NOTHING)
-		{
-			*has_err = TRUE;
-			msh->exit_status = 2;
-		}
-	}
-	else if (WIFSIGNALED(exit_status))
-	{
-		*has_err = TRUE;
-		msh->exit_status = WTERMSIG(exit_status);
-	}
 }
 
 void	run_syntax_validation(t_msh *msh)

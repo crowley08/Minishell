@@ -6,7 +6,7 @@
 /*   By: saandria <saandria@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/22 14:19:08 by saandria          #+#    #+#             */
-/*   Updated: 2024/10/23 11:57:12 by saandria         ###   ########.fr       */
+/*   Updated: 2024/10/23 15:36:46 by saandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ int	ms_exit(t_msh *msh, t_cmd *cmd)
 	status = 0;
 	is_non_num = FALSE;
 	args = cmd->arg_list;
+	printf("exit\n");
 	if (args)
 	{
 		status = ms_atoi(args->value, &is_non_num);
