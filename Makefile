@@ -1,18 +1,6 @@
-# **************************************************************************** #
-#                                                                              #
-#                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: arakotom <arakotom@student.42.fr>          +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2024/09/24 23:57:27 by arakotom          #+#    #+#              #
-#    Updated: 2024/10/23 16:13:52 by arakotom         ###   ########.fr        #
-#                                                                              #
-# **************************************************************************** #
-
 CFLAGS = -Wall -Wextra -Werror -g
 RDLFLAGS = -lreadline
-
+VGRLFLAGS = valgrind --suppressions=readline.supp --leak-check=full --track-origins=yes --show-leak-kinds=all
 SRC_DIR = srcs
 OBJ_DIR = objs
 INCLUDE_DIR = includes
@@ -87,6 +75,9 @@ clean :
 fclean : clean
 	@make fclean -C $(LIBFT_DIR)
 	$(RM) $(NAME)
+
+val:$(NAME)
+	$(VGRLFLAGS) ./$(NAME)
 
 re : fclean all
 

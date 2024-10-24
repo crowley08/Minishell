@@ -6,7 +6,7 @@
 /*   By: saandria <saandria@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/22 13:56:49 by saandria          #+#    #+#             */
-/*   Updated: 2024/10/23 20:51:33 by saandria         ###   ########.fr       */
+/*   Updated: 2024/10/24 11:39:37 by saandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,34 +16,39 @@ static void	print_with_no_option(t_arg *args)
 {
 	while (args)
 	{
-		ft_putendl_fd(args->value, STDOUT_FILENO);
+		if (args->value[0] == '$')
+			ft_putstr_fd(args->value + 1, STDOUT_FILENO);
+		else
+			ft_putstr_fd(args->value, STDOUT_FILENO);
 		args = args->next;
 	}
+	write(STDOUT_FILENO, "\n", 1);
 }
 
 static void	print_with_n_option(t_arg *args)
 {
 	while (args)
 	{
-		ft_putstr_fd(args->value, STDOUT_FILENO);
+		if (args->value[0] == '$')
+			ft_putstr_fd(args->value + 1, STDOUT_FILENO);
+		else
+			ft_putstr_fd(args->value, STDOUT_FILENO);
 		args = args->next;
 	}
 }
 
-static int check_option(t_arg *arg)
+static int	check_option(t_arg *arg)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	if (arg->value[i] == '-')
 		i++;
-	while (arg->value[i])
-	{
-		if (arg->value[i] != 'n')
-			return (0);
+	while (arg->value[i] == 'n')
 		i++;
-	}
-	return (1);
+	if (!arg->value[i] && i > 1)
+		return (1);
+	return (0);
 }
 
 int	ms_echo(t_cmd *cmd)

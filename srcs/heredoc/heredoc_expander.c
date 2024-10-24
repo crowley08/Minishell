@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc_expander.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arakotom <arakotom@student.42.fr>          +#+  +:+       +#+        */
+/*   By: saandria <saandria@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/13 18:29:55 by arakotom          #+#    #+#             */
-/*   Updated: 2024/10/20 23:26:13 by arakotom         ###   ########.fr       */
+/*   Updated: 2024/10/24 10:47:22 by saandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ char	*expand_var(char *line, t_msh *msh)
 		return (ft_itoa(msh->exit_status));
 	else if (*line == '$')
 		return (ft_strdup("288"));
+	else if (ft_isdigit(*line))
+		return (ft_strdup(line + 1));
 	else if (ft_isspace(*line))
 		return (ft_strdup("$"));
 	i = 0;

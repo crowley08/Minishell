@@ -6,7 +6,7 @@
 /*   By: saandria <saandria@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 13:01:27 by saandria          #+#    #+#             */
-/*   Updated: 2024/10/23 13:40:41 by saandria         ###   ########.fr       */
+/*   Updated: 2024/10/24 11:22:10 by saandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,13 @@ char	*get_path(t_arg *arg_list, t_msh *msh)
 	if (arg == NULL || ft_strcmp(arg->value, "~") == 0)
 		path = ms_getenv("HOME", env);
 	else if (ft_strcmp(arg->value, "-") == 0)
+	{
 		path = ms_getenv("OLDPWD", env);
+		if (!path)
+			path = ms_getenv("PWD", env);
+		if (!path)
+			path = getcwd(path, 0);
+	}
 	else
 		path = ft_strdup(arg->value);
 	return (path);

@@ -6,7 +6,7 @@
 /*   By: saandria <saandria@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 12:34:58 by saandria          #+#    #+#             */
-/*   Updated: 2024/10/23 13:54:57 by saandria         ###   ########.fr       */
+/*   Updated: 2024/10/24 10:24:53 by saandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,13 +23,16 @@ static void	update_oldpwd(t_msh *msh)
 	oldpwd = NULL;
 	while (env && ft_strcmp(env->name, "PWD") != 0)
 		env = env->next;
-	pwd = ft_strdup(env->value);
+	if (env)
+		pwd = ft_strdup(env->value);
+	else
+		pwd = getcwd(pwd, 0);
 	oldpwd = ft_strjoin("OLDPWD=", pwd);
-	if (!pwd || !oldpwd)
+	free(pwd);
+	if (!oldpwd)
 		return ;
 	export(oldpwd, &msh->env_list, 0);
 	free(oldpwd);
-	free(pwd);
 }
 
 static void	update_pwd(t_msh *msh, char *path)
