@@ -6,7 +6,7 @@
 /*   By: saandria <saandria@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/22 15:44:58 by saandria          #+#    #+#             */
-/*   Updated: 2024/10/24 12:26:35 by saandria         ###   ########.fr       */
+/*   Updated: 2024/10/24 13:50:27 by saandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,8 +56,6 @@ static t_env	*dup_env(t_env *env)
 	}
 	return (dup);
 }
-/*
-*/
 
 static void	print_export(t_env *print)
 {

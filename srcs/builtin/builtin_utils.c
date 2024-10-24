@@ -6,7 +6,7 @@
 /*   By: saandria <saandria@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/22 13:28:11 by saandria          #+#    #+#             */
-/*   Updated: 2024/10/24 11:48:13 by saandria         ###   ########.fr       */
+/*   Updated: 2024/10/24 13:44:37 by saandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	cmd_is_echo(t_cmd *cmd)
 static void	free_atoi(char *s, char *nptr)
 {
 	free(s);
-	free(nptr);	
+	free(nptr);
 }
 
 static int	print_exit(char *s, t_bool *num, char *nptr)
