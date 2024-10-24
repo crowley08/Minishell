@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execute_cmd.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arakotom <arakotom@student.42.fr>          +#+  +:+       +#+        */
+/*   By: saandria <saandria@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/22 16:12:24 by saandria          #+#    #+#             */
-/*   Updated: 2024/10/23 16:09:27 by arakotom         ###   ########.fr       */
+/*   Updated: 2024/10/24 12:32:39 by saandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,13 +109,19 @@ int	exec_execve(t_msh *msh, t_cmd *cmd)
 
 int	execute_cmd_in_list(t_msh *msh, t_prompt *prompt)
 {
+	int	exit_status;
+
 	if (!set_all_redir_ok(prompt))
 	{
 		free_msh_keep_file(msh, TRUE);
 		return (EXIT_FAILURE);
 	}
 	if (cmd_is_builtin(prompt->cmd))
-		return (ms_exec_builtin(msh, prompt->cmd));
+	{
+		exit_status = ms_exec_builtin(msh, prompt->cmd);
+		free_msh_keep_file(msh, TRUE);
+		return (exit_status);
+	}
 	else
 		return (exec_execve(msh, prompt->cmd));
 }

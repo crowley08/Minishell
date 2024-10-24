@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execute_one_prompt.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arakotom <arakotom@student.42.fr>          +#+  +:+       +#+        */
+/*   By: saandria <saandria@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/22 16:12:50 by saandria          #+#    #+#             */
-/*   Updated: 2024/10/23 16:09:37 by arakotom         ###   ########.fr       */
+/*   Updated: 2024/10/24 12:31:02 by saandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
